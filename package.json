@@ -1,0 +1,55 @@
+{
+  "name": "nuxt-build-optimisations",
+  "version": "1.0.0",
+  "description": "Automatic optimisations for Nuxt build time.",
+  "repository": "loonpwn/nuxt-build-optimisations",
+  "license": "MIT",
+  "exports": {
+    ".": "./dist/index.js",
+    "./": "./"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "siroc build",
+    "dev": "nuxt-ts test/fixture",
+    "lint": "eslint --fix --ext .ts,.js,.vue .",
+    "release": "yarn test && yarn build && standard-version && git push --follow-tags && npm publish",
+    "test": "yarn lint && jest --verbose"
+  },
+  "dependencies": {
+    "@nuxt/babel-preset-app": "^2.14.12",
+    "chalk": "^4.1.0",
+    "chokidar": "^3.5.1",
+    "glob": "^7.1.6",
+    "globby": "^11.0.2",
+    "lodash": "^4.17.20",
+    "semver": "^7.3.4",
+    "speed-measure-webpack-plugin": "^1.4.2",
+    "upath": "^2.0.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "latest",
+    "@babel/preset-typescript": "latest",
+    "@nuxt/test-utils": "latest",
+    "@nuxt/types": "latest",
+    "@nuxt/typescript-build": "latest",
+    "@nuxt/typescript-runtime": "latest",
+    "@nuxtjs/eslint-config-typescript": "latest",
+    "@types/jest": "latest",
+    "@types/loader-utils": "latest",
+    "@types/lodash": "latest",
+    "@types/semver": "latest",
+    "@types/speed-measure-webpack-plugin": "^1.3.1",
+    "cheerio": "^1.0.0-rc.5",
+    "eslint": "latest",
+    "jest": "latest",
+    "loader-utils": "latest",
+    "nuxt-edge": "latest",
+    "siroc": "latest",
+    "standard-version": "latest"
+  }
+}
