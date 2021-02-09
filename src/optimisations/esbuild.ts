@@ -3,7 +3,7 @@ import type { Configuration as WebpackConfig } from 'webpack'
 import { ExtendFunctionContext } from '@nuxt/types/config/module'
 import webpack from 'webpack'
 
-export default (nuxt: any, config : WebpackConfig, { isDev } : ExtendFunctionContext) => {
+export default (profile: string | boolean, nuxt: any, config : WebpackConfig, { isDev } : ExtendFunctionContext) => {
   if (!config.module || !config.plugins) {
     return
   }
@@ -36,7 +36,7 @@ export default (nuxt: any, config : WebpackConfig, { isDev } : ExtendFunctionCon
     })
 
     config.plugins.push(new ESBuildPlugin())
-  } else {
+  } else if (profile === 'experimental') {
     // enable esbuild minifier, replace terser
     nuxt.options.build.terser = false
     nuxt.options.build.minimize = true

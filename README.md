@@ -17,15 +17,19 @@ Under the hood it modifies your Nuxt config and the underlying webpack config.
 
 ## Features
 
-- :snail: Find what is slowing down your app with [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)
-- :mage: webpacks [best practices for performance](https://webpack.js.org/guides/build-performance/)
-
 **Development**
-- :zap: Transpile js/ts with [esbuild](https://esbuild.github.io/)
-- :zap: Quicker loader for images
+- :zap: Super quick js/ts transpiling with [esbuild](https://esbuild.github.io/) (safe)
+- :zap: Images will only use `file-loader` for quicker builds (safe)
 
 **Production**
-- :skull: Transpile for non-dead browsers
+- :zap: Transpile for [not-dead browsers](https://github.com/browserslist/browserslist#full-list) (experimental)
+- :zap: Quicker minification with [esbuild](https://esbuild.github.io/) (experimental)
+
+**Misc**
+- :electric_plug: Webpack loaders: cache / parallel / hard source (experimental/risky)
+- :snail: webpack benchmarking with [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin) (safe)
+- :mage: webpack's [best practices for performance](https://webpack.js.org/guides/build-performance/) (experimental)
+
 
 ## Setup
 

@@ -47,7 +47,7 @@ const buildOptimisationsModule: Module<Options> = function () {
       // replace babel with esbuild
       nuxtOptimiser(profile, nuxt, env)
       // replace babel with esbuild
-      esbuild(nuxt, config, env)
+      esbuild(profile, nuxt, config, env)
       // swap out url-loader for file-loader
       images(config, env)
       // webpack flag optimisations
