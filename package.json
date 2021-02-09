@@ -1,6 +1,6 @@
 {
   "name": "nuxt-build-optimisations",
-  "version": "1.0.0-3",
+  "version": "1.0.0-4",
   "description": "Automatic optimisations for Nuxt build time.",
   "repository": "loonpwn/nuxt-build-optimisations",
   "license": "MIT",
