@@ -27,7 +27,6 @@ export default ({ options, nuxt, config, env } : OptimisationArgs) => {
           loader: 'esbuild-loader',
           options: {
             target: 'es2015',
-            format: env.isServer ? 'cjs' : 'iife'
           }
         }
       }
