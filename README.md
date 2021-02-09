@@ -1,4 +1,4 @@
-![](https://laravel-og.beyondco.de/Nuxt%20Build%20Optimisations.png?theme=light&packageManager=vue+add&packageName=nuxt-build-optimisations&pattern=texture&style=style_1&description=Instantly+speed+up+your+Nuxt+2+build+time.&md=1&showWatermark=0&fontSize=100px&images=lightning-bolt)
+![](https://laravel-og.beyondco.de/Nuxt%20Build%20Optimisations.png?theme=light&packageManager=yarn&packageName=nuxt-build-optimisations&pattern=texture&style=style_1&description=Instantly+speed+up+your+Nuxt+2+build+time.&md=1&showWatermark=0&fontSize=100px&images=lightning-bolt)
 
 <h2 align='center'><samp>nuxt-build-optimisations</samp></h2>
 
@@ -59,7 +59,6 @@ To enable the measure plugin, you can use an environment variable or follow the 
 ```json
 {
   "scripts": {
-    // ...
     "measure": "export NUXT_MEASURE=true; nuxt dev"
   }
 }
@@ -106,7 +105,7 @@ buildOptimisations: {
 
 If you have errors on the `risky` mode you should increment down in profiles until you find one that works.
 
-Setting the profile to false will disable the optimisations, useful when you want to measure your old runtime.
+Setting the profile to false will disable the optimisations, useful when you want to measure your build time without optimisations.
 
 ## Safest
 
