@@ -18,7 +18,7 @@
     "dev": "nuxt-ts test/fixture",
     "lint": "eslint --fix --ext .ts,.js,.vue .",
     "measure": "export NUXT_MEASURE=true && nuxt-ts test/fixture",
-    "release": "yarn test && dotenv release-it --",
+    "release": "dotenv release-it --",
     "test": "yarn lint && jest --verbose"
   },
   "dependencies": {
@@ -46,6 +46,7 @@
     "jest": "latest",
     "loader-utils": "latest",
     "nuxt-edge": "latest",
+    "release-it": "^14.3.0",
     "siroc": "latest",
     "standard-version": "latest"
   }
