@@ -1,19 +1,19 @@
-import { ExtendFunctionContext } from '@nuxt/types/config/module'
+import { OptimisationArgs } from '../types'
 
-export default (profile : string | boolean, nuxt: any, { isDev } : ExtendFunctionContext) => {
-  if (profile !== 'safe') {
+export default ({ options, nuxt, env } : OptimisationArgs) => {
+  if (options.profile !== 'safe') {
     nuxt.options.build.cache = true
   }
-  if (isDev) {
+  if (env.isDev) {
     // disable modern since the client build will be modern already
     nuxt.options.modern = false
     nuxt.options.build.terser = false
     nuxt.options.build.html.minify = false
-    if (profile === 'risky') {
+    if (options.profile === 'risky') {
       nuxt.options.build.hardSource = true
       nuxt.options.build.parallel = true
     }
-    if (profile !== 'safe') {
+    if (options.profile !== 'safe') {
       /* No vendor transpiling */
       nuxt.options.build.transpile = []
     }

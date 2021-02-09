@@ -1,9 +1,8 @@
 import { ESBuildPlugin, ESBuildMinifyPlugin } from 'esbuild-loader'
-import type { Configuration as WebpackConfig } from 'webpack'
-import { ExtendFunctionContext } from '@nuxt/types/config/module'
 import webpack from 'webpack'
+import { OptimisationArgs } from '../types'
 
-export default (profile: string | boolean, nuxt: any, config : WebpackConfig, { isDev, isServer } : ExtendFunctionContext) => {
+export default ({ options, nuxt, config, env } : OptimisationArgs) => {
   if (!config.module || !config.plugins) {
     return
   }
@@ -22,25 +21,13 @@ export default (profile: string | boolean, nuxt: any, config : WebpackConfig, { 
     // @ts-ignore
     rule.use.forEach((use : webpack.RuleSetRule, useKey : number) => {
       const loader = use.loader as String
-      if (loader.includes('babel-loader') && isDev) {
+      if (loader.includes('babel-loader') && env.isDev) {
         // @ts-ignore
         config.module.rules[ruleKey].use[useKey] = {
           loader: 'esbuild-loader',
           options: {
-            target: 'chrome82',
-            format: isServer ? 'cjs' : 'iife'
-          }
-        }
-      } else if (loader.includes('ts-loader')) {
-        if (isDev) {
-          // remove ts-loader, esbuilder already transpiles for us
-          // @ts-ignore
-          config.module.rules[ruleKey].use.splice(useKey, 1)
-        } else {
-          // use esbuild for non-dev typescript
-          // @ts-ignore
-          config.module.rules[ruleKey].use[useKey] = {
-            loader: 'esbuild-loader'
+            target: 'es2015',
+            format: env.isServer ? 'cjs' : 'iife'
           }
         }
       }
@@ -48,7 +35,7 @@ export default (profile: string | boolean, nuxt: any, config : WebpackConfig, { 
   })
 
   config.plugins.push(new ESBuildPlugin())
-  if (profile === 'experimental') {
+  if (options.profile === 'experimental') {
     // enable esbuild minifier, replace terser
     nuxt.options.build.minimize = true
     nuxt.options.build.minimizer = [

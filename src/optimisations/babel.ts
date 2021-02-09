@@ -1,6 +1,10 @@
 import { NuxtWebpackEnv } from '@nuxt/types/config/build'
+import { OptimisationArgs } from '../types'
 
-export default (nuxt: any) => {
+export default ({ options, nuxt } : OptimisationArgs) => {
+  if (options.profile === 'safe') {
+    return
+  }
   nuxt.options.build.babel.presets = ({ isServer }: NuxtWebpackEnv) => {
     return [
       [

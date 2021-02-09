@@ -1,8 +1,7 @@
-import type { Configuration as WebpackConfig } from 'webpack'
-import { ExtendFunctionContext } from '@nuxt/types/config/module'
+import { OptimisationArgs } from '../types'
 
-export default (config : WebpackConfig, { isDev } : ExtendFunctionContext) => {
-  if (!config.module || !isDev) {
+export default ({ config, env } : OptimisationArgs) => {
+  if (!config.module || !env.isDev) {
     return
   }
   // remove the current image loader

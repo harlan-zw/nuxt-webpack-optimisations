@@ -3,12 +3,8 @@ import type { Configuration as WebpackConfig } from 'webpack'
 import type { Module } from '@nuxt/types'
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin'
 import { requireNuxtVersion } from './compatibility'
-import type { Options } from './types'
-import esbuild from './optimisations/esbuild'
-import babel from './optimisations/babel'
-import images from './optimisations/images'
-import webpack from './optimisations/webpack'
-import nuxtOptimiser from './optimisations/nuxt'
+import type { OptimisationArgs, Options } from './types'
+import * as optimisations from './optimisations'
 
 const buildOptimisationsModule: Module<Options> = function () {
   const { nuxt } = this
@@ -20,8 +16,6 @@ const buildOptimisationsModule: Module<Options> = function () {
     ...defaults,
     ...nuxt.options.buildOptimisations
   } as Options
-
-  const profile = buildOptimisations.profile
 
   requireNuxtVersion(nuxt?.constructor?.version, '2.10')
 
@@ -44,17 +38,15 @@ const buildOptimisationsModule: Module<Options> = function () {
     }
 
     this.extendBuild((config: WebpackConfig, env: ExtendFunctionContext) => {
-      // replace babel with esbuild
-      nuxtOptimiser(profile, nuxt, env)
-      // replace babel with esbuild
-      esbuild(profile, nuxt, config, env)
-      // swap out url-loader for file-loader
-      images(config, env)
-      // webpack flag optimisations
-      webpack(config, env)
-      // optimise babel production build
-      if (profile !== 'safe') {
-        babel(nuxt)
+      const args = {
+        nuxt,
+        config,
+        env,
+        options: buildOptimisations
+      } as OptimisationArgs
+      for (const k in optimisations) {
+        // @ts-ignore
+        optimisations[k](args)
       }
     })
   })

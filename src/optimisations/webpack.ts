@@ -1,7 +1,6 @@
-import type { Configuration as WebpackConfig } from 'webpack'
-import { ExtendFunctionContext } from '@nuxt/types/config/module'
+import { OptimisationArgs } from '../types'
 
-export default (config : WebpackConfig, { isDev } : ExtendFunctionContext) => {
+export default ({ config, env } : OptimisationArgs) => {
   if (!config.resolve || !config.output || !config.optimization) {
     return
   }
@@ -14,7 +13,7 @@ export default (config : WebpackConfig, { isDev } : ExtendFunctionContext) => {
     config.resolve.symlinks = false
     config.resolve.cacheWithContext = false
   }
-  if (config.optimization && isDev) {
+  if (config.optimization && env.isDev) {
     config.optimization.removeAvailableModules = false
     config.optimization.removeEmptyChunks = false
     config.optimization.splitChunks = false
