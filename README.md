@@ -1,15 +1,15 @@
-![](https://laravel-og.beyondco.de/Nuxt%20Fast%20Build.png?theme=light&packageManager=vue+add&packageName=import-components&pattern=texture&style=style_1&description=Automatically+speed+up+your+Nuxt+build+time.&md=1&showWatermark=0&fontSize=100px&images=collection)
+![](https://laravel-og.beyondco.de/Nuxt%20Build%20Optimisations.png?theme=light&packageManager=vue+add&packageName=nuxt-build-optimisations&pattern=texture&style=style_1&description=Instantly+speed+up+your+Nuxt+2+build+time.&md=1&showWatermark=0&fontSize=100px&images=lightning-bolt)
 
-<h2 align='center'><samp>nuxt-fast-build</samp></h2>
+<h2 align='center'><samp>nuxt-build-optimisations</samp></h2>
 
-<p align='center'>Automatically speed up your Nuxt.js 2 build time.</p>
+<p align='center'>Instantly speed up your Nuxt.js 2 build time.</p>
 
 
 ## Why and How?
 
 Nuxt Build Optimisations is for modern, sluggish Nuxt.js 2 apps.
 
-it makes smart assumptions about trade-offs you're willing to make for better build speeds.
+It makes smart assumptions about trade-offs you're willing to make for better build speeds.
 
 Under the hood it modifies your Nuxt config and the underlying webpack config.
 
@@ -21,7 +21,7 @@ Under the hood it modifies your Nuxt config and the underlying webpack config.
 - :mage: webpacks [best practices for performance](https://webpack.js.org/guides/build-performance/)
 
 **Development**
-- :zap: Transpile js/ts with esbuild
+- :zap: Transpile js/ts with [esbuild](https://esbuild.github.io/)
 - :zap: Quicker loader for images
 
 **Production**
