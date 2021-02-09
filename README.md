@@ -1,142 +1,164 @@
-![](https://laravel-og.beyondco.de/Nuxt%20Build%20Optimisations.png?theme=light&packageManager=vue+add&packageName=import-components&pattern=texture&style=style_1&description=Automatically+import+components+in+your+Vue+CLI+app.&md=1&showWatermark=0&fontSize=100px&images=collection)
+![](https://laravel-og.beyondco.de/Nuxt%20Fast%20Build.png?theme=light&packageManager=vue+add&packageName=import-components&pattern=texture&style=style_1&description=Automatically+speed+up+your+Nuxt+build+time.&md=1&showWatermark=0&fontSize=100px&images=collection)
 
-<h2 align='center'><samp>nuxt-build-optimisation</samp></h2>
+<h2 align='center'><samp>nuxt-fast-build</samp></h2>
 
-<p align='center'>Automatically import components in your Vue CLI app with tree shaking, supporting Nuxt.js 2.10+</p>
+<p align='center'>Automatically speed up your Nuxt.js 2 build time.</p>
 
 
 ## Why and How?
 
-Checkout my [article](https://harlanzw.com/blog/vue-automatic-component-imports/) about why this module exists, how it works and the issues.
+Nuxt Build Optimisations is for modern, sluggish Nuxt.js 2 apps.
 
+it makes smart assumptions about trade-offs you're willing to make for better build speeds.
+
+Under the hood it modifies your Nuxt config and the underlying webpack config.
+
+*:warning: This module is experimental. You need to test your app with it before it hits production.*
 
 ## Features
 
-- :mage: Vue 2 and 3 support with full tree shaking
-- :wrench: Easily customise to your project
-- :fire: Hot Module Reloading ready
-- :triangular_ruler: Written in Typescript
+- :snail: Find what is slowing down your app with [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)
+- :mage: webpacks [best practices for performance](https://webpack.js.org/guides/build-performance/)
+
+**Development**
+- :zap: Transpile js/ts with esbuild
+- :zap: Quicker loader for images
+
+**Production**
+- :skull: Transpile for non-dead browsers
 
 ## Setup
 
-Install using Vue CLI. (Vue CLI 4+ is recommended)
+Install using yarn or npm. (Nuxt.js 2.10+ is required)
 
 ```bash
-vue add import-components
+yarn add nuxt-build-optimisations
 ```
 
 ---
 
 ## Usage
 
-Within your nuxt.config.js
+Within your `nuxt.config.js` add the following.
 
 ```js
+// nuxt.config.js
 buildModules: [
   'nuxt-build-optimisations',
 ],
 ```
 
+To enable the measure plugin, you can use an environment variable or follow the documentation below.
 
+**package.json**
 
+```json
+{
+  "scripts": {
+    // ...
+    "measure": "export NUXT_MEASURE=true; nuxt dev"
+  }
+}
+```
 
 ## Configuration
 
-You can change the behaviour of the plugin by modifying the options in `./vue.config.js`.
+Configuration is under the buildOptimisations key in your nuxt.config.js.
+
+**Default Configuration**
+```js
+buildOptimisations: {
+  profile: 'risky'
+}
+```
+
+
+### Measure
+
+*Type:* `boolean` or `object`
+
+*Default:* `false`
+
+When measure is enabled with true (options or environment variable), it will use the `speed-measure-webpack-plugin`.
+
+If the measure option is an object it is assumed to be [speed-measure-webpack-plugin options](https://github.com/stephencookdev/speed-measure-webpack-plugin#options).
 
 ```js
-// vue.config.js
-module.exports = {
-  pluginOptions: {
-    components: {
-      ...
-    }
+buildOptimisations: {
+  measure: {
+    outputFormat: 'humanVerbose',
+    granularLoaderData: true,
+    loaderTopFiles: 10
   }
 }
 ```
 
-### Options
 
-All options are optional.
+# Profile
 
-#### path - String
+*Type:* `risky` | `experimental` | `safe` | `false`
 
-The path used for scanning to find components. Note: It should be relative to your project root.
+*Default:* `risky`
 
-Default: `./src/components`
+If you have errors on the `risky` mode you should increment down in profiles until you find one that works.
 
-#### pattern - String
+Setting the profile to false will disable the optimisations, useful when you want to measure your old runtime.
 
-Regex to find the files within the `path`. Note: If you omit the pattern it will use the configured `extensions`
+## Safest
 
-Default: `**/*.{${extensions.join(',')},}`
+### Faster image loader
 
-#### ignore - String[]
+Development only
 
-Regex to ignore files within the `path`.
+Swaps `url-loader` for `file-loader`. Faster when you have a lot of images of varying sizes.
 
-Default: `[ '**/*.stories.js' ],`
+Tradeoff: can't test url-loaded images in dev 
 
-#### mapComponent - (component : Component) => Component | false
+### Webpack flag optimisations
 
-A function which you can use to filter out paths you don't want to be scanned.
+Specific webpack flags changed based on best practices described in the documentation.
 
-For example, if we wanted to access your automatically components only when they're prefixed them with `auto`, you could use the below code.
+Tradeoff: See webpack docs
 
-```js
-// vue.config.js
-module.exports = {
-  pluginOptions: {
-    components: {
-      // prefix all automatically imported components with an auto prefix
-      mapComponent (component) {
-        component.pascalCase = 'Auto' + upperFirst(component.pascalCase)
-        component.kebabName = 'auto-' + component.pascalCase
-        return component
-      }
-    }
-  }
-}
-```
+### Disable minimising
 
-#### extensions - String[]
+Development only
 
-When scanning the path for components, which files should be considered components.
+Makes sure all Nuxt minimising is disabled to speed up builds, including js and html.
 
-Default: `['.js', '.vue', '.ts']`
+### No local modern builds
 
-### Limitations
+Development only
 
-**Static Imports Only**
+Modern builds are disabled by default as the main client build works the same.
 
-Only components that are statically defined within your template will work.
+## Experimental
 
-```vue
-<template>
-  <component :is="dynamicComponent"/>
-</template>
-```
+### Optimised Transpiling
 
-**Using folders as namespaces**
+For development will only transpile code to the latest chrome for a ~40% quicker compile.
 
-It is assumed you are using the Vue conventions for naming your components. The below would not work without manually mapping
-the components.
+In production transpiles code for non-dead browsers. Nuxt out of the box transpiles to IE9. See: https://github.com/browserslist/browserslist#full-list
 
-```bash
-| components/
----| Foo.vue
-------| Namespace/Foo.vue
-```
+### Cache enabled
 
-It would create a conflict with two components called `Foo.vue`. You should name your component files with the namespace.
-i.e `NamespaceFoo.vue`.
+Nuxt cache option enabled
 
-**Javascript Components**
+### No vendor transpiling
 
-You may need to refresh your browser when you are updating them. The hot module reloading
-seems to be a little buggy sometimes.
+Development only
 
-It's recommended that you stick with `.vue` SFC components.
+Removes any transpiling of third party libraries. 
+
+## Risky
+
+### Hard Source Enabled
+
+Nuxt hardSource enabled
+
+### Parallel Enabled
+
+Nuxt parallel enabled
 
 ## License
 
