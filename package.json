@@ -15,9 +15,9 @@
   ],
   "scripts": {
     "build": "siroc build",
-    "dev": "nuxt-ts test/fixture",
+    "dev": "nuxt-ts test/fixtures/vuetify",
     "lint": "eslint --fix --ext .ts,.js,.vue .",
-    "measure": "export NUXT_MEASURE=true && nuxt-ts test/fixture",
+    "measure": "export NUXT_MEASURE=true && nuxt-ts test/fixtures",
     "release": "dotenv release-it --",
     "test": "yarn lint && jest --verbose"
   },
@@ -35,6 +35,7 @@
     "@nuxt/typescript-build": "latest",
     "@nuxt/typescript-runtime": "latest",
     "@nuxtjs/eslint-config-typescript": "latest",
+    "@nuxtjs/vuetify": "^1.11.3",
     "@types/jest": "latest",
     "@types/loader-utils": "latest",
     "@types/lodash": "latest",

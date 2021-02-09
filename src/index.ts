@@ -27,7 +27,7 @@ const buildOptimisationsModule: Module<Options> = function () {
 
   nuxt.hook('build:before', () => {
     /* Speed Measure Plugin: https://www.npmjs.com/package/speed-measure-webpack-plugin */
-    if (buildOptimisations.measure || process.env.NUXT_MEASURE) {
+    if (process.env.NODE_ENV !== 'test' && (buildOptimisations.measure || process.env.NUXT_MEASURE)) {
       const defaults = {
         outputFormat: 'human'
       }

@@ -3,12 +3,12 @@ import { setupTest, getNuxt } from '@nuxt/test-utils'
 
 const cheerio = require('cheerio')
 
-describe('SSR Dev environment test', () => {
+describe('Default Dev test', () => {
   console.warn = jest.fn() // eslint-disable-line no-console
 
   setupTest({
     testDir: __dirname,
-    fixture: 'fixture',
+    fixture: 'fixtures/basic',
     configFile: 'nuxt.config.ts',
     build: true,
     config: {
@@ -16,17 +16,53 @@ describe('SSR Dev environment test', () => {
     }
   })
 
-  // test('options are correct for dev', () => {
-  //   const { options } = getNuxt()
-  //   expect(getByTestId('smallImg')).toBeDisabled()
-  //
-  //   expect(options).toContain('Hello World')
-  // })
   test('renders index route', async () => {
     const { html } = await getNuxt().server.renderRoute('/')
     const $ = cheerio.load(html)
     expect($('[data-testid="title"]').text().trim()).toEqual('Hello World')
-    expect($('[data-testid="smallImg"]').attr('src')).toEqual('/_nuxt/test/fixture/image/small.svg')
-    expect($('[data-testid="bigImg"]').attr('src')).toEqual('/_nuxt/test/fixture/image/big.jpg')
+    expect($('[data-testid="smallImg"]').attr('src')).toEqual('/_nuxt/test/fixtures/basic/image/small.svg')
+    expect($('[data-testid="bigImg"]').attr('src')).toEqual('/_nuxt/test/fixtures/basic/image/big.jpg')
+  })
+})
+
+describe('Default Production test', () => {
+  console.warn = jest.fn() // eslint-disable-line no-console
+
+  setupTest({
+    testDir: __dirname,
+    fixture: 'fixtures/basic',
+    configFile: 'nuxt.config.ts',
+    build: true,
+    config: {
+      dev: false
+    }
+  })
+
+  test('renders index route', async () => {
+    const { html } = await getNuxt().server.renderRoute('/')
+    const $ = cheerio.load(html)
+    expect($('[data-testid="title"]').text().trim()).toEqual('Hello World')
+    expect($('[data-testid="smallImg"]').attr('src')).toContain('data:image/svg+xml;base64,')
+    expect($('[data-testid="bigImg"]').attr('src')).toContain('/_nuxt/img/big')
+  })
+})
+
+describe('Vuetify test', () => {
+  console.warn = jest.fn() // eslint-disable-line no-console
+
+  setupTest({
+    testDir: __dirname,
+    fixture: 'fixtures/vuetify',
+    configFile: 'nuxt.config.ts',
+    build: true,
+    config: {
+      dev: true
+    }
+  })
+
+  test('renders index route', async () => {
+    const { html } = await getNuxt().server.renderRoute('/')
+    const $ = cheerio.load(html)
+    expect($('[data-testid="button"]').text().trim()).toEqual('Hello World')
   })
 })

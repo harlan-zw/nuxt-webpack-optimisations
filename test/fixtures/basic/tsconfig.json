@@ -11,7 +11,7 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "strict": true,
-    "baseUrl": ".",
+    "baseUrl": "..",
     "paths": {
       "~/*": [
         "./*"
