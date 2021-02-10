@@ -163,6 +163,10 @@ Nuxt hardSource enabled
 
 Nuxt parallel enabled
 
+## Credits
+
+- https://github.com/galvez/nuxt-esbuild-module
+
 ## License
 
 [MIT](LICENSE)

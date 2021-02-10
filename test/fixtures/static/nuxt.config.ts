@@ -2,12 +2,14 @@ import { NuxtConfig } from '@nuxt/types'
 import nuxtBuildOptimisations from '../../../src'
 
 const config : NuxtConfig = {
+  target: 'static',
+  modern: 'client',
   buildModules: [
     '@nuxt/typescript-build',
-    '@nuxtjs/vuetify',
     nuxtBuildOptimisations
   ],
   buildOptimisations: {
+    measure: process.env.NODE_ENV === 'development',
     profile: 'risky'
   }
 }

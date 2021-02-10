@@ -1,43 +1,54 @@
 import { ESBuildPlugin, ESBuildMinifyPlugin } from 'esbuild-loader'
-import webpack from 'webpack'
 import { OptimisationArgs } from '../types'
 
-export default ({ options, nuxt, config, env } : OptimisationArgs) => {
+export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
   if (!config.module || !config.plugins) {
     return
   }
 
-  // remove the nuxt js/ts loaders
-  config.module.rules.forEach((rule, ruleKey) => {
-    if (rule.test && rule.test.toString() !== '/\\.m?jsx?$/i' &&
-      rule.test.toString() !== '/\\.ts$/i' &&
-      rule.test.toString() !== '/\\.tsx$/i') {
-      return
-    }
-    if (!rule.use) {
-      return
-    }
-    // iterate through the loaders, find the babel one
-    // @ts-ignore
-    rule.use.forEach((use : webpack.RuleSetRule, useKey : number) => {
-      const loader = use.loader as String
-      if (loader.includes('babel-loader') && env.isDev) {
+  if (env.isDev) {
+    // remove the nuxt js/ts loaders
+    config.module.rules.forEach((rule, ruleKey) => {
+      // nuxt js / ts file matching
+      if (!rule.use || !rule.test) {
+        return
+      }
+
+      if (rule.test.toString() === '/\\.m?jsx?$/i') {
         // @ts-ignore
-        config.module.rules[ruleKey].use[useKey] = {
+        config.module.rules[ruleKey].use = [{
           loader: 'esbuild-loader',
           options: {
-            target: 'es2015',
+            target: env.isServer ? 'es2015' : 'chrome87'
           }
-        }
+        }]
+      } else if (rule.test.toString() === '/\\.ts$/i') {
+        // @ts-ignore
+        config.module.rules[ruleKey].use = [{
+          loader: 'esbuild-loader',
+          options: {
+            loader: 'ts',
+            target: env.isServer ? 'es2015' : 'chrome87'
+          }
+        }]
+      } else if (rule.test.toString() === '/\\.tsx$/i') {
+        // @ts-ignore
+        config.module.rules[ruleKey].use = [{
+          loader: 'esbuild-loader',
+          options: {
+            loader: 'ts',
+            target: env.isServer ? 'es2015' : 'chrome87'
+          }
+        }]
       }
     })
-  })
+    config.plugins.push(new ESBuildPlugin())
+  }
 
-  config.plugins.push(new ESBuildPlugin())
-  if (options.profile === 'experimental') {
+  if (options.profile !== 'safe' && nuxtOptions.build.optimization) {
     // enable esbuild minifier, replace terser
-    nuxt.options.build.minimize = true
-    nuxt.options.build.minimizer = [
+    nuxtOptions.build.optimization.minimize = true
+    nuxtOptions.build.optimization.minimizer = [
       new ESBuildMinifyPlugin({
         target: 'es2015'
       })

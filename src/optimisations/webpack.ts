@@ -5,15 +5,11 @@ export default ({ config, env } : OptimisationArgs) => {
     return
   }
   /* Webpack Optimisations: https://webpack.js.org/guides/build-performance/ */
-  if (config.output) {
-    config.output.pathinfo = false
-    config.output.futureEmitAssets = true
-  }
-  if (config.resolve) {
-    config.resolve.symlinks = false
-    config.resolve.cacheWithContext = false
-  }
-  if (config.optimization && env.isDev) {
+  config.output.pathinfo = false
+  config.output.futureEmitAssets = true
+  config.resolve.symlinks = false
+  config.resolve.cacheWithContext = false
+  if (env.isDev) {
     config.optimization.removeAvailableModules = false
     config.optimization.removeEmptyChunks = false
     config.optimization.splitChunks = false

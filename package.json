@@ -15,14 +15,21 @@
   ],
   "scripts": {
     "build": "siroc build",
-    "dev": "nuxt-ts test/fixtures/vuetify",
+    "dev:basic": "nuxt-ts test/fixtures/basic",
+    "dev:vuetify": "export NODE_ENV=production && nuxt-ts test/fixtures/vuetify",
+    "generate:vuetify": "export NODE_ENV=production && nuxt-ts generate test/fixtures/vuetify",
+    "start:vuetify": "export NODE_ENV=production && nuxt-ts start test/fixtures/vuetify",
+    "build:vuetify": "export NODE_ENV=production && nuxt-ts build test/fixtures/vuetify",
+    "dev:static": "export NODE_ENV=production && nuxt-ts test/fixtures/static",
+    "generate:static": "export NODE_ENV=production && nuxt-ts generate test/fixtures/static",
+    "start:static": "export NODE_ENV=production && nuxt-ts start test/fixtures/static",
+    "build:static": "export NODE_ENV=production && nuxt-ts build test/fixtures/static",
     "lint": "eslint --fix --ext .ts,.js,.vue .",
     "measure": "export NUXT_MEASURE=true && nuxt-ts test/fixtures",
     "release": "dotenv release-it --",
     "test": "yarn lint && jest --verbose"
   },
   "dependencies": {
-    "@nuxt/babel-preset-app": "^2.14.12",
     "esbuild-loader": "^2.9.1",
     "semver": "^7.3.4",
     "speed-measure-webpack-plugin": "^1.4.2"
