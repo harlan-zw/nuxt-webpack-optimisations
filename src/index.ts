@@ -17,29 +17,16 @@ const buildOptimisationsModule: Module<Options> = function () {
     ...nuxt.options.buildOptimisations
   } as Options
 
+  // @ts-ignore
   requireNuxtVersion(nuxt?.constructor?.version, '2.10')
 
   nuxt.hook('build:before', () => {
-    /* Speed Measure Plugin: https://www.npmjs.com/package/speed-measure-webpack-plugin */
-    if (process.env.NODE_ENV !== 'test' && (buildOptimisations.measure || process.env.NUXT_MEASURE)) {
-      const defaults = {
-        outputFormat: 'human'
-      }
-      const measureOptions = {
-        ...defaults,
-        ...(typeof buildOptimisations.measure === 'boolean' ? {} : buildOptimisations.measure)
-      } as SpeedMeasurePlugin.Options
-      const smp = new SpeedMeasurePlugin(measureOptions)
-      nuxt.hook('webpack:config', (configs: WebpackConfig[]) => {
-        configs.forEach((config) => {
-          smp.wrap(config)
-        })
-      })
-    }
+    // if the user has enabled speed measure plugin and we can
+    maybeEnableSpeedMeasurePlugin(buildOptimisations, nuxt)
 
     this.extendBuild((config: WebpackConfig, env: ExtendFunctionContext) => {
       const args = {
-        nuxt,
+        nuxtOptions: nuxt.options,
         config,
         env,
         options: buildOptimisations
@@ -47,6 +34,37 @@ const buildOptimisationsModule: Module<Options> = function () {
       for (const k in optimisations) {
         // @ts-ignore
         optimisations[k](args)
+      }
+    })
+  })
+}
+
+/* Speed Measure Plugin: https://www.npmjs.com/package/speed-measure-webpack-plugin */
+function maybeEnableSpeedMeasurePlugin (buildOptimisations : Options, nuxt : any) {
+  if (!buildOptimisations.measure && !process.env.NUXT_MEASURE) {
+    return
+  }
+  if (!nuxt.options.ssr) {
+    // breaks if SSR is off for some reason
+    console.warn('SpeedMeasurePlugin has been disabled because SSR mode is off.')
+    return
+  }
+  if (process.env.NODE_ENV === 'test') {
+    console.warn('SpeedMeasurePlugin has been disabled because of the testing environment.')
+    return
+  }
+  const defaults = {
+    outputFormat: 'human'
+  }
+  const measureOptions = {
+    ...defaults,
+    ...(typeof buildOptimisations.measure === 'boolean' ? {} : buildOptimisations.measure)
+  } as SpeedMeasurePlugin.Options
+  const smp = new SpeedMeasurePlugin(measureOptions)
+  nuxt.hook('webpack:config', (configs: WebpackConfig[]) => {
+    configs.forEach((config) => {
+      if (config.name === 'client') {
+        smp.wrap(config)
       }
     })
   })

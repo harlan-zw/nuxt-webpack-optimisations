@@ -23,6 +23,18 @@ describe('Default Dev test', () => {
     expect($('[data-testid="smallImg"]').attr('src')).toEqual('/_nuxt/test/fixtures/basic/image/small.svg')
     expect($('[data-testid="bigImg"]').attr('src')).toEqual('/_nuxt/test/fixtures/basic/image/big.jpg')
   })
+
+  test('nuxt options are updated', async () => {
+    const options = await getNuxt().options
+    expect(options.build.cache).toBeTruthy()
+    expect(options.build.hardSource).toBeFalsy()
+    expect(options.build.parallel).toBeFalsy()
+    expect(options.build.transpile).toStrictEqual([])
+
+    expect(options.features.layouts).toBeFalsy()
+    expect(options.features.store).toBeFalsy()
+    expect(options.features.middleware).toBeFalsy()
+  })
 })
 
 describe('Default Production test', () => {

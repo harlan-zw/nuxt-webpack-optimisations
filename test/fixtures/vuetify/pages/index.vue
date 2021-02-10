@@ -96,8 +96,11 @@
 </template>
 
 <script>
+import ChatMessage from '../types'
+
 export default {
   data: () => ({
+    message: new ChatMessage({}),
     cards: ['Today', 'Yesterday'],
     drawer: null,
     links: [
