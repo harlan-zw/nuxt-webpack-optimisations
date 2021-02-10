@@ -7,6 +7,7 @@ export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
   }
 
   if (env.isDev) {
+    let cacheLoader = []
     // remove the nuxt js/ts loaders
     config.module.rules.forEach((rule, ruleKey) => {
       // nuxt js / ts file matching
@@ -14,7 +15,7 @@ export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
         return
       }
       // @ts-ignore
-      const cacheLoader = config.module.rules[ruleKey].use.filter((use) => {
+      cacheLoader = config.module.rules[ruleKey].use.filter((use) => {
         return use.loader.includes('cache-loader')
       })
       if (rule.test.toString() === '/\\.m?jsx?$/i') {
