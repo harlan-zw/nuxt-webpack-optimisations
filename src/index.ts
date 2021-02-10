@@ -4,7 +4,7 @@ import type { Module } from '@nuxt/types'
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin'
 import { requireNuxtVersion } from './compatibility'
 import type { OptimisationArgs, Options } from './types'
-import * as optimisations from './optimisations'
+import { webpackOptimiser, babelOptimiser, imageOptimiser, esbuildOptimiser, nuxtOptimiser } from './optimisations'
 
 const buildOptimisationsModule: Module<Options> = function () {
   const { nuxt } = this
@@ -24,6 +24,9 @@ const buildOptimisationsModule: Module<Options> = function () {
     // if the user has enabled speed measure plugin and we can
     maybeEnableSpeedMeasurePlugin(buildOptimisations, nuxt)
 
+    // @ts-ignore
+    nuxtOptimiser({ options: buildOptimisations, nuxtOptions: nuxt.options, env: { isDev: nuxt.dev } })
+
     this.extendBuild((config: WebpackConfig, env: ExtendFunctionContext) => {
       const args = {
         nuxtOptions: nuxt.options,
@@ -31,9 +34,12 @@ const buildOptimisationsModule: Module<Options> = function () {
         env,
         options: buildOptimisations
       } as OptimisationArgs
-      for (const k in optimisations) {
+      const extendOptimisers = [
+        webpackOptimiser, babelOptimiser, imageOptimiser, esbuildOptimiser
+      ]
+      for (const k in extendOptimisers) {
         // @ts-ignore
-        optimisations[k](args)
+        extendOptimisers[k](args)
       }
     })
   })
