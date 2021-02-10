@@ -19,7 +19,7 @@ export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
         config.module.rules[ruleKey].use = [{
           loader: 'esbuild-loader',
           options: {
-            target: env.isServer ? 'es2015' : 'chrome87'
+            target: 'es2015'
           }
         }]
       } else if (rule.test.toString() === '/\\.ts$/i') {
@@ -28,7 +28,7 @@ export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
           loader: 'esbuild-loader',
           options: {
             loader: 'ts',
-            target: env.isServer ? 'es2015' : 'chrome87'
+            target: 'es2015'
           }
         }]
       } else if (rule.test.toString() === '/\\.tsx$/i') {
@@ -37,7 +37,7 @@ export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
           loader: 'esbuild-loader',
           options: {
             loader: 'ts',
-            target: env.isServer ? 'es2015' : 'chrome87'
+            target: 'es2015'
           }
         }]
       }
