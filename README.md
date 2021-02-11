@@ -2,6 +2,11 @@
 
 <h2 align='center'><samp>nuxt-build-optimisations</samp></h2>
 
+<p align="center">
+  <a href="https://npmjs.com/package/nuxt-build-optimisations"><img src="https://img.shields.io/npm/v/nuxt-build-optimisations.svg" alt="npm package"></a>
+  <a href="https://nodejs.org/en/about/releases/"><img src="https://img.shields.io/node/v/nuxt-build-optimisations.svg" alt="node compatility"></a>
+</p>
+
 <p align='center'>Instantly speed up your Nuxt.js 2 build time.</p>
 
 
