@@ -10,30 +10,25 @@
 With the introduction of Vite, Nuxt feels sluggish. This package aims to give you 'vite-like' speed by modifying your
 Nuxt and webpack configurations to squeeze extra performance out of the build process.
 
-It uses a configured risk profile to determine which optimisations to use.
-
-**Benchmark**: :ice: ~40% quicker cold starts, :fire: ~100% quicker hot starts 
-
-The speed improvement is dependent on your app and existing configuration.
-
+**Initial Benchmarks**: :snowman: ~40% quicker cold starts, :fire: ~instant hot starts 
 
 ## Features
 
 **Safe**
 
 - :zap: Development: Super quick js/ts transpiling with [esbuild](https://esbuild.github.io/) 
-- :zap: Development: Images only use `file-loader`
-- :snail: webpack benchmarking with [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)
+- Development: Images only use `file-loader`
+- webpack benchmarking with [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)
   
 **Experimental**
-- :zap: Not Dev: Transpile for [not-dead browsers](https://github.com/browserslist/browserslist#full-list)
-- :zap: Replaces [Terser](https://github.com/terser/terser) minification with [esbuild](https://esbuild.github.io/)
-- :zap: Enable Nuxt build cache
-- :mage: webpack's [best practices for performance](https://webpack.js.org/guides/build-performance/) (experimental)
+- Not Dev: Transpile for [not-dead browsers](https://github.com/browserslist/browserslist#full-list)
+- Replaces [Terser](https://github.com/terser/terser) minification with [esbuild](https://esbuild.github.io/)
+- Enable Nuxt build cache
+- webpack's [best practices for performance](https://webpack.js.org/guides/build-performance/) (experimental)
 
 **Risky**
-- :zap: Enable Nuxt parallel
-- :zap: Enable Nuxt hard source
+- Enable Nuxt parallel
+- Enable Nuxt hard source
 
 
 ## Setup
