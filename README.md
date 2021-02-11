@@ -7,28 +7,30 @@
 
 ## Why and how fast?
 
-With the introduction of Vite, Nuxt feels sluggish. This package aims to give you 'vite-like' speed by modifying your
+With the introduction of [Vite](https://github.com/vitejs/vite), Nuxt feels sluggish. This package aims to give you 'vite-like' speed by modifying your
 Nuxt and webpack configurations to squeeze extra performance out of the build process.
 
-**Initial Benchmarks**: :snowman: ~40% quicker cold starts, :fire: ~instant hot starts 
+**Dev benchmark**: :snowman: **~50%** quicker cold starts, :fire: ~instant hot starts
+
+Nuxt 3 will use Vite which will most likely make this package redundant.
 
 ## Features
 
 **Safe**
 
-- :zap: Development: Super quick js/ts transpiling with [esbuild](https://esbuild.github.io/) 
+- Development: Super quick js/ts transpiling with [esbuild](https://esbuild.github.io/) :zap:
 - Development: Images only use `file-loader`
 - webpack benchmarking with [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)
   
 **Experimental**
 - Not Dev: Babel transpile for [not-dead browsers](https://github.com/browserslist/browserslist#full-list)
 - Replaces [Terser](https://github.com/terser/terser) minification with [esbuild](https://esbuild.github.io/)
-- Enable Nuxt build cache
+- Enable [Nuxt build cache](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#cache)
 - webpack's [best practices for performance](https://webpack.js.org/guides/build-performance/)
 
 **Risky**
-- Enable Nuxt parallel
-- Enable Nuxt hard source
+- Enable [Nuxt parallel](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#parallel)
+- Enable [Nuxt hard source](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#hardsource)
 
 
 ## Setup
@@ -58,6 +60,13 @@ It's recommended you start with the risky profile and see if it works.
 buildOptimisations: {
   profile: 'risky'
 }
+```
+
+A lot of the speed improvements are from heavy caching, if you have any issues the first thing you should
+do is clear your cache.
+
+```shell
+rm -rf node_modules/.cache
 ```
 
 # Configuration
