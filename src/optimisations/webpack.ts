@@ -1,7 +1,7 @@
 import { OptimisationArgs } from '../types'
 
-export default ({ config, env } : OptimisationArgs) => {
-  if (!config.resolve || !config.output || !config.optimization) {
+export default ({ config, env, options } : OptimisationArgs) => {
+  if (!config.resolve || !config.output || !config.optimization || !options.features.webpackOptimisations) {
     return
   }
   /* Webpack Optimisations: https://webpack.js.org/guides/build-performance/ */

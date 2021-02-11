@@ -16,6 +16,13 @@ const buildOptimisationsModule: Module<ModuleOptions> = function () {
     },
     esbuildLoaderOptions: {
       target: 'es2015'
+    },
+    features: {
+      babelNotDead: true,
+      esbuildLoader: true,
+      esbuildMinifier: true,
+      imageFileLoader: true,
+      webpackOptimisations: true
     }
   } as ModuleOptions
   const buildOptimisations = {

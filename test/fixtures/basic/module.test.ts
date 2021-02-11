@@ -3,12 +3,12 @@ import { setupTest, getNuxt } from '@nuxt/test-utils'
 
 const cheerio = require('cheerio')
 
-describe('Default Dev test', () => {
+describe('Dev test', () => {
   console.warn = jest.fn() // eslint-disable-line no-console
 
   setupTest({
     testDir: __dirname,
-    fixture: 'fixtures/basic',
+    fixture: __dirname,
     configFile: 'nuxt.config.ts',
     build: true,
     config: {
@@ -36,33 +36,12 @@ describe('Default Dev test', () => {
   })
 })
 
-describe('Default preset test', () => {
+describe('Production test', () => {
   console.warn = jest.fn() // eslint-disable-line no-console
 
   setupTest({
     testDir: __dirname,
-    fixture: 'fixtures/preset',
-    configFile: 'nuxt.config.js',
-    build: true,
-    config: {
-      dev: true
-    }
-  })
-
-  test('renders index route', async () => {
-    const { html } = await getNuxt().server.renderRoute('/')
-    const $ = cheerio.load(html)
-    expect($('.title').text().trim()).toEqual('preset')
-    expect($('.NuxtLogo').html()).toBeDefined()
-  })
-})
-
-describe('Default Production test', () => {
-  console.warn = jest.fn() // eslint-disable-line no-console
-
-  setupTest({
-    testDir: __dirname,
-    fixture: 'fixtures/basic',
+    fixture: __dirname,
     configFile: 'nuxt.config.ts',
     build: true,
     config: {
@@ -76,25 +55,5 @@ describe('Default Production test', () => {
     expect($('[data-testid="title"]').text().trim()).toEqual('Hello World')
     expect($('[data-testid="smallImg"]').attr('src')).toContain('data:image/svg+xml;base64,')
     expect($('[data-testid="bigImg"]').attr('src')).toContain('/_nuxt/img/big')
-  })
-})
-
-describe('Vuetify test', () => {
-  console.warn = jest.fn() // eslint-disable-line no-console
-
-  setupTest({
-    testDir: __dirname,
-    fixture: 'fixtures/vuetify',
-    configFile: 'nuxt.config.ts',
-    build: true,
-    config: {
-      dev: true
-    }
-  })
-
-  test('renders index route', async () => {
-    const { html } = await getNuxt().server.renderRoute('/')
-    const $ = cheerio.load(html)
-    expect($('[data-testid="button"]').text().trim()).toEqual('Hello World')
   })
 })

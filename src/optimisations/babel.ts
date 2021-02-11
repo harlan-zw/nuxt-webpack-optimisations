@@ -1,6 +1,10 @@
 import { OptimisationArgs } from '../types'
 
-export default ({ nuxtOptions } : OptimisationArgs) => {
+export default ({ nuxtOptions, options } : OptimisationArgs) => {
+  // if user disables this feature
+  if (!options.features.babelNotDead) {
+    return
+  }
   // @ts-ignore
   nuxtOptions.build.babel.presets = ({ isServer }, [, options]) => {
     if (!isServer) {

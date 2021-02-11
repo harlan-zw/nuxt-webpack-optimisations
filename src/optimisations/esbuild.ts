@@ -2,11 +2,12 @@ import { ESBuildPlugin, ESBuildMinifyPlugin } from 'esbuild-loader'
 import { OptimisationArgs } from '../types'
 
 export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
+
   if (!config.module || !config.plugins) {
     return
   }
 
-  if (env.isDev || options.profile !== 'safe') {
+  if (options.features.esbuildLoader && (env.isDev || options.profile !== 'safe')) {
     let cacheLoader = []
     // remove the nuxt js/ts loaders
     config.module.rules.forEach((rule, ruleKey) => {
@@ -58,7 +59,7 @@ export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
     })
   }
 
-  if (!env.isDev && options.profile !== 'safe' && nuxtOptions.build.optimization) {
+  if (options.features.esbuildMinifier && !env.isDev && options.profile !== 'safe' && nuxtOptions.build.optimization) {
     // enable esbuild minifier, replace terser
     nuxtOptions.build.optimization.minimize = true
     nuxtOptions.build.optimization.minimizer = [

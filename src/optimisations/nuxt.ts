@@ -3,6 +3,7 @@ import { join } from 'upath'
 import type { OptimisationArgs } from '../types'
 
 export default ({ options, nuxtOptions, env } : OptimisationArgs) => {
+
   if (options.profile !== 'safe') {
     nuxtOptions.build.cache = true
   }

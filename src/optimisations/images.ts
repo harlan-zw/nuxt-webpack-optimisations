@@ -1,7 +1,7 @@
 import { OptimisationArgs } from '../types'
 
-export default ({ config, env } : OptimisationArgs) => {
-  if (!config.module || !env.isDev) {
+export default ({ config, env, options } : OptimisationArgs) => {
+  if (!config.module || !env.isDev || !options.features.imageFileLoader) {
     return
   }
   // remove the current image loader
