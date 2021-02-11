@@ -12,7 +12,7 @@ export default ({ config, env, options } : OptimisationArgs) => {
   )
   // inject our new image loader
   config.module.rules.push({
-    test: /\.(png|jpe?g|gif|svg|webp)$/i,
+    test: /\.(png|jpe?g|gif|svg|webp|avif)$/i,
     use: [
       // we swap out the url-loader with a file-loader in the dev environment for speed
       // large images and files really slow it down
