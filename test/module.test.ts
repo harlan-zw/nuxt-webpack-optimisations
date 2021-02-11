@@ -29,11 +29,31 @@ describe('Default Dev test', () => {
     expect(options.build.cache).toBeTruthy()
     expect(options.build.hardSource).toBeFalsy()
     expect(options.build.parallel).toBeFalsy()
-    expect(options.build.transpile).toStrictEqual([])
 
     expect(options.features.layouts).toBeFalsy()
     expect(options.features.store).toBeFalsy()
     expect(options.features.middleware).toBeFalsy()
+  })
+})
+
+describe('Default preset test', () => {
+  console.warn = jest.fn() // eslint-disable-line no-console
+
+  setupTest({
+    testDir: __dirname,
+    fixture: 'fixtures/preset',
+    configFile: 'nuxt.config.js',
+    build: true,
+    config: {
+      dev: true
+    }
+  })
+
+  test('renders index route', async () => {
+    const { html } = await getNuxt().server.renderRoute('/')
+    const $ = cheerio.load(html)
+    expect($('.title').text().trim()).toEqual('preset')
+    expect($('.NuxtLogo').html()).toBeDefined()
   })
 })
 

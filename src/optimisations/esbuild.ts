@@ -57,9 +57,7 @@ export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
       }
     })
     config.plugins.push(new ESBuildPlugin())
-  }
-
-  if (options.profile !== 'safe' && nuxtOptions.build.optimization) {
+  } else if (options.profile !== 'safe' && nuxtOptions.build.optimization) {
     // enable esbuild minifier, replace terser
     nuxtOptions.build.optimization.minimize = true
     nuxtOptions.build.optimization.minimizer = [
@@ -67,5 +65,8 @@ export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
         target: 'es2015'
       })
     ]
+    // make sure terser is off
+    nuxtOptions.build.terser = false
+    config.plugins.push(new ESBuildPlugin())
   }
 }
