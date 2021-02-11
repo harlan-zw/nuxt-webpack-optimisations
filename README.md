@@ -7,19 +7,25 @@
   <a href="https://npmjs.com/package/nuxt-build-optimisations"><img src="https://img.shields.io/npm/v/nuxt-build-optimisations.svg" alt="npm package"></a>
 </p>
 
-<p align='center'>Instantly speed up your Nuxt.js 2 build time.</p>
+<p align='center'>Instantly speed up your Nuxt.js 2 dev build time.</p>
 
 
 ## Why and how fast?
 
-With the introduction of [Vite](https://github.com/vitejs/vite), Nuxt feels sluggish. This package aims to give you 'vite-like' speed by modifying your
-Nuxt and webpack configurations to squeeze extra performance out of the build process.
+Nuxt is fast but is limited by its webpack build, when your app grows things slow down.
 
-**Dev benchmark**: :snowman: **~50%** quicker cold starts, :fire: ~instant hot starts
+Nuxt build optimisations abstracts the complexities of optimising your Nuxt app so anyone can instantly speed up their builds
+without having to learn webpack.
 
-Note: Nuxt 3 will use Vite which will most likely make this package redundant in the future.
+### Benchmarks
+
+**Development**: :snowman: **~50%** quicker cold starts, :fire: ~instant hot starts (via cache-loader)
+
+**Production**: :snowman: Very slightly faster on cold (wip), :fire: should be a bit quicker
 
 ## Features
+
+The features are separated by their risk profile, how likely they are to cause issues within your app.
 
 **Safe**
 
@@ -46,6 +52,8 @@ yarn add nuxt-build-optimisations
 ```
 
 :warning: This package is in pre-release. Make sure you test your app before deploying this into production.
+
+_Note: Nuxt 3 will use Vite which will most likely make this package redundant in the future._
 
 ---
 
