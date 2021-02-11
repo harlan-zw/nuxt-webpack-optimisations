@@ -6,7 +6,7 @@ export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
     return
   }
 
-  if (env.isDev) {
+  if (env.isDev || options.profile !== 'safe') {
     let cacheLoader = []
     // remove the nuxt js/ts loaders
     config.module.rules.forEach((rule, ruleKey) => {
@@ -18,7 +18,7 @@ export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
       cacheLoader = config.module.rules[ruleKey].use.filter((use) => {
         return use.loader.includes('cache-loader')
       })
-      if (rule.test.toString() === '/\\.m?jsx?$/i') {
+      if (env.isDev && rule.test.toString() === '/\\.m?jsx?$/i') {
         // Need to strip the thread-loader but keep the cache loader
         // @ts-ignore
         config.module.rules[ruleKey].use = [
@@ -26,7 +26,7 @@ export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
           {
             loader: 'esbuild-loader',
             options: {
-              target: 'es2015'
+              ...options.esbuildLoaderOptions
             }
           }
         ]
@@ -38,7 +38,7 @@ export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
             loader: 'esbuild-loader',
             options: {
               loader: 'ts',
-              target: 'es2015'
+              ...options.esbuildLoaderOptions
             }
           }
         ]
@@ -50,23 +50,22 @@ export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
             loader: 'esbuild-loader',
             options: {
               loader: 'ts',
-              target: 'es2015'
+              ...options.esbuildLoaderOptions
             }
           }
         ]
       }
     })
-    config.plugins.push(new ESBuildPlugin())
-  } else if (options.profile !== 'safe' && nuxtOptions.build.optimization) {
+  }
+
+  if (!env.isDev && options.profile !== 'safe' && nuxtOptions.build.optimization) {
     // enable esbuild minifier, replace terser
     nuxtOptions.build.optimization.minimize = true
     nuxtOptions.build.optimization.minimizer = [
-      new ESBuildMinifyPlugin({
-        target: 'es2015'
-      })
+      new ESBuildMinifyPlugin(options.esbuildMinifyOptions)
     ]
     // make sure terser is off
     nuxtOptions.build.terser = false
-    config.plugins.push(new ESBuildPlugin())
   }
+  config.plugins.push(new ESBuildPlugin())
 }

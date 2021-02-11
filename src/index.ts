@@ -3,19 +3,25 @@ import type { Configuration as WebpackConfig } from 'webpack'
 import type { Module } from '@nuxt/types'
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin'
 import { requireNuxtVersion } from './compatibility'
-import type { OptimisationArgs, Options } from './types'
+import type { OptimisationArgs, ModuleOptions } from './types'
 import { webpackOptimiser, babelOptimiser, imageOptimiser, esbuildOptimiser, nuxtOptimiser } from './optimisations'
 
-const buildOptimisationsModule: Module<Options> = function () {
+const buildOptimisationsModule: Module<ModuleOptions> = function () {
   const { nuxt } = this
   const defaults = {
     measure: false,
-    profile: 'experimental'
-  } as Options
+    profile: 'experimental',
+    esbuildMinifyOptions: {
+      target: 'es2015'
+    },
+    esbuildLoaderOptions: {
+      target: 'es2015'
+    }
+  } as ModuleOptions
   const buildOptimisations = {
     ...defaults,
     ...nuxt.options.buildOptimisations
-  } as Options
+  } as ModuleOptions
 
   // @ts-ignore
   requireNuxtVersion(nuxt?.constructor?.version, '2.10')
@@ -46,7 +52,7 @@ const buildOptimisationsModule: Module<Options> = function () {
 }
 
 /* Speed Measure Plugin: https://www.npmjs.com/package/speed-measure-webpack-plugin */
-function maybeEnableSpeedMeasurePlugin (buildOptimisations : Options, nuxt : any) {
+function maybeEnableSpeedMeasurePlugin (buildOptimisations : ModuleOptions, nuxt : any) {
   if (!buildOptimisations.measure && !process.env.NUXT_MEASURE) {
     return
   }

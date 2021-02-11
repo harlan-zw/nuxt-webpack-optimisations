@@ -20,7 +20,7 @@
     "build:preset": "export NODE_ENV=production && nuxt build test/fixtures/preset",
     "dev:basic": "nuxt-ts test/fixtures/basic",
     "dev:static": "nuxt-ts test/fixtures/static",
-    "dev:vuetify": "nuxt-ts test/fixtures/vuetify",
+    "dev:vuetify": "export NODE_ENV=production && nuxt-ts test/fixtures/vuetify",
     "dev:preset": "nuxt test/fixtures/preset",
     "generate:static": "export NODE_ENV=production && nuxt-ts generate test/fixtures/static",
     "generate:vuetify": "export NODE_ENV=production && nuxt-ts generate test/fixtures/vuetify",

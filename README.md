@@ -5,30 +5,35 @@
 <p align='center'>Instantly speed up your Nuxt.js 2 build time.</p>
 
 
-## Why and How?
+## Why and how fast?
 
-Nuxt Build Optimisations is for modern, sluggish Nuxt.js 2 apps.
+With the introduction of Vite, Nuxt feels sluggish. This package aims to give you 'vite-like' speed by modifying your
+Nuxt and webpack configurations to squeeze extra performance out of the build process.
 
-It makes smart assumptions about trade-offs you're willing to make for better build speeds.
+It uses a configured risk profile to determine which optimisations to use.
 
-Under the hood it modifies your Nuxt config and the underlying webpack config.
+**Benchmark**: :ice: ~40% quicker cold starts, :fire: ~100% quicker hot starts 
 
-*:warning: This module is experimental. You need to test your app with it before it hits production.*
+The speed improvement is dependent on your app and existing configuration.
+
 
 ## Features
 
-**Development**
-- :zap: Super quick js/ts transpiling with [esbuild](https://esbuild.github.io/) (safe)
-- :zap: Images will only use `file-loader` for quicker builds (safe)
+**Safe**
 
-**Production**
-- :zap: Transpile for [not-dead browsers](https://github.com/browserslist/browserslist#full-list) (experimental)
-- :zap: Quicker minification with [esbuild](https://esbuild.github.io/) (experimental)
-
-**Misc**
-- :electric_plug: Webpack loaders: cache / parallel / hard source (experimental/risky)
-- :snail: webpack benchmarking with [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin) (safe)
+- :zap: Development: Super quick js/ts transpiling with [esbuild](https://esbuild.github.io/) 
+- :zap: Development: Images only use `file-loader`
+- :snail: webpack benchmarking with [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)
+  
+**Experimental**
+- :zap: Not Dev: Transpile for [not-dead browsers](https://github.com/browserslist/browserslist#full-list)
+- :zap: Replaces [Terser](https://github.com/terser/terser) minification with [esbuild](https://esbuild.github.io/)
+- :zap: Enable Nuxt build cache
 - :mage: webpack's [best practices for performance](https://webpack.js.org/guides/build-performance/) (experimental)
+
+**Risky**
+- :zap: Enable Nuxt parallel
+- :zap: Enable Nuxt hard source
 
 
 ## Setup
@@ -52,31 +57,29 @@ buildModules: [
 ],
 ```
 
-To enable the measure plugin, you can use an environment variable or follow the documentation below.
+It's recommended you start with the risky profile and see if it works.
 
-**package.json**
-
-```json
-{
-  "scripts": {
-    "measure": "export NUXT_MEASURE=true; nuxt dev"
-  }
-}
-```
-
-## Configuration
-
-Configuration is under the buildOptimisations key in your nuxt.config.js.
-
-**Default Configuration**
 ```js
 buildOptimisations: {
   profile: 'risky'
 }
 ```
 
+# Configuration
 
-### Measure
+## Profile
+
+*Type:* `risky` | `experimental` | `safe` | `false`
+
+*Default:* `risky`
+
+If you have errors on the `risky` mode you should increment down in profiles until you find one that works.
+
+Setting the profile to false will disable the optimisations, useful when you want to measure your build time without optimisations.
+
+
+
+## Measure
 
 *Type:* `boolean` or `object`
 
@@ -96,72 +99,19 @@ buildOptimisations: {
 }
 ```
 
+You can use an environment variable to enable the measure as well.
 
-# Profile
+**package.json**
 
-*Type:* `risky` | `experimental` | `safe` | `false`
+```json
+{
+  "scripts": {
+    "measure": "export NUXT_MEASURE=true; nuxt dev"
+  }
+}
+```
 
-*Default:* `risky`
-
-If you have errors on the `risky` mode you should increment down in profiles until you find one that works.
-
-Setting the profile to false will disable the optimisations, useful when you want to measure your build time without optimisations.
-
-## Safest
-
-### Faster image loader
-
-Development only
-
-Swaps `url-loader` for `file-loader`. Faster when you have a lot of images of varying sizes.
-
-Tradeoff: can't test url-loaded images in dev 
-
-### Webpack flag optimisations
-
-Specific webpack flags changed based on best practices described in the documentation.
-
-Tradeoff: See webpack docs
-
-### Disable minimising
-
-Development only
-
-Makes sure all Nuxt minimising is disabled to speed up builds, including js and html.
-
-### No local modern builds
-
-Development only
-
-Modern builds are disabled by default as the main client build works the same.
-
-## Experimental
-
-### Optimised Transpiling
-
-For development will only transpile code to the latest chrome for a ~40% quicker compile.
-
-In production transpiles code for non-dead browsers. Nuxt out of the box transpiles to IE9. See: https://github.com/browserslist/browserslist#full-list
-
-### Cache enabled
-
-Nuxt cache option enabled
-
-### No vendor transpiling
-
-Development only
-
-Removes any transpiling of third party libraries. 
-
-## Risky
-
-### Hard Source Enabled
-
-Nuxt hardSource enabled
-
-### Parallel Enabled
-
-Nuxt parallel enabled
+Note: Measure can be buggy and can only work with SSR enabled.
 
 ## Credits
 
