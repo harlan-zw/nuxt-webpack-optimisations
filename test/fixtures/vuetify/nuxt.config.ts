@@ -6,10 +6,7 @@ const config : NuxtConfig = {
     '@nuxt/typescript-build',
     '@nuxtjs/vuetify',
     nuxtBuildOptimisations
-  ],
-  buildOptimisations: {
-    profile: 'risky'
-  }
+  ]
 }
 
 export default config

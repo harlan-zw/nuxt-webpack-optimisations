@@ -7,11 +7,7 @@ const config : NuxtConfig = {
   buildModules: [
     '@nuxt/typescript-build',
     nuxtBuildOptimisations
-  ],
-  buildOptimisations: {
-    measure: process.env.NODE_ENV === 'development',
-    profile: 'risky'
-  }
+  ]
 }
 
 export default config
