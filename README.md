@@ -17,7 +17,7 @@ Nuxt and webpack configurations to squeeze extra performance out of the build pr
 
 **Dev benchmark**: :snowman: **~50%** quicker cold starts, :fire: ~instant hot starts
 
-Nuxt 3 will use Vite which will most likely make this package redundant.
+Note: Nuxt 3 will use Vite which will most likely make this package redundant in the future.
 
 ## Features
 
@@ -26,7 +26,7 @@ Nuxt 3 will use Vite which will most likely make this package redundant.
 - Development: Super quick js/ts transpiling with [esbuild](https://esbuild.github.io/) :zap:
 - Development: Images only use `file-loader`
 - webpack benchmarking with [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)
-  
+
 **Experimental**
 - Not Dev: Babel transpile for [not-dead browsers](https://github.com/browserslist/browserslist#full-list)
 - Replaces [Terser](https://github.com/terser/terser) minification with [esbuild](https://esbuild.github.io/)
@@ -45,6 +45,8 @@ Install using yarn or npm. (Nuxt.js 2.10+ is required)
 ```bash
 yarn add nuxt-build-optimisations
 ```
+
+:warning: This package is in pre-release. Make sure you test your app before deploying this into production.
 
 ---
 
@@ -80,12 +82,11 @@ rm -rf node_modules/.cache
 
 *Type:* `risky` | `experimental` | `safe` | `false`
 
-*Default:* `risky`
+*Default:* `experimental`
 
-If you have errors on the `risky` mode you should increment down in profiles until you find one that works.
+If you have errors on any mode you should increment down in profiles until you find one that works.
 
 Setting the profile to false will disable the optimisations, useful when you want to measure your build time without optimisations.
-
 
 
 ## Measure
@@ -102,8 +103,8 @@ If the measure option is an object it is assumed to be [speed-measure-webpack-pl
 buildOptimisations: {
   measure: {
     outputFormat: 'humanVerbose',
-    granularLoaderData: true,
-    loaderTopFiles: 10
+      granularLoaderData: true,
+      loaderTopFiles: 10
   }
 }
 ```
@@ -121,6 +122,56 @@ You can use an environment variable to enable the measure as well.
 ```
 
 Note: Measure can be buggy and can only work with SSR enabled.
+
+## Features
+
+*Type:*  `object`
+
+*Default:*
+```shell
+babelNotDead: true,
+esbuildLoader: true,
+esbuildMinifier: true,
+imageFileLoader: true,
+webpackOptimisations: true
+```
+
+You can disable features if you'd like to skip optimisations.
+
+```shell
+buildOptimisations: {
+  features: {
+    // build for ie9 or pre-specified target
+    babelNotDead: false
+  }
+}
+```
+
+## esbuildLoaderOptions
+
+*Type:*  `object`
+
+*Default:*
+```javascript
+{
+  target: 'es2015'
+}
+```
+
+See (esbuild-loader)[https://github.com/privatenumber/esbuild-loader].
+
+## esbuildMinifyOptions
+
+*Type:*  `object`
+
+*Default:*
+```javascript
+{
+  target: 'es2015'
+}
+```
+
+See (esbuild-loader)[https://github.com/privatenumber/esbuild-loader].
 
 ## Credits
 
