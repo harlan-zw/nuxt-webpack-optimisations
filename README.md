@@ -21,10 +21,10 @@ Nuxt and webpack configurations to squeeze extra performance out of the build pr
 - webpack benchmarking with [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)
   
 **Experimental**
-- Not Dev: Transpile for [not-dead browsers](https://github.com/browserslist/browserslist#full-list)
+- Not Dev: Babel transpile for [not-dead browsers](https://github.com/browserslist/browserslist#full-list)
 - Replaces [Terser](https://github.com/terser/terser) minification with [esbuild](https://esbuild.github.io/)
 - Enable Nuxt build cache
-- webpack's [best practices for performance](https://webpack.js.org/guides/build-performance/) (experimental)
+- webpack's [best practices for performance](https://webpack.js.org/guides/build-performance/)
 
 **Risky**
 - Enable Nuxt parallel
