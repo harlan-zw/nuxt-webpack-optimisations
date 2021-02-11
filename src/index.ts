@@ -4,7 +4,7 @@ import type { Module } from '@nuxt/types'
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin'
 import { requireNuxtVersion } from './compatibility'
 import type { OptimisationArgs, ModuleOptions } from './types'
-import { webpackOptimiser, babelOptimiser, imageOptimiser, esbuildOptimiser, nuxtOptimiser } from './optimisations'
+import { webpackOptimiser, imageOptimiser, esbuildOptimiser, nuxtOptimiser } from './optimisations'
 
 const buildOptimisationsModule: Module<ModuleOptions> = function () {
   const { nuxt } = this
@@ -18,7 +18,6 @@ const buildOptimisationsModule: Module<ModuleOptions> = function () {
       target: 'es2015'
     },
     features: {
-      babelNotDead: true,
       esbuildLoader: true,
       esbuildMinifier: true,
       imageFileLoader: true,
@@ -48,7 +47,7 @@ const buildOptimisationsModule: Module<ModuleOptions> = function () {
         options: buildOptimisations
       } as OptimisationArgs
       const extendOptimisers = [
-        webpackOptimiser, babelOptimiser, imageOptimiser, esbuildOptimiser
+        webpackOptimiser, imageOptimiser, esbuildOptimiser
       ]
       for (const k in extendOptimisers) {
         // @ts-ignore

@@ -28,7 +28,6 @@ Note: Nuxt 3 will use Vite which will most likely make this package redundant in
 - webpack benchmarking with [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)
 
 **Experimental**
-- Not Dev: Babel transpile for [not-dead browsers](https://github.com/browserslist/browserslist#full-list)
 - Replaces [Terser](https://github.com/terser/terser) minification with [esbuild](https://esbuild.github.io/)
 - Enable [Nuxt build cache](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#cache)
 - webpack's [best practices for performance](https://webpack.js.org/guides/build-performance/)
@@ -64,9 +63,10 @@ buildModules: [
 It's recommended you start with the risky profile and see if it works.
 
 ```js
+// nuxt.config.js
 buildOptimisations: {
   profile: 'risky'
-}
+},
 ```
 
 A lot of the speed improvements are from heavy caching, if you have any issues the first thing you should
@@ -103,8 +103,8 @@ If the measure option is an object it is assumed to be [speed-measure-webpack-pl
 buildOptimisations: {
   measure: {
     outputFormat: 'humanVerbose',
-      granularLoaderData: true,
-      loaderTopFiles: 10
+    granularLoaderData: true,
+    loaderTopFiles: 10
   }
 }
 ```
@@ -129,7 +129,6 @@ Note: Measure can be buggy and can only work with SSR enabled.
 
 *Default:*
 ```shell
-babelNotDead: true,
 esbuildLoader: true,
 esbuildMinifier: true,
 imageFileLoader: true,
@@ -141,8 +140,8 @@ You can disable features if you'd like to skip optimisations.
 ```shell
 buildOptimisations: {
   features: {
-    // build for ie9 or pre-specified target
-    babelNotDead: false
+    // use url-loader
+    imageFileLoader: false
   }
 }
 ```
