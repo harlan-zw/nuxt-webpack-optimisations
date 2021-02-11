@@ -1,6 +1,6 @@
 {
   "name": "nuxt-build-optimisations",
-  "version": "1.0.0-7",
+  "version": "1.0.0-8",
   "description": "Automatic optimisations for Nuxt build time.",
   "repository": "loonpwn/nuxt-build-optimisations",
   "license": "MIT",
@@ -15,21 +15,21 @@
   ],
   "scripts": {
     "build": "siroc build",
+    "build:preset": "export NODE_ENV=production && nuxt build test/fixtures/preset",
     "build:static": "export NODE_ENV=production && nuxt-ts build test/fixtures/static",
     "build:vuetify": "export NODE_ENV=production && nuxt-ts build test/fixtures/vuetify",
-    "build:preset": "export NODE_ENV=production && nuxt build test/fixtures/preset",
     "dev:basic": "nuxt-ts test/fixtures/basic",
+    "dev:preset": "nuxt test/fixtures/preset",
     "dev:static": "nuxt-ts test/fixtures/static",
     "dev:vuetify": "export NODE_ENV=production && nuxt-ts test/fixtures/vuetify",
-    "dev:preset": "nuxt test/fixtures/preset",
     "generate:static": "export NODE_ENV=production && nuxt-ts generate test/fixtures/static",
     "generate:vuetify": "export NODE_ENV=production && nuxt-ts generate test/fixtures/vuetify",
     "lint": "eslint --fix --ext .ts,.js,.vue .",
     "measure": "export NUXT_MEASURE=true && nuxt-ts test/fixtures",
     "release": "dotenv release-it --",
+    "start:preset": "export NODE_ENV=production && nuxt start test/fixtures/preset",
     "start:static": "export NODE_ENV=production && nuxt-ts start test/fixtures/static",
     "start:vuetify": "export NODE_ENV=production && nuxt-ts start test/fixtures/vuetify",
-    "start:preset": "export NODE_ENV=production && nuxt start test/fixtures/preset",
     "test": "yarn lint && jest --verbose"
   },
   "dependencies": {
