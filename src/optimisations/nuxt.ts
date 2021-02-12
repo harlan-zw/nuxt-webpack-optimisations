@@ -21,16 +21,18 @@ export default ({ options, nuxtOptions, env } : OptimisationArgs) => {
   }
 
   // disable features not used
-  const folderFeatures = [
-    'layouts',
-    'store',
-    'middleware'
-  ]
-  folderFeatures.forEach((f : string) => {
-    // @ts-ignore
-    if (nuxtOptions.features[f] && !existsSync(join(nuxtOptions.srcDir, nuxtOptions.dir[f]))) {
+  // little bit risky because modules could be doing something weird
+  if (options.profile !== 'safe') {
+    const folderFeatures = [
+      'layouts',
+      'store'
+    ]
+    folderFeatures.forEach((f: string) => {
       // @ts-ignore
-      nuxtOptions.features[f] = false
-    }
-  })
+      if (nuxtOptions.features[f] && !existsSync(join(nuxtOptions.srcDir, nuxtOptions.dir[f]))) {
+        // @ts-ignore
+        nuxtOptions.features[f] = false
+      }
+    })
+  }
 }
