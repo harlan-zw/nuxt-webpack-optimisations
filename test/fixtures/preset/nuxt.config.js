@@ -25,6 +25,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/svg',
     nuxtBuildOptimisations
   ],
 
@@ -40,7 +41,8 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    '@nuxt/image'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

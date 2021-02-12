@@ -4,6 +4,10 @@
       <Logo />
       <h1 class="title">
         preset
+        <svg-logo />
+        <img :src="require('../image/small.svg?data')" />
+        <img :src="require('../image/small.svg')" />
+        <div v-html="require('../image/small.svg?raw')" />
       </h1>
       <div class="links">
         <a
@@ -28,7 +32,13 @@
 </template>
 
 <script>
-export default {}
+import SvgLogo from '../image/small.svg?inline'
+
+export default {
+  components: {
+    SvgLogo
+  }
+}
 </script>
 
 <style>
