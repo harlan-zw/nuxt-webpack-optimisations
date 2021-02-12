@@ -2,7 +2,6 @@ import { ESBuildPlugin, ESBuildMinifyPlugin } from 'esbuild-loader'
 import { OptimisationArgs } from '../types'
 
 export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
-
   if (!config.module || !config.plugins) {
     return
   }
@@ -12,7 +11,7 @@ export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
     // remove the nuxt js/ts loaders
     config.module.rules.forEach((rule, ruleKey) => {
       // nuxt js / ts file matching
-      if (!rule.use || !rule.test) {
+      if (!rule.use || !Array.isArray(rule.use) || !rule.test) {
         return
       }
       // @ts-ignore
