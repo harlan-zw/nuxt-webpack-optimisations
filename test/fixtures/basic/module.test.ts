@@ -32,7 +32,6 @@ describe('Dev test', () => {
 
     expect(options.features.layouts).toBeFalsy()
     expect(options.features.store).toBeFalsy()
-    expect(options.features.middleware).toBeFalsy()
   })
 })
 
