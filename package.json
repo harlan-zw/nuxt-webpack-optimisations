@@ -1,6 +1,6 @@
 {
   "name": "nuxt-build-optimisations",
-  "version": "1.0.0-10",
+  "version": "1.0.0-11",
   "description": "Automatic optimisations for Nuxt build time.",
   "repository": "loonpwn/nuxt-build-optimisations",
   "license": "MIT",
@@ -19,9 +19,9 @@
     "build:static": "export NODE_ENV=production && nuxt-ts build test/fixtures/static",
     "build:vuetify": "export NODE_ENV=production && nuxt-ts build test/fixtures/vuetify",
     "dev:basic": "nuxt-ts test/fixtures/basic",
+    "dev:bootstrap": "nuxt test/fixtures/bootstrap",
     "dev:preset": "nuxt test/fixtures/preset",
     "dev:static": "nuxt-ts test/fixtures/static",
-    "dev:bootstrap": "nuxt test/fixtures/bootstrap",
     "dev:vuetify": "export NODE_ENV=production && nuxt-ts test/fixtures/vuetify",
     "generate:static": "export NODE_ENV=production && nuxt-ts generate test/fixtures/static",
     "generate:vuetify": "export NODE_ENV=production && nuxt-ts generate test/fixtures/vuetify",
