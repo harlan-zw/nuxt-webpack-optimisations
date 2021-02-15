@@ -13,6 +13,8 @@ export interface FeatureFlags {
   imageFileLoader: boolean
   // misc webpack optimisations
   webpackOptimisations: boolean
+  // no polyfilling css in development
+  postcssNoPolyfills: boolean
 }
 
 export interface ModuleOptions {
