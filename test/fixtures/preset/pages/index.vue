@@ -5,8 +5,8 @@
       <h1 class="title">
         preset
         <svg-logo />
-        <img :src="require('../image/small.svg?data')" />
-        <img :src="require('../image/small.svg')" />
+        <img :src="require('../image/small.svg?data')">
+        <img :src="require('../image/small.svg')">
         <div v-html="require('../image/small.svg?raw')" />
       </h1>
       <div class="links">
