@@ -35,7 +35,10 @@ const buildOptimisationsModule: Module<ModuleOptions> = function () {
   nuxt.hook('build:before', () => {
     // if the user has enabled speed measure plugin and we can
     maybeEnableSpeedMeasurePlugin(buildOptimisations, nuxt)
-
+    // if profile is false we don't add any optimisations
+    if (buildOptimisations.profile === false) {
+      return
+    }
     // @ts-ignore
     nuxtOptimiser({ options: buildOptimisations, nuxtOptions: nuxt.options, env: { isDev: nuxt.dev } })
 
