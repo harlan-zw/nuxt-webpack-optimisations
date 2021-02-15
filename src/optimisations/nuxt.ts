@@ -25,7 +25,13 @@ export default ({ options, nuxtOptions, env } : OptimisationArgs) => {
     // @ts-ignore
     nuxtOptions.build.html.minify = false
     // set the postcss stage to false to avoid pollyfills
-    if (options.features.postcssNoPolyfills && options.profile !== 'safe' && nuxtOptions.build.postcss) {
+    if (options.features.postcssNoPolyfills &&
+      options.profile !== 'safe' &&
+      // make sure we have postcss and a preset set
+      nuxtOptions.build.postcss &&
+      // @ts-ignore
+      nuxtOptions.build.postcss.preset
+    ) {
       // @ts-ignore
       nuxtOptions.build.postcss.preset.stage = false
     }
