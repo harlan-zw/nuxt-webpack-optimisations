@@ -12,9 +12,9 @@
 
 ## Why and how fast?
 
-Nuxt is fast but is limited by its webpack build, when your app grows things slow down.
+Nuxt.js is fast but is limited by its webpack build, when your app grows things slow down.
 
-Nuxt build optimisations abstracts the complexities of optimising your Nuxt app so anyone can instantly speed up their builds
+Nuxt build optimisations abstracts the complexities of optimising your Nuxt.js app so anyone can instantly speed up their builds
 without having to learn webpack.
 
 ### Benchmarks
@@ -34,9 +34,11 @@ The features are separated by their risk profile, how likely they are to cause i
 - webpack benchmarking with [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)
 
 **Experimental**
+- Development: Disables [postcss-preset-env](https://github.com/csstools/postcss-preset-env) pollyfills
 - Replaces [Terser](https://github.com/terser/terser) minification with [esbuild](https://esbuild.github.io/)
 - Enable [Nuxt build cache](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#cache)
 - webpack's [best practices for performance](https://webpack.js.org/guides/build-performance/)
+- Disables Nuxt features that aren't used (layouts, store)
 
 **Risky**
 - Enable [Nuxt parallel](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#parallel)
@@ -51,9 +53,9 @@ Install using yarn or npm. (Nuxt.js 2.10+ is required)
 yarn add nuxt-build-optimisations
 ```
 
-:warning: This package is in pre-release. Make sure you test your app before deploying this into production.
-
-_Note: Nuxt 3 will use Vite which will most likely make this package redundant in the future._
+- :warning: This package makes optimisations with the assumption you're developing on the latest chrome.
+- :warning: Make sure you test your app before deploying it production with this package.
+- _Note: Nuxt 3 will use Vite which will most likely make this package redundant in the future._
 
 ---
 
@@ -136,11 +138,17 @@ Note: Measure can be buggy and can only work with SSR enabled.
 *Type:*  `object`
 
 *Default:*
-```shell
-esbuildLoader: true,
-esbuildMinifier: true,
-imageFileLoader: true,
+```js
+// uses esbuild loader
+esbuildLoader: true
+// uses esbuild as a minifier
+esbuildMinifier: true
+// swaps url-loader for file-loader
+imageFileLoader: true
+// misc webpack optimisations
 webpackOptimisations: true
+// no polyfilling css in development
+postcssNoPolyfills: true
 ```
 
 You can disable features if you'd like to skip optimisations.
