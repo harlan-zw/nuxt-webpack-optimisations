@@ -4,7 +4,7 @@ import type { Configuration as WebpackConfig } from 'webpack'
 import type { OptimisationArgs, ModuleOptions } from './types'
 import { requireNuxtVersion } from './compatibility'
 import speedMeasurePlugin from './tools/speed-measure-plugin'
-import { webpackOptimiser, imageOptimiser, esbuildOptimiser, nuxtOptimiser } from './optimisations'
+import { webpackOptimiser, imageOptimiser, esbuildOptimiser, nuxtOptimiser, tailwindOptimiser } from './optimisations'
 
 const buildOptimisationsModule: Module<ModuleOptions> = function () {
   const { nuxt } = this
@@ -24,7 +24,13 @@ const buildOptimisationsModule: Module<ModuleOptions> = function () {
       imageFileLoader: true,
       webpackOptimisations: true,
       cacheLoader: true,
-      hardSourcePlugin: true
+      hardSourcePlugin: true,
+      windicssLoader: true
+    },
+    windicssOptions: {
+      compile: false,
+      globalPreflight: true,
+      globalUtility: true
     }
   } as ModuleOptions
   const buildOptimisations = {
@@ -52,7 +58,10 @@ const buildOptimisationsModule: Module<ModuleOptions> = function () {
       args.env = env
       args.config = config
       const extendOptimisers = [
-        webpackOptimiser, imageOptimiser, esbuildOptimiser
+        webpackOptimiser,
+        imageOptimiser,
+        esbuildOptimiser,
+        tailwindOptimiser
       ]
       for (const k in extendOptimisers) {
         extendOptimisers[k](args)

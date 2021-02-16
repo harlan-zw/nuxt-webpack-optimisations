@@ -19,6 +19,8 @@ export interface FeatureFlags {
   cacheLoader: boolean
   // use the hardsource plugin
   hardSourcePlugin: boolean
+  // use windicss loader
+  windicssLoader: boolean
 }
 
 export interface OptimisationArgs {
@@ -35,5 +37,6 @@ export interface ModuleOptions {
   profile: 'risky' | 'experimental' | 'safe' | false
   esbuildLoaderOptions: LoaderOptions | ((args: OptimisationArgs) => LoaderOptions)
   esbuildMinifyOptions: MinifyPluginOptions | ((args: OptimisationArgs) => MinifyPluginOptions)
+  windicssOptions: any
   features: FeatureFlags
 }

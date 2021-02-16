@@ -19,7 +19,7 @@
     "build:static": "export NODE_ENV=production && nuxt-ts build test/fixtures/static",
     "build:vuetify": "export NODE_ENV=production && nuxt-ts build test/fixtures/vuetify",
     "dev:basic": "nuxt-ts test/fixtures/basic",
-    "dev:bootstrap": "nuxt test/fixtures/bootstrap",
+    "dev:bootstrap": "nuxt test/fixtures/bootstrap-tailwind",
     "dev:preset": "nuxt test/fixtures/preset",
     "dev:static": "nuxt-ts test/fixtures/static",
     "dev:vuetify": "export NODE_ENV=production && nuxt-ts test/fixtures/vuetify",
@@ -31,7 +31,7 @@
     "start:preset": "export NODE_ENV=production && nuxt start test/fixtures/preset",
     "start:static": "export NODE_ENV=production && nuxt-ts start test/fixtures/static",
     "start:vuetify": "export NODE_ENV=production && nuxt-ts start test/fixtures/vuetify",
-    "test": "yarn lint && jest --verbose"
+    "test": "yarn lint && jest --verbose --detectOpenHandles"
   },
   "dependencies": {
     "esbuild-loader": "^2.9.1",
@@ -57,6 +57,7 @@
     "@nuxtjs/svg": "^0.1.12",
     "@nuxtjs/tailwindcss": "^3.4.2",
     "@nuxtjs/vuetify": "^1.11.3",
+    "@tailwindcss/typography": "^0.4.0",
     "@types/jest": "latest",
     "@types/loader-utils": "latest",
     "@types/lodash": "latest",
@@ -72,6 +73,8 @@
     "nuxt-edge": "latest",
     "release-it": "^14.4.0",
     "siroc": "0.6.6",
-    "standard-version": "latest"
+    "standard-version": "latest",
+    "tailwindcss-dark-mode": "^1.1.7",
+    "vue-windicss-preprocess": "^2.0.0"
   }
 }
