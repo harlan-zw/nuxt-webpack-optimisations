@@ -15,19 +15,25 @@ export interface FeatureFlags {
   webpackOptimisations: boolean
   // no polyfilling css in development
   postcssNoPolyfills: boolean
-}
-
-export interface ModuleOptions {
-  measure: boolean | SpeedMeasurePlugin.Options
-  profile: 'risky' | 'experimental' | 'safe' | false
-  esbuildLoaderOptions: LoaderOptions
-  esbuildMinifyOptions: MinifyPluginOptions
-  features: FeatureFlags
+  // inject the webpack cache-loader loader
+  cacheLoader: boolean
+  // use the hardsource plugin
+  hardSourcePlugin: boolean
 }
 
 export interface OptimisationArgs {
   nuxtOptions: NuxtOptions
+  // eslint-disable-next-line no-use-before-define
   options: ModuleOptions
   config: WebpackConfig
   env: ExtendFunctionContext
+}
+
+export interface ModuleOptions {
+  measureMode: 'client' | 'server' | 'modern' | 'all'
+  measure: boolean | SpeedMeasurePlugin.Options
+  profile: 'risky' | 'experimental' | 'safe' | false
+  esbuildLoaderOptions: LoaderOptions | ((args: OptimisationArgs) => LoaderOptions)
+  esbuildMinifyOptions: MinifyPluginOptions | ((args: OptimisationArgs) => MinifyPluginOptions)
+  features: FeatureFlags
 }

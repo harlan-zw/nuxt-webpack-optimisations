@@ -1,12 +1,17 @@
 import { ESBuildPlugin, ESBuildMinifyPlugin } from 'esbuild-loader'
 import { OptimisationArgs } from '../types'
 
-export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
+export default (args : OptimisationArgs) => {
+  const { options, nuxtOptions, config, env } = args
   if (!config.module || !config.plugins) {
     return
   }
 
   if (options.features.esbuildLoader && (env.isDev || options.profile !== 'safe')) {
+    const esbuildLoaderOptions = typeof options.esbuildLoaderOptions === 'function'
+      ? options.esbuildLoaderOptions(args)
+      : options.esbuildLoaderOptions
+
     let cacheLoader = []
     // remove the nuxt js/ts loaders
     config.module.rules.forEach((rule, ruleKey) => {
@@ -26,7 +31,7 @@ export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
           {
             loader: 'esbuild-loader',
             options: {
-              ...options.esbuildLoaderOptions
+              ...esbuildLoaderOptions
             }
           }
         ]
@@ -38,7 +43,7 @@ export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
             loader: 'esbuild-loader',
             options: {
               loader: 'ts',
-              ...options.esbuildLoaderOptions
+              ...esbuildLoaderOptions
             }
           }
         ]
@@ -50,7 +55,7 @@ export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
             loader: 'esbuild-loader',
             options: {
               loader: 'ts',
-              ...options.esbuildLoaderOptions
+              ...esbuildLoaderOptions
             }
           }
         ]
@@ -59,10 +64,13 @@ export default ({ options, nuxtOptions, config, env } : OptimisationArgs) => {
   }
 
   if (options.features.esbuildMinifier && !env.isDev && options.profile !== 'safe' && nuxtOptions.build.optimization) {
+    const esbuildMinifyOptions = typeof options.esbuildMinifyOptions === 'function'
+      ? options.esbuildMinifyOptions(args)
+      : options.esbuildMinifyOptions
     // enable esbuild minifier, replace terser
     nuxtOptions.build.optimization.minimize = true
     nuxtOptions.build.optimization.minimizer = [
-      new ESBuildMinifyPlugin(options.esbuildMinifyOptions)
+      new ESBuildMinifyPlugin(esbuildMinifyOptions)
     ]
     // make sure terser is off
     nuxtOptions.build.terser = false
