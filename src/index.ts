@@ -9,7 +9,7 @@ import { webpackOptimiser, imageOptimiser, esbuildOptimiser, nuxtOptimiser } fro
 const buildOptimisationsModule: Module<ModuleOptions> = function () {
   const { nuxt } = this
   const defaults = {
-    measure: false,
+    measure: !!process.env.NUXT_MEASURE,
     measureMode: 'client',
     profile: 'experimental',
     esbuildMinifyOptions: {
