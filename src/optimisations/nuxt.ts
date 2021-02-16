@@ -3,18 +3,24 @@ import { join } from 'upath'
 import type { OptimisationArgs } from '../types'
 
 export default ({ options, nuxtOptions, env } : OptimisationArgs) => {
-  if (options.profile !== 'safe') {
+  if (options.profile !== 'safe' && options.features.cacheLoader) {
     nuxtOptions.build.cache = true
   }
   if (options.profile === 'risky') {
-    nuxtOptions.build.hardSource = true
-    const os = require('os')
-    const cpuCount = os.cpus().length
-    // check it's worth turning on
-    if (cpuCount > 1) {
-      nuxtOptions.build.parallel = true
+    if (!options.measure) {
+      if (options.features.hardSourcePlugin) {
+        nuxtOptions.build.hardSource = true
+      }
+      const os = require('os')
+      const cpuCount = os.cpus().length
+      // check it's worth turning on
+      if (cpuCount > 1) {
+        nuxtOptions.build.parallel = true
+      } else {
+        console.info('Not enabling parallel loader due to limited CPU capacity.')
+      }
     } else {
-      console.info('Not enabling parallel loader due to limited CPU capacity.')
+      console.info('Parallel loader and hardsource optimisations disabled while `measure` is enabled.')
     }
   }
   if (env.isDev) {
@@ -22,8 +28,10 @@ export default ({ options, nuxtOptions, env } : OptimisationArgs) => {
     nuxtOptions.modern = false
     // disable js minification in dev
     nuxtOptions.build.terser = false
-    // @ts-ignore
-    nuxtOptions.build.html.minify = false
+    if (nuxtOptions.build.html) {
+      // @ts-ignore
+      nuxtOptions.build.html.minify = false
+    }
     // set the postcss stage to false to avoid pollyfills
     if (options.features.postcssNoPolyfills &&
       options.profile !== 'safe' &&

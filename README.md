@@ -54,7 +54,6 @@ yarn add nuxt-build-optimisations
 ```
 
 - :warning: This package makes optimisations with the assumption you're developing on the latest chrome.
-- :warning: Make sure you test your app before deploying it production with this package.
 - _Note: Nuxt 3 will use Vite which will most likely make this package redundant in the future._
 
 ---
@@ -131,7 +130,7 @@ You can use an environment variable to enable the measure as well.
 }
 ```
 
-Note: Measure can be buggy and can only work with SSR enabled.
+Note: Some features are disabled with measure on, such as caching.
 
 ## Features
 
@@ -149,6 +148,10 @@ imageFileLoader: true
 webpackOptimisations: true
 // no polyfilling css in development
 postcssNoPolyfills: true
+// inject the webpack cache-loader loader
+cacheLoader: boolean
+// use the hardsource plugin
+hardSourcePlugin: boolean
 ```
 
 You can disable features if you'd like to skip optimisations.
@@ -164,12 +167,12 @@ buildOptimisations: {
 
 ## esbuildLoaderOptions
 
-*Type:*  `object`
+*Type:*  `object` or `(args) => object`
 
 *Default:*
 ```javascript
 {
-  target: 'es2015'
+  target: 'es2020'
 }
 ```
 
@@ -177,12 +180,12 @@ See (esbuild-loader)[https://github.com/privatenumber/esbuild-loader].
 
 ## esbuildMinifyOptions
 
-*Type:*  `object`
+*Type:*  `object` or `(args) => object`
 
 *Default:*
 ```javascript
 {
-  target: 'es2015'
+  target: 'es2020'
 }
 ```
 
