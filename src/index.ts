@@ -44,7 +44,7 @@ const buildOptimisationsModule: Module<ModuleOptions> = function () {
     const args = {
       options: buildOptimisations,
       nuxtOptions: nuxt.options,
-      env: { isDev: nuxt.dev || process.env.NODE_ENV === 'development' }
+      env: { isDev: nuxt.dev || process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'dev' }
     } as OptimisationArgs
     // if the user has enabled speed measure plugin and we can
     speedMeasurePlugin(args, nuxt)
@@ -52,6 +52,10 @@ const buildOptimisationsModule: Module<ModuleOptions> = function () {
     if (buildOptimisations.profile === false) {
       return
     }
+    if (process.env.NODE_ENV !== 'test') {
+      console.info(`\`nuxt-build-optimisations\` enabled with \`${buildOptimisations.profile}\` profile.`)
+    }
+    // @ts-ignore
     nuxtOptimiser(args)
 
     this.extendBuild((config: WebpackConfig, env: ExtendFunctionContext) => {
