@@ -132,6 +132,20 @@ You can use an environment variable to enable the measure as well.
 
 Note: Some features are disabled with measure on, such as caching.
 
+## Measure Mode
+
+*Type:* `client` | `server` | `modern` | `all`
+
+*Default:* `client`
+
+Configure which build will be measured. Note that non-client builds may be buggy and mess with HMR.
+
+```javascript
+buildOptimisations: {
+  measureMode: 'all'
+}
+```
+
 ## Features
 
 *Type:*  `object`
