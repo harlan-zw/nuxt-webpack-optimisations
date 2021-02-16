@@ -39,6 +39,7 @@ const buildOptimisationsModule: Module<ModuleOptions> = function () {
     if (buildOptimisations.profile === false) {
       return
     }
+    console.info(`\`nuxt-build-optimisations\` enabled with \`${buildOptimisations.profile}\` profile.`)
     // @ts-ignore
     nuxtOptimiser({ options: buildOptimisations, nuxtOptions: nuxt.options, env: { isDev: nuxt.dev } })
 
