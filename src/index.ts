@@ -9,7 +9,7 @@ import { webpackOptimiser, imageOptimiser, esbuildOptimiser, nuxtOptimiser } fro
 const buildOptimisationsModule: Module<ModuleOptions> = function () {
   const { nuxt } = this
   const defaults = {
-    measure: !!process.env.NUXT_MEASURE,
+    measure: false,
     measureMode: 'client',
     profile: 'experimental',
     esbuildMinifyOptions: {
@@ -33,6 +33,11 @@ const buildOptimisationsModule: Module<ModuleOptions> = function () {
   } as ModuleOptions
 
   requireNuxtVersion(nuxt.constructor.version, '2.10')
+
+  // set measure based on env if the env is set
+  if (typeof process.env.NUXT_MEASURE !== 'undefined') {
+    buildOptimisations.measure = process.env.NUXT_MEASURE.toLowerCase() === 'true'
+  }
 
   nuxt.hook('build:before', () => {
     const args = {
