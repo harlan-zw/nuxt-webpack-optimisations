@@ -172,7 +172,7 @@ buildOptimisations: {
 *Default:*
 ```javascript
 {
-  target: 'es2020'
+  target: 'es2015'
 }
 ```
 
@@ -185,7 +185,7 @@ See (esbuild-loader)[https://github.com/privatenumber/esbuild-loader].
 *Default:*
 ```javascript
 {
-  target: 'es2020'
+  target: 'es2015'
 }
 ```
 
