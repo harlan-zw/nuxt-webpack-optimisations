@@ -2,9 +2,6 @@
   "github": {
     "release": true
   },
-  "npm": {
-    "tag": "beta"
-  },
   "hooks": {
     "after:bump": "npm run build",
     "after:git:release": "echo After git push, before github release",
