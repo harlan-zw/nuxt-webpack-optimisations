@@ -15,13 +15,13 @@
 Nuxt.js is fast but is limited by its webpack build, when your app grows things slow down.
 
 Nuxt build optimisations abstracts the complexities of optimising your Nuxt.js app so anyone can instantly speed up their builds
-without having to learn webpack.
+without having to learn webpack. The focus is primarily on the development build, as the optimisations are safer.
 
 ### Benchmarks
 
-**Development**: :snowman: **~50%** quicker cold starts, :fire: ~instant hot starts (via cache-loader)
+**Development**: :snowman: **2-5x** quicker cold starts, :fire: almost instant hot starts (with "risky" profile)
 
-**Production**: :snowman: Very slightly faster on cold (wip), :fire: should be a bit quicker
+**Production**: Should be a slight performance improvement depending on profile.
 
 ## Features
 
