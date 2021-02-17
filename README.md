@@ -53,6 +53,10 @@ Install using yarn or npm. (Nuxt.js 2.10+ is required)
 yarn add nuxt-build-optimisations
 ```
 
+```bash
+npm i --save-dev nuxt-build-optimisations
+```
+
 - :warning: This package makes optimisations with the assumption you're developing on the latest chrome.
 - _Note: Nuxt 3 will use Vite which will most likely make this package redundant in the future._
 
