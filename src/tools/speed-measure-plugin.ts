@@ -7,7 +7,7 @@ import type { OptimisationArgs } from '../types'
 
 /* Speed Measure Plugin: https://www.npmjs.com/package/speed-measure-webpack-plugin */
 export default ({ options } : OptimisationArgs, nuxt : any) => {
-  if (!options.measure && !process.env.NUXT_MEASURE) {
+  if (!options.measure) {
     return
   }
   // breaks if SSR is off for some reason

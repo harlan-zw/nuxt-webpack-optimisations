@@ -19,6 +19,7 @@
     "build:static": "export NODE_ENV=production && nuxt-ts build test/fixtures/static",
     "build:vuetify": "export NODE_ENV=production && nuxt-ts build test/fixtures/vuetify",
     "dev:basic": "nuxt-ts test/fixtures/basic",
+    "measure:basic": "export NUXT_MEASURE=true && nuxt-ts test/fixtures/basic",
     "dev:bootstrap": "nuxt test/fixtures/bootstrap",
     "dev:preset": "nuxt test/fixtures/preset",
     "dev:static": "nuxt-ts test/fixtures/static",
