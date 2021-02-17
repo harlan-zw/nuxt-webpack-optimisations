@@ -34,6 +34,11 @@ const buildOptimisationsModule: Module<ModuleOptions> = function () {
 
   requireNuxtVersion(nuxt.constructor.version, '2.10')
 
+  // set measure based on env if the env is set
+  if (typeof process.env.NUXT_MEASURE !== 'undefined') {
+    buildOptimisations.measure = process.env.NUXT_MEASURE.toLowerCase() === 'true'
+  }
+
   nuxt.hook('build:before', () => {
     const args = {
       options: buildOptimisations,
