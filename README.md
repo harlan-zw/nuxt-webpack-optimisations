@@ -1,4 +1,4 @@
-![](https://laravel-og.beyondco.de/Nuxt%20Build%20Optimisations.png?theme=light&packageManager=yarn+add&packageName=nuxt-build-optimisations&pattern=texture&style=style_1&description=Instantly+speed+up+your+Nuxt+2+build+time.&md=1&showWatermark=0&fontSize=100px&images=lightning-bolt)
+![](https://laravel-og.beyondco.de/Nuxt%20Build%20Optimisations.png?theme=light&packageManager=yarn+add&packageName=nuxt-build-optimisations&pattern=texture&style=style_1&description=Instantly+speed+up+your+Nuxt+v2+build+times.&md=1&showWatermark=0&fontSize=100px&images=lightning-bolt)
 
 <h2 align='center'><samp>nuxt-build-optimisations</samp></h2>
 
@@ -7,7 +7,7 @@
   <a href="https://npmjs.com/package/nuxt-build-optimisations"><img src="https://img.shields.io/npm/v/nuxt-build-optimisations.svg" alt="npm package"></a>
 </p>
 
-<p align='center'>Instantly speed up your Nuxt.js 2 dev build time.</p>
+<p align='center'>Instantly speed up your Nuxt.js v2 build times.</p>
 
 
 ## Why and how fast?
