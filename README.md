@@ -87,6 +87,9 @@ do is clear your cache.
 
 ```shell
 rm -rf node_modules/.cache
+
+//windows
+rd /s  "node_modules/.cache"
 ```
 
 # Configuration
