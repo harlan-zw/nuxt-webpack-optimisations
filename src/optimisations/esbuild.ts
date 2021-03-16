@@ -1,4 +1,4 @@
-import { ESBuildPlugin, ESBuildMinifyPlugin } from 'esbuild-loader'
+import { ESBuildMinifyPlugin } from 'esbuild-loader'
 import { OptimisationArgs } from '../types'
 
 export default (args : OptimisationArgs) => {
@@ -75,5 +75,4 @@ export default (args : OptimisationArgs) => {
     // make sure terser is off
     nuxtOptions.build.terser = false
   }
-  config.plugins.push(new ESBuildPlugin())
 }
