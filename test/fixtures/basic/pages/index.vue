@@ -4,6 +4,6 @@
       Hello World
     </h1>
     <img data-testid="smallImg" :src="require('../image/small.svg')" alt="small svg">
-    <img data-testid="bigImg" :src="require('../image/big.jpg')" alt="big jpg">
+    <img data-testid="bigImg" :src="require('../image/big.jpg')" alt="big jpg" height="200">
   </div>
 </template>
