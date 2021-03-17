@@ -73,14 +73,19 @@ buildModules: [
 ],
 ```
 
-It's recommended you start with the risky profile and see if it works.
+It's recommended you start with the default configuration, which is the `experimental` profile.
+
+However if you'd like to try and get more performance you can try the following:
+
 
 ```js
 // nuxt.config.js
 buildOptimisations: {
-  profile: 'risky'
+  profile: process.env.NODE_ENV === 'development' ? 'risky' : 'expiremental'
 },
 ```
+
+⚠️ Note: The risky profile uses [HardSource](https://github.com/mzgoddard/hard-source-webpack-plugin) caching, if you use it in your production CI with node / npm caching then you need to make sure it caches per branch.
 
 A lot of the speed improvements are from heavy caching, if you have any issues the first thing you should
 do is clear your cache.
