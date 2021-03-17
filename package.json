@@ -1,6 +1,6 @@
 {
   "name": "nuxt-build-optimisations",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Nuxt.js v2 module to automatically make your builds faster.",
   "repository": "loonpwn/nuxt-build-optimisations",
   "license": "MIT",
