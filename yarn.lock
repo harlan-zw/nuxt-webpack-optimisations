@@ -5983,16 +5983,16 @@ es-to-primitive@^1.2.1:
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
 
-esbuild-loader@^2.9.2:
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/esbuild-loader/-/esbuild-loader-2.9.2.tgz#ae16721aeb05018396395a95f528c778ba7361d0"
-  integrity sha512-HpF+r/ES2aC40VDOIFsP8OIOM2y2vj8LyLwJ4G8DCMOi8Kov68TwCtxiMMTuSuxR/xKDu/ykgVyCEgps6BXpYw==
+esbuild-loader@^2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/esbuild-loader/-/esbuild-loader-2.10.0.tgz#35b570187aee0036b2f4b37db66870f7407f3d40"
+  integrity sha512-BRWmc/7gU6/FmI+MP+E+9Zb/CE0BA1XMOQkdvJ7B/T2gad1Mlim8aMhvvRdS9on5S8JzkC+uNHGQmt/WmbbXbQ==
   dependencies:
-    esbuild "^0.8.42"
+    esbuild "^0.9.2"
     joycon "^2.2.5"
     json5 "^2.2.0"
     loader-utils "^2.0.0"
-    type-fest "^0.20.2"
+    type-fest "^0.21.3"
     webpack-sources "^2.2.0"
 
 esbuild@^0.7.22:
@@ -6000,10 +6000,10 @@ esbuild@^0.7.22:
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.7.22.tgz#9149b903f8128b7c45a754046c24199d76bbe08e"
   integrity sha512-B43SYg8LGWYTCv9Gs0RnuLNwjzpuWOoCaZHTWEDEf5AfrnuDMerPVMdCEu7xOdhFvQ+UqfP2MGU9lxEy0JzccA==
 
-esbuild@^0.8.42:
-  version "0.8.43"
-  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.8.43.tgz#19d79f8c6d1cc6dadd50942057a5aff906a1ecf2"
-  integrity sha512-ZVE2CpootS4jtnfV0bbtJdgRsHEXcMP0P7ZXGfTmNzzhBr2e5ag7Vp3ry0jmw8zduJz4iHzxg4m5jtPxWERz1w==
+esbuild@^0.9.2:
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.9.2.tgz#7e9fde247c913ed8ee059e2648b0c53f7d00abe5"
+  integrity sha512-xE3oOILjnmN8PSjkG3lT9NBbd1DbxNqolJ5qNyrLhDWsFef3yTp/KTQz1C/x7BYFKbtrr9foYtKA6KA1zuNAUQ==
 
 escalade@^3.1.1:
   version "3.1.1"
@@ -14258,6 +14258,11 @@ type-fest@^0.20.2:
   version "0.20.2"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.20.2.tgz#1bf207f4b28f91583666cb5fbd327887301cd5f4"
   integrity sha512-Ne+eE4r0/iWnpAxD852z3A+N0Bt5RN//NjJwRd2VFHEmrywxf5vsZlh4R6lixl6B+wz/8d+maTSAkN1FIkI3LQ==
+
+type-fest@^0.21.3:
+  version "0.21.3"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.21.3.tgz#d260a24b0198436e133fa26a524a6d65fa3b2e37"
+  integrity sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w==
 
 type-fest@^0.6.0:
   version "0.6.0"
