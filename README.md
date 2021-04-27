@@ -81,7 +81,7 @@ However if you'd like to try and get more performance you can try the following:
 ```js
 // nuxt.config.js
 buildOptimisations: {
-  profile: process.env.NODE_ENV === 'development' ? 'risky' : 'expiremental'
+  profile: process.env.NODE_ENV === 'development' ? 'risky' : 'experimental'
 },
 ```
 
