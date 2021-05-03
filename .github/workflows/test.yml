@@ -1,4 +1,4 @@
-name: ci
+name: Test
 
 on:
   push:
@@ -14,8 +14,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest]
-        node: [14.5]
+        os: [ macos-latest, windows-latest, ubuntu-latest ]
+        node: [ 14 ]
 
     steps:
       - uses: actions/checkout@v2
@@ -29,6 +29,9 @@ jobs:
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn
+
+      - name: Build ts
+        run: yarn build
 
       - name: Run tests
         run: yarn test
