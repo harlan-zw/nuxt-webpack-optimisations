@@ -9,6 +9,7 @@
       "dom"
     ],
     "esModuleInterop": true,
+    "experimentalDecorators": true,
     "sourceMap": true,
     "strict": true,
     "baseUrl": "..",

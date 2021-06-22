@@ -1,6 +1,6 @@
 ![](https://laravel-og.beyondco.de/Nuxt%20Build%20Optimisations.png?theme=light&packageManager=yarn+add&packageName=nuxt-build-optimisations&pattern=texture&style=style_1&description=Instantly+speed+up+your+Nuxt+v2+build+times.&md=1&showWatermark=0&fontSize=100px&images=lightning-bolt)
 
-<h2 align='center'><samp>nuxt-build-optimisations</samp></h2>
+<h1 align='center'><samp>nuxt-build-optimisations</samp></h2>
 
 <p align="center">
   <a href="https://github.com/harlan-zw/nuxt-build-optimisations/actions"><img src="https://github.com/harlan-zw/nuxt-build-optimisations/actions/workflows/test.yml/badge.svg" alt="builder"></a>
@@ -10,14 +10,18 @@
 <p align='center'>Instantly speed up your Nuxt.js v2 build times.</p>
 
 
-## Why and how fast?
+## About
+
+### Why do I need this?
 
 Nuxt.js is fast but is limited by its webpack build, when your app grows things slow down.
 
 Nuxt build optimisations abstracts the complexities of optimising your Nuxt.js app so anyone can instantly speed up their builds
 without having to learn webpack. The focus is primarily on the development build, as the optimisations are safer.
 
-### Benchmarks
+For the best possible performance, consider using: [Nuxt Vite](https://vite.nuxtjs.org/). This package is for webpack stuck projects. 
+
+### How fast is it?
 
 **Development**: :snowman: **2-5x** quicker cold starts, :fire: almost instant hot starts (with "risky" profile)
 
@@ -25,22 +29,22 @@ without having to learn webpack. The focus is primarily on the development build
 
 ## Features
 
-The features are separated by their risk profile, how likely they are to cause issues within your app.
+Features are enabled by their risk profile. The risk profile is the likelihood of issues coming up.
 
-**Safe**
+**Safe (safest)**
 
 - Development: Super quick js/ts transpiling with [esbuild](https://esbuild.github.io/) :zap:
 - Development: Images only use `file-loader`
 - webpack benchmarking with [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)
 
-**Experimental**
+**Experimental (mostly safe)**
 - Development: Disables [postcss-preset-env](https://github.com/csstools/postcss-preset-env) pollyfills
 - Replaces [Terser](https://github.com/terser/terser) minification with [esbuild](https://esbuild.github.io/)
 - Enable [Nuxt build cache](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#cache)
 - webpack's [best practices for performance](https://webpack.js.org/guides/build-performance/)
 - Disables Nuxt features that aren't used (layouts, store)
 
-**Risky**
+**Risky (may throw errors)**
 - Enable [Nuxt parallel](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#parallel)
 - Enable [Nuxt hard source](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#hardsource)
 
@@ -54,11 +58,10 @@ yarn add nuxt-build-optimisations
 ```
 
 ```bash
-npm i --save-dev nuxt-build-optimisations
+npm i nuxt-build-optimisations
 ```
 
-- :warning: This package makes optimisations with the assumption you're developing on the latest chrome.
-- _Note: Nuxt 3 will use Vite which will most likely make this package redundant in the future._
+:warning: This package makes optimisations with the assumption you're developing on the latest chrome.
 
 ---
 
@@ -97,9 +100,10 @@ rm -rf node_modules/.cache
 rd /s  "node_modules/.cache"
 ```
 
-# Configuration
 
-## Profile
+## Configuration
+
+### Profile
 
 *Type:* `risky` | `experimental` | `safe` | `false`
 
@@ -110,7 +114,7 @@ If you have errors on any mode you should increment down in profiles until you f
 Setting the profile to false will disable the optimisations, useful when you want to measure your build time without optimisations.
 
 
-## Measure
+### Measure
 
 *Type:* `boolean` or `object`
 
@@ -144,7 +148,7 @@ You can use an environment variable to enable the measure as well.
 
 Note: Some features are disabled with measure on, such as caching.
 
-## Measure Mode
+### Measure Mode
 
 *Type:* `client` | `server` | `modern` | `all`
 
@@ -158,31 +162,33 @@ buildOptimisations: {
 }
 ```
 
-## Features
+### Feature Flags
 
 *Type:*  `object`
 
 *Default:*
 ```js
 // uses esbuild loader
-esbuildLoader: true
+esbuildLoader: boolean
 // uses esbuild as a minifier
-esbuildMinifier: true
+esbuildMinifier: boolean
 // swaps url-loader for file-loader
-imageFileLoader: true
+imageFileLoader: boolean
 // misc webpack optimisations
-webpackOptimisations: true
+webpackOptimisations: boolean
 // no polyfilling css in development
-postcssNoPolyfills: true
+postcssNoPolyfills: boolean
 // inject the webpack cache-loader loader
 cacheLoader: boolean
 // use the hardsource plugin
 hardSourcePlugin: boolean
+// use the parallel thread plugin
+parallelPlugin: boolean
 ```
 
 You can disable features if you'd like to skip optimisations.
 
-```shell
+```js
 buildOptimisations: {
   features: {
     // use url-loader
@@ -191,7 +197,7 @@ buildOptimisations: {
 }
 ```
 
-## esbuildLoaderOptions
+### esbuildLoaderOptions
 
 *Type:*  `object` or `(args) => object`
 
@@ -202,9 +208,9 @@ buildOptimisations: {
 }
 ```
 
-See (esbuild-loader)[https://github.com/privatenumber/esbuild-loader].
+See [esbuild-loader](https://github.com/privatenumber/esbuild-loader).
 
-## esbuildMinifyOptions
+### esbuildMinifyOptions
 
 *Type:*  `object` or `(args) => object`
 
@@ -215,7 +221,52 @@ See (esbuild-loader)[https://github.com/privatenumber/esbuild-loader].
 }
 ```
 
-See (esbuild-loader)[https://github.com/privatenumber/esbuild-loader].
+See [esbuild-loader](https://github.com/privatenumber/esbuild-loader).
+
+
+
+### Gotchas
+
+#### Vue Property Decorator / Vue Class Component
+
+Your babel-loader will be replaced with esbuild, which doesn't support class decorators in js.
+
+You can either migrate your scripts to typescript or disabled the esbuild loader.
+
+**Disable Loader**
+```js
+buildOptimisations: {
+  features: {
+    esbuildLoader: false
+  }
+}
+```
+
+**Migrate to TypeScript**
+
+*tsconfig.json*
+```json
+{
+  "experimentalDecorators": true
+}
+```
+
+```vue
+<script lang="ts">
+import Vue from 'vue'
+import Component from 'vue-class-component'
+
+@Component
+export default class HelloWorld extends Vue {
+  data () {
+    return {
+      hello: 'test'
+    }
+  }
+}
+</script>
+```
+
 
 ## Credits
 

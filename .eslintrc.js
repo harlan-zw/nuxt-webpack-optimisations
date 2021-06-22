@@ -1,8 +1,6 @@
 module.exports = {
-  extends: [
-    '@nuxtjs/eslint-config-typescript'
-  ],
+  extends: '@antfu',
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off'
-  }
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+  },
 }
