@@ -2,7 +2,23 @@
   "name": "nuxt-build-optimisations",
   "version": "1.0.3",
   "description": "Nuxt.js v2 module to automatically make your builds faster.",
-  "repository": "loonpwn/nuxt-build-optimisations",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harlan-zw/nuxt-build-optimisations.git"
+  },
+  "bugs": {
+    "url": "https://github.com/harlan-zw/nuxt-build-optimisations/issues"
+  },
+  "author": {
+    "name": "Harlan Wilton",
+    "email": "harlan@harlanzw.com"
+  },
+  "homepage": "https://github.com/harlan-zw/nuxt-build-optimisations#readme",
+  "keywords": [
+    "nuxt",
+    "performance",
+    "build"
+  ],
   "license": "MIT",
   "exports": {
     ".": "./dist/index.js",
