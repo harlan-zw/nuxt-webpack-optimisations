@@ -51,14 +51,16 @@ const buildOptimisationsModule: Module<ModuleOptions> = async function(moduleOpt
       env: { isDev: nuxt.dev || process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'dev' },
     } as OptimisationArgs
 
-    if (process.env.NODE_ENV !== 'test')
+    if (process.env.NODE_ENV !== 'test' && options.profile)
       logger.info(`\`${NAME}\` enabled with \`${options.profile}\` profile.`)
 
     // boot speed measure plugin
     speedMeasurePlugin(args, nuxt)
     // if profile is false we don't add any optimisations
-    if (options.profile === false)
+    if (!options.profile) {
+      logger.info(`\`${NAME}\` is disabled because the profile is ${options.profile}.`)
       return
+    }
 
     nuxtOptimiser(args)
 
