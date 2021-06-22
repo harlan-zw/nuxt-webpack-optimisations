@@ -1,9 +1,9 @@
 import { OptimisationArgs } from '../types'
 
-export default ({ config, env, options } : OptimisationArgs) => {
-  if (!config.resolve || !config.output || !config.optimization || !options.features.webpackOptimisations) {
+export default ({ config, env, options }: OptimisationArgs) => {
+  if (!config.resolve || !config.output || !config.optimization || !options.features.webpackOptimisations)
     return
-  }
+
   /* Webpack Optimisations: https://webpack.js.org/guides/build-performance/ */
   config.output.pathinfo = false
   config.output.futureEmitAssets = true

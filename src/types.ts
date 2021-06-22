@@ -3,6 +3,10 @@ import type { Configuration as WebpackConfig } from 'webpack'
 import { ExtendFunctionContext } from '@nuxt/types/config/module'
 import type { NuxtOptions } from '@nuxt/types'
 import type { LoaderOptions, MinifyPluginOptions } from 'esbuild-loader/dist/interfaces'
+import { Consola } from 'consola'
+
+export type RiskProfile = 'risky' | 'experimental' | 'safe'
+export type MeasureMode = 'client' | 'server' | 'modern' | 'all'
 
 export interface FeatureFlags {
   // uses esbuild loader
@@ -19,6 +23,8 @@ export interface FeatureFlags {
   cacheLoader: boolean
   // use the hardsource plugin
   hardSourcePlugin: boolean
+  // use the parallel thread plugin
+  parallelPlugin: boolean
 }
 
 export interface OptimisationArgs {
@@ -26,13 +32,14 @@ export interface OptimisationArgs {
   // eslint-disable-next-line no-use-before-define
   options: ModuleOptions
   config: WebpackConfig
+  logger: Consola
   env: ExtendFunctionContext
 }
 
 export interface ModuleOptions {
-  measureMode: 'client' | 'server' | 'modern' | 'all'
+  measureMode: MeasureMode
   measure: boolean | SpeedMeasurePlugin.Options
-  profile: 'risky' | 'experimental' | 'safe' | false
+  profile: RiskProfile | false
   esbuildLoaderOptions: LoaderOptions | ((args: OptimisationArgs) => LoaderOptions)
   esbuildMinifyOptions: MinifyPluginOptions | ((args: OptimisationArgs) => MinifyPluginOptions)
   features: FeatureFlags
