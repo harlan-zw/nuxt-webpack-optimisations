@@ -9,7 +9,7 @@ export default (args: OptimisationArgs) => {
     return
 
   // we replace the babel loader with esbuild
-  if (options.features.esbuildLoader && (env.isDev || options.profile !== RISK_PROFILE_SAFE)) {
+  if (options.features.esbuildLoader && env.isDev && options.profile !== RISK_PROFILE_SAFE) {
     const esbuildLoaderOptions = typeof options.esbuildLoaderOptions === 'function'
       ? options.esbuildLoaderOptions(args)
       : options.esbuildLoaderOptions
