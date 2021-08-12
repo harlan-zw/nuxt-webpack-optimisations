@@ -44,11 +44,11 @@ const buildOptimisationsModule: Module<ModuleOptions> = async function(moduleOpt
   await nuxt.callHook('buildOptimisations:options', options)
   logger.debug('post `buildOptimisations:options` hook options', options)
 
-  nuxt.hook('build:before', (nuxt: any) => {
+  nuxt.hook('build:before', (ctx: any) => {
     const args = {
       options,
-      nuxtOptions: nuxt.options,
-      env: { isDev: nuxt.dev || process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'dev' },
+      nuxtOptions: ctx.options,
+      env: { isDev: ctx.dev || process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'dev' },
     } as OptimisationArgs
 
     if (process.env.NODE_ENV !== 'test' && options.profile)
