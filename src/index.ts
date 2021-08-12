@@ -7,7 +7,7 @@ import { requireNuxtVersion } from './compatibility'
 import speedMeasurePlugin from './tools/speed-measure-plugin'
 import { webpackOptimiser, imageOptimiser, esbuildOptimiser, nuxtOptimiser } from './optimisations'
 import logger from './logger'
-import { NAME } from './constants'
+import { NAME, RISK_PROFILE_EXPERIMENTAL } from './constants'
 
 const buildOptimisationsModule: Module<ModuleOptions> = async function(moduleOptions) {
   const { nuxt } = this
@@ -17,7 +17,7 @@ const buildOptimisationsModule: Module<ModuleOptions> = async function(moduleOpt
   const defaultConfig: ModuleOptions = {
     measure: false,
     measureMode: 'client',
-    profile: 'experimental',
+    profile: RISK_PROFILE_EXPERIMENTAL,
     esbuildMinifyOptions: {
       target: 'es2015',
     },
