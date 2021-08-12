@@ -51,8 +51,13 @@ export default (args: OptimisationArgs) => {
       rule.use.splice(babelLoaderIndex, 1, esbuildLoader)
       // @ts-ignore
       const tsLoaderIndex = rule.use.findIndex((use: RuleSetUseItem) => use.loader.includes('ts-loader'))
-      rule.use.splice(tsLoaderIndex, 1)
-      logger.debug(`TS compilation: swapped out ts-loader at index ${tsLoaderIndex} for esbuild`)
+      
+      // remove ts-loader only if present
+      if (tsLoaderIndex !== -1) {
+          rule.use.splice(tsLoaderIndex, 1)
+          logger.debug(`TS compilation: swapped out ts-loader at index ${tsLoaderIndex} for esbuild`)
+      }
+      
       return rule
     })
   }
