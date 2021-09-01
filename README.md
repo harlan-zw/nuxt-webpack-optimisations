@@ -38,7 +38,6 @@ The features are separated by their risk profile, how likely they are to cause i
 - Replaces [Terser](https://github.com/terser/terser) minification with [esbuild](https://esbuild.github.io/)
 - Enable [Nuxt build cache](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#cache)
 - webpack's [best practices for performance](https://webpack.js.org/guides/build-performance/)
-- Disables Nuxt features that aren't used (layouts, store)
 
 **Risky**
 - Enable [Nuxt parallel](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#parallel)
