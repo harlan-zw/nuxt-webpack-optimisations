@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "defu": "^5.0.0",
-    "esbuild-loader": "^2.13.1",
+    "esbuild-loader": "^2.15.1",
     "rimraf": "^3.0.2",
     "semver": "^7.3.5",
     "speed-measure-webpack-plugin": "^1.5.0",
