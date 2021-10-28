@@ -7,7 +7,7 @@ __![](https://laravel-og.beyondco.de/Nuxt%20Build%20Optimisations.png?theme=ligh
   <a href="https://npmjs.com/package/nuxt-webpack-optimisations"><img src="https://img.shields.io/npm/v/nuxt-webpack-optimisations.svg" alt="npm package"></a>
 </p>
 
-<p align='center'>Instantly speed up your Nuxt.js v2 build times.</p>
+<p align='center'>Instantly speed up your Nuxt.js webpack build time.</p>
 
 
 ### Can't use Vite with Nuxt yet?
@@ -21,8 +21,8 @@ instant app starts anytime soon, `nuxt-webpack-optimisations` can get things sna
 
 `nuxt-webpack-optimisations` is a collection of webpack config changes that will let you speed up your build times and audit them.
 
-By making smarter and riskier assumptions on how you want to run your environment in development, this module
-can speed up your development by at least **2x ☃️ cold**, with **"instant" 🔥 hot starts**.
+By making smarter and riskier assumptions on how you want to run your environment in development, this module has been benchmarked
+to reduce your build time by **50% when cold ☃** , **95%+ when hot 🔥**.
 
 ### How risky are we talking
 
