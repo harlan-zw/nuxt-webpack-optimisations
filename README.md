@@ -1,94 +1,100 @@
-![](https://laravel-og.beyondco.de/Nuxt%20Build%20Optimisations.png?theme=light&packageManager=yarn+add&packageName=nuxt-build-optimisations&pattern=texture&style=style_1&description=Instantly+speed+up+your+Nuxt+v2+build+times.&md=1&showWatermark=0&fontSize=100px&images=lightning-bolt)
+__![](https://laravel-og.beyondco.de/Nuxt%20Build%20Optimisations.png?theme=light&packageManager=yarn+add&packageName=nuxt-webpack-optimisations&pattern=texture&style=style_1&description=Instantly+speed+up+your+Nuxt+v2+build+times.&md=1&showWatermark=0&fontSize=100px&images=lightning-bolt)
 
-<h1 align='center'><samp>nuxt-build-optimisations</samp></h2>
+<h1 align='center'><samp>nuxt-webpack-optimisations</samp></h1>
 
 <p align="center">
-  <a href="https://github.com/harlan-zw/nuxt-build-optimisations/actions"><img src="https://github.com/harlan-zw/nuxt-build-optimisations/actions/workflows/test.yml/badge.svg" alt="builder"></a>
-  <a href="https://npmjs.com/package/nuxt-build-optimisations"><img src="https://img.shields.io/npm/v/nuxt-build-optimisations.svg" alt="npm package"></a>
+  <a href="https://github.com/harlan-zw/nuxt-webpack-optimisations/actions"><img src="https://github.com/harlan-zw/nuxt-webpack-optimisations/actions/workflows/test.yml/badge.svg" alt="builder"></a>
+  <a href="https://npmjs.com/package/nuxt-webpack-optimisations"><img src="https://img.shields.io/npm/v/nuxt-webpack-optimisations.svg" alt="npm package"></a>
 </p>
 
 <p align='center'>Instantly speed up your Nuxt.js v2 build times.</p>
 
 
-## About
+### Can't use Vite with Nuxt yet?
 
-### Why do I need this?
+> i.e  [Nuxt Vite](https://vite.nuxtjs.org/) or  [Nuxt 3](https://v3.nuxtjs.org/)
 
-Nuxt.js is fast but is limited by its webpack build, when your app grows things slow down.
+Truly sad... But I do have some good news. While you won't be able to achieve
+instant app starts anytime soon, `nuxt-webpack-optimisations` can get things snappy again.
 
-Nuxt build optimisations abstracts the complexities of optimising your Nuxt.js app so anyone can instantly speed up their builds
-without having to learn webpack. The focus is primarily on the development build, as the optimisations are safer.
+## Webpack Optimisations
 
-For the best possible performance, consider using: [Nuxt Vite](https://vite.nuxtjs.org/). This package is for webpack stuck projects. 
+`nuxt-webpack-optimisations` is a collection of webpack config changes that will let you speed up your build times and audit them.
 
-### How fast is it?
+By making smarter and riskier assumptions on how you want to run your environment in development, this module
+can speed up your development by at least **2x ☃️ cold**, with **"instant" 🔥 hot starts**.
 
-**Development**: :snowman: **2-5x** quicker cold starts, :fire: almost instant hot starts (with "risky" profile)
+### How risky are we talking
 
-**Production**: Should be a slight performance improvement depending on profile.
+The riskier optimisations are isolated to issues in development around caching being too aggressive, which is always easy to fix with a good old `rm -rf node_modules/.cache` 💩.
+
+✔️ This module has been tested to cause no issues in production environments.
 
 ## Features
 
 Features are enabled by their risk profile. The risk profile is the likelihood of issues coming up.
 
-**Safe (safest)**
+**Tools**
 
-- Development: Super quick js/ts transpiling with [esbuild](https://esbuild.github.io/) :zap:
-- Development: Images only use `file-loader`
-- webpack benchmarking with [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)
+- [speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)
 
-**Experimental (mostly safe)**
-- Development: Disables [postcss-preset-env](https://github.com/csstools/postcss-preset-env) pollyfills
-- Replaces [Terser](https://github.com/terser/terser) minification with [esbuild](https://esbuild.github.io/)
-- Enable [Nuxt build cache](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#cache)
-- webpack's [best practices for performance](https://webpack.js.org/guides/build-performance/)
-- Disables Nuxt features that aren't used (layouts, store)
 
-**Risky (may throw errors)**
-- Enable [Nuxt parallel](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#parallel)
-- Enable [Nuxt hard source](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#hardsource)
+**Always**
+- Nuxt config [build.cache](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#cache) enabled
+- Nuxt config [build.parallel](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#parallel) enabled
+- webpacks [best practices](https://webpack.js.org/guides/build-performance/)  for performance
+
+**Dev**
+- [esbuild](https://esbuild.github.io/) replaces `babel-loader`
+- [esbuild](https://esbuild.github.io/) replaces `ts-loader` 
+- [postcss-preset-env](https://github.com/csstools/postcss-preset-env) is disabled
+- `file-loader` replaces `url-loader`
+- Nuxt config [build.hardsource](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#hardsource) enabled
+
+**Production**
+- [esbuild](https://esbuild.github.io/) replaces [Terser](https://github.com/terser/terser) for minification 
+
+
+### Compatibility
+
+- ✔️ Nuxt v2
+- ✔️ Nuxt bridge
+- ✔️ Nuxt 3 (vite needs to be disabled)
 
 
 ## Setup
 
-Install using yarn or npm. (Nuxt.js 2.10+ is required)
+Install the module.
 
 ```bash
-yarn add nuxt-build-optimisations
+yarn add nuxt-webpack-optimisations
+# npm i nuxt-webpack-optimisations
 ```
 
-```bash
-npm i nuxt-build-optimisations
+Within your `nuxt.config.ts` or `nuxt.config.js`
+```js
+buildModules: [
+  'nuxt-webpack-optimisations',
+],
 ```
-
-:warning: This package makes optimisations with the assumption you're developing on the latest chrome.
 
 ---
 
 ## Usage
 
-Within your `nuxt.config.js` add the following.
-
-```js
-// nuxt.config.js
-buildModules: [
-  'nuxt-build-optimisations',
-],
-```
-
-It's recommended you start with the default configuration, which is the `experimental` profile.
+The default configuration is the `experimental` profile.
 
 However if you'd like to try and get more performance you can try the following:
 
 
 ```js
 // nuxt.config.js
-buildOptimisations: {
-  profile: process.env.NODE_ENV === 'development' ? 'risky' : 'experimental'
-},
+{
+  webpackOptimisations: {
+    profile: process.env.NODE_ENV === 'development' ? 'risky' : 'experimental'
+  }
+}
 ```
-
-⚠️ Note: The risky profile uses [HardSource](https://github.com/mzgoddard/hard-source-webpack-plugin) caching, if you use it in your production CI with node / npm caching then you need to make sure it caches per branch.
 
 A lot of the speed improvements are from heavy caching, if you have any issues the first thing you should
 do is clear your cache.
@@ -168,22 +174,24 @@ buildOptimisations: {
 
 *Default:*
 ```js
+features: {
 // uses esbuild loader
-esbuildLoader: boolean
+  esbuildLoader: true,
 // uses esbuild as a minifier
-esbuildMinifier: boolean
+  esbuildMinifier: true,
 // swaps url-loader for file-loader
-imageFileLoader: boolean
+  imageFileLoader: true,
 // misc webpack optimisations
-webpackOptimisations: boolean
+  webpackOptimisations: true,
 // no polyfilling css in development
-postcssNoPolyfills: boolean
+  postcssNoPolyfills: true,
 // inject the webpack cache-loader loader
-cacheLoader: boolean
+  cacheLoader: true,
 // use the hardsource plugin
-hardSourcePlugin: boolean
+  hardSourcePlugin: true,
 // use the parallel thread plugin
-parallelPlugin: boolean
+  parallelPlugin: true,
+}
 ```
 
 You can disable features if you'd like to skip optimisations.
@@ -199,7 +207,7 @@ buildOptimisations: {
 
 ### esbuildLoaderOptions
 
-*Type:*  `object` or `(args) => object`
+*Type:*  `object`
 
 *Default:*
 ```javascript
@@ -212,7 +220,7 @@ See [esbuild-loader](https://github.com/privatenumber/esbuild-loader).
 
 ### esbuildMinifyOptions
 
-*Type:*  `object` or `(args) => object`
+*Type:*  `object`
 
 *Default:*
 ```javascript

@@ -10,9 +10,16 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "stripInternal": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "types": [
+      "@nuxt/types",
+    ]
   },
-  "include": [
-    "src"
-  ]
+  "exclude": [
+    "**/dist/**",
+    "**/.output/**",
+    "playground/**"
+  ],
 }

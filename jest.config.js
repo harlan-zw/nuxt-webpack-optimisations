@@ -1,7 +1,13 @@
 module.exports = {
   preset: '@nuxt/test-utils',
-  transformIgnorePatterns: [
-    'node_modules/(?!@nuxtjs\\/vuetify)',
+  testTimeout: 100000,
+  transform: {
+    '^.+\\.jsx?$': 'esbuild-jest',
+    '^.+\\.mjs$': 'esbuild-jest',
+  },
+  moduleFileExtensions: [
+    'js',
+    'mjs',
+    'ts',
   ],
-  testTimeout: 10000,
 }
