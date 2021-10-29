@@ -1,4 +1,4 @@
-__![](https://laravel-og.beyondco.de/Nuxt%20Build%20Optimisations.png?theme=light&packageManager=yarn+add&packageName=nuxt-webpack-optimisations&pattern=texture&style=style_1&description=Instantly+speed+up+your+Nuxt+v2+build+times.&md=1&showWatermark=0&fontSize=100px&images=lightning-bolt)
+![](https://repository-images.githubusercontent.com/337066468/8a3e8e34-3d48-4f0f-bb07-b02e4391f53c)
 
 <h1 align='center'><samp>nuxt-webpack-optimisations</samp></h1>
 
@@ -41,7 +41,7 @@ Features are enabled by their risk profile. The risk profile is the likelihood o
 
 **Always**
 - Nuxt config [build.cache](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#cache) enabled
-- Nuxt config [build.parallel](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#parallel) enabled
+- Nuxt config [build.parallel](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#parallel) enabled  - _requires `risky: true`_
 - webpacks [best practices](https://webpack.js.org/guides/build-performance/)  for performance
 
 **Dev**
@@ -49,7 +49,7 @@ Features are enabled by their risk profile. The risk profile is the likelihood o
 - [esbuild](https://esbuild.github.io/) replaces `ts-loader` 
 - [postcss-preset-env](https://github.com/csstools/postcss-preset-env) is disabled
 - `file-loader` replaces `url-loader`
-- Nuxt config [build.hardsource](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#hardsource) enabled
+- Nuxt config [build.hardsource](https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-build#hardsource) enabled - _requires `risky: true`_
 
 **Production**
 - [esbuild](https://esbuild.github.io/) replaces [Terser](https://github.com/terser/terser) for minification 
@@ -59,7 +59,7 @@ Features are enabled by their risk profile. The risk profile is the likelihood o
 
 - ✔️ Nuxt v2
 - ✔️ Nuxt bridge
-- ✔️ Nuxt 3 (vite needs to be disabled)
+- ✔️ Nuxt 3 _⚠ Vite needs to be disabled. You probably don't need this module._
 
 
 ## Setup
@@ -78,47 +78,138 @@ buildModules: [
 ],
 ```
 
+### Typescript
+
+For Nuxt config typescript support, add the module within your `tsconfig.json`.
+
+```json
+
+{
+  "compilerOptions": {
+    "types": [
+      "nuxt-webpack-optimisations"
+    ]
+  }
+}
+```
+
+
 ---
 
 ## Usage
 
-The default configuration is the `experimental` profile.
+By default all non-risky features are enabled, only `hardsource` and `parallel` are disabled.
 
-However if you'd like to try and get more performance you can try the following:
-
+If you'd like to get more performance than the default you can try
 
 ```js
-// nuxt.config.js
-{
+// nuxt.config.ts
+export default {
   webpackOptimisations: {
-    profile: process.env.NODE_ENV === 'development' ? 'risky' : 'experimental'
+    hardSourcePlugin: process.env.NODE_ENV === 'development',
+    parallelPlugin: process.env.NODE_ENV === 'development',
   }
 }
 ```
+
+Note: It's recommended to avoid running risky in non-development environments. Caching in CI environments can lead to issues.
+
+### Something isn't working
 
 A lot of the speed improvements are from heavy caching, if you have any issues the first thing you should
 do is clear your cache.
 
 ```shell
+# Linux / Mac
 rm -rf node_modules/.cache
 
-//windows
+# windows
 rd /s  "node_modules/.cache"
+```
+
+If you'd like to see what features are running you can enable the debug mode.
+
+```js
+// nuxt.config.ts
+export default {
+  webpackOptimisations: {
+    debug: true
+  }
+}
 ```
 
 
 ## Configuration
 
-### Profile
 
-*Type:* `risky` | `experimental` | `safe` | `false`
+### Features
 
-*Default:* `experimental`
+*Type:*  `object`
 
-If you have errors on any mode you should increment down in profiles until you find one that works.
+*Default:* Non-risky features enabled.
 
-Setting the profile to false will disable the optimisations, useful when you want to measure your build time without optimisations.
+You can disable features if you'd like to skip optimisations.
 
+
+```js
+export default {
+  webpackOptimisations: {
+    features: {
+      // Note: just an example of keys, these are all keys and their default
+      postcssNoPolyfills: true,
+      esbuildLoader: true,
+      esbuildMinifier: true,
+      imageFileLoader: true,
+      webpackOptimisations: true,
+      cacheLoader: true,
+      hardSourcePlugin: false,
+      parallelPlugin: false,
+    }
+  }
+}
+```
+
+### esbuildLoaderOptions
+
+*Type:*  `object`
+
+*Default:*
+```javascript
+export default {
+  client: {
+    target: 'es2015',
+  },
+  server: {
+    target: 'node14',
+  },
+  modern: {
+    target: 'es2015',
+  },
+}
+```
+
+See [esbuild-loader](https://github.com/privatenumber/esbuild-loader).
+
+### esbuildMinifyOptions
+
+*Type:*  `object`
+
+*Default:*
+```javascript
+export default {
+  client: {
+    target: 'es2015',
+  },
+  server: {
+    target: 'node14',
+  },
+  modern: {
+    target: 'es2015',
+  },
+}
+```
+
+See [esbuild-loader](https://github.com/privatenumber/esbuild-loader).
 
 ### Measure
 
@@ -167,71 +258,6 @@ buildOptimisations: {
   measureMode: 'all'
 }
 ```
-
-### Feature Flags
-
-*Type:*  `object`
-
-*Default:*
-```js
-features: {
-// uses esbuild loader
-  esbuildLoader: true,
-// uses esbuild as a minifier
-  esbuildMinifier: true,
-// swaps url-loader for file-loader
-  imageFileLoader: true,
-// misc webpack optimisations
-  webpackOptimisations: true,
-// no polyfilling css in development
-  postcssNoPolyfills: true,
-// inject the webpack cache-loader loader
-  cacheLoader: true,
-// use the hardsource plugin
-  hardSourcePlugin: true,
-// use the parallel thread plugin
-  parallelPlugin: true,
-}
-```
-
-You can disable features if you'd like to skip optimisations.
-
-```js
-buildOptimisations: {
-  features: {
-    // use url-loader
-    imageFileLoader: false
-  }
-}
-```
-
-### esbuildLoaderOptions
-
-*Type:*  `object`
-
-*Default:*
-```javascript
-{
-  target: 'es2015'
-}
-```
-
-See [esbuild-loader](https://github.com/privatenumber/esbuild-loader).
-
-### esbuildMinifyOptions
-
-*Type:*  `object`
-
-*Default:*
-```javascript
-{
-  target: 'es2015'
-}
-```
-
-See [esbuild-loader](https://github.com/privatenumber/esbuild-loader).
-
-
 
 ### Gotchas
 

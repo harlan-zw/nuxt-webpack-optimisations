@@ -1,11 +1,11 @@
-import { NuxtWebpackOptimisationOptions } from './types'
+import { ResolvedOptions } from './types'
 
 export const NAME = 'nuxt-webpack-optimisations'
 export const NUXT_CONFIG_KEY = 'webpackOptimisations'
 
-export const defaultOptions: NuxtWebpackOptimisationOptions = {
+export const defaultOptions: ResolvedOptions = {
+  profile: undefined,
   debug: false,
-  profile: 'experimental',
   measure: false,
   measureMode: 'all',
   esbuildMinifyOptions: {
@@ -26,6 +26,9 @@ export const defaultOptions: NuxtWebpackOptimisationOptions = {
     server: {
       target: 'node14',
     },
+    modern: {
+      target: 'es2015',
+    },
   },
   features: {
     postcssNoPolyfills: true,
@@ -34,7 +37,8 @@ export const defaultOptions: NuxtWebpackOptimisationOptions = {
     imageFileLoader: true,
     webpackOptimisations: true,
     cacheLoader: true,
-    hardSourcePlugin: true,
-    parallelPlugin: true,
+    // user has to opt into these
+    hardSourcePlugin: false,
+    parallelPlugin: false,
   },
 }

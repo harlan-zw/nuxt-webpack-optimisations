@@ -6,7 +6,7 @@ import {
 import consola from 'consola'
 import { version } from '../package.json'
 import { NAME, NUXT_CONFIG_KEY, defaultOptions } from './constants'
-import { Augmentation, NuxtWebpackOptimisationOptions } from './types'
+import { Augmentation, NuxtWebpackOptimisationOptions, ResolvedOptions } from './types'
 import useSpeedMeasurePlugin from './augmentation/useSpeedMeasurePlugin'
 import useEsbuildOverBabel from './augmentation/useEsbuildOverBabel'
 import useEsbuildMinifier from './augmentation/useEsbuildMinifier'
@@ -37,6 +37,40 @@ export default defineNuxtModule<NuxtWebpackOptimisationOptions>(nuxt => ({
       logger.level = 4
     }
 
+    // handle v1 config
+    if (webpackOptimisationOptions.profile) {
+      logger.warn(`${name} the "profile" config has been deprecated. Use "risky" instead.`)
+      if (webpackOptimisationOptions.profile === 'risky') {
+        webpackOptimisationOptions.features!.hardSourcePlugin = true
+        webpackOptimisationOptions.features!.parallelPlugin = true
+      } else if (webpackOptimisationOptions.profile === 'safe') {
+        webpackOptimisationOptions.features!.postcssNoPolyfills = false
+      }
+    }
+
+    // @ts-ignore
+    if (webpackOptimisationOptions.esbuildLoaderOptions?.target) {
+      // @ts-ignore
+      const target = webpackOptimisationOptions.esbuildLoaderOptions.target
+      webpackOptimisationOptions.esbuildLoaderOptions = {
+        client: { target },
+        server: { target },
+        modern: { target },
+      }
+    }
+    // @ts-ignore
+    if (webpackOptimisationOptions.esbuildMinifyOptions?.target) {
+      // @ts-ignore
+      const target = webpackOptimisationOptions.esbuildMinifyOptions.target
+      webpackOptimisationOptions.esbuildMinifyOptions = {
+        client: { target },
+        server: { target },
+        modern: { target },
+      }
+    }
+
+    const options = webpackOptimisationOptions as ResolvedOptions
+
     // hacky identification of the nuxt-vite module for Nuxt 2
     // @ts-ignore
     if (isNuxt2(nuxt) && nuxt.options.buildModules.includes('nuxt-vite')) {
@@ -50,8 +84,7 @@ export default defineNuxtModule<NuxtWebpackOptimisationOptions>(nuxt => ({
       return
     }
 
-    // await nuxt.callHook('buildOptimisations:options', webpackOptimisationOptions)
-    // logger.debug('post `buildOptimisations:options` hook options', webpackOptimisationOptions)
+    await nuxt.callHook('webpackOptimisations:options', options)
 
     const augmentations: Record<string, Augmentation> = {
       // run this first
@@ -78,7 +111,7 @@ export default defineNuxtModule<NuxtWebpackOptimisationOptions>(nuxt => ({
           name,
           nuxt,
           nuxtOptions: nuxt.options,
-          options: webpackOptimisationOptions,
+          options,
           dev: nuxt.options.dev,
         })
       })
@@ -92,7 +125,7 @@ export default defineNuxtModule<NuxtWebpackOptimisationOptions>(nuxt => ({
             disabledReason = 'non-dev only'
         }
         if (typeof fn.featureKey === 'string') {
-          if (!webpackOptimisationOptions.features[fn.featureKey])
+          if (!options.features[fn.featureKey])
             disabledReason = `features.${fn.featureKey} is false`
         }
         if (typeof fn.policy === 'function') {
