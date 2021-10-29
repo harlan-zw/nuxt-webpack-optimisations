@@ -2,6 +2,8 @@
 
 <h1 align='center'><samp>nuxt-webpack-optimisations</samp></h1>
 
+> Previously: "nuxt-build-optimisations"
+
 <p align="center">
   <a href="https://github.com/harlan-zw/nuxt-webpack-optimisations/actions"><img src="https://github.com/harlan-zw/nuxt-webpack-optimisations/actions/workflows/test.yml/badge.svg" alt="builder"></a>
   <a href="https://npmjs.com/package/nuxt-webpack-optimisations"><img src="https://img.shields.io/npm/v/nuxt-webpack-optimisations.svg" alt="npm package"></a>
@@ -222,7 +224,7 @@ When measure is enabled with true (options or environment variable), it will use
 If the measure option is an object it is assumed to be [speed-measure-webpack-plugin options](https://github.com/stephencookdev/speed-measure-webpack-plugin#options).
 
 ```js
-buildOptimisations: {
+webpackOptimisations: {
   measure: {
     outputFormat: 'humanVerbose',
     granularLoaderData: true,
@@ -254,7 +256,7 @@ Note: Some features are disabled with measure on, such as caching.
 Configure which build will be measured. Note that non-client builds may be buggy and mess with HMR.
 
 ```javascript
-buildOptimisations: {
+webpackOptimisations: {
   measureMode: 'all'
 }
 ```
@@ -269,7 +271,7 @@ You can either migrate your scripts to typescript or disabled the esbuild loader
 
 **Disable Loader**
 ```js
-buildOptimisations: {
+webpackOptimisations: {
   features: {
     esbuildLoader: false
   }

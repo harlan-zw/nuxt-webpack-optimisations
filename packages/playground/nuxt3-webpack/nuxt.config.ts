@@ -2,7 +2,6 @@ import { defineNuxtConfig } from 'nuxt3'
 
 export default defineNuxtConfig({
   mode: 'static',
-  static: true,
   vite: false,
   css: [
     '@/css/main.css',
@@ -19,7 +18,7 @@ export default defineNuxtConfig({
     },
   },
   buildModules: [
-    'nuxt-windicss',
+    // 'nuxt-windicss',
     'nuxt-webpack-optimisations',
   ],
 })
