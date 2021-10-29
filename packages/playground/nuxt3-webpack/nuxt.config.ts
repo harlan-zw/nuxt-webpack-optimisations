@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     analyze: {
       server: {
         port: 4444,
-      }
+      },
     },
   },
   buildModules: [

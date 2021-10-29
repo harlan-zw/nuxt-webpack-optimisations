@@ -43,7 +43,8 @@ export default defineNuxtModule<NuxtWebpackOptimisationOptions>(nuxt => ({
       if (webpackOptimisationOptions.profile === 'risky') {
         webpackOptimisationOptions.features!.hardSourcePlugin = true
         webpackOptimisationOptions.features!.parallelPlugin = true
-      } else if (webpackOptimisationOptions.profile === 'safe') {
+      }
+      else if (webpackOptimisationOptions.profile === 'safe') {
         webpackOptimisationOptions.features!.postcssNoPolyfills = false
       }
     }

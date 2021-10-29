@@ -1,5 +1,5 @@
-import { defineAugmentation, deny } from '../core/util'
 import { isNuxt3 } from '@nuxt/kit-edge'
+import { defineAugmentation, deny } from '../core/util'
 
 export default defineAugmentation(({ nuxt, nuxtOptions }) => ({
 

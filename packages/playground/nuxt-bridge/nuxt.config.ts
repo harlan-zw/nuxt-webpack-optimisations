@@ -1,6 +1,6 @@
 // @ts-ignore
-import themeModule from './theme.config.js'
 import { defineNuxtConfig } from '@nuxt/bridge'
+import themeModule from './theme.config.js'
 
 export default defineNuxtConfig({
   target: 'static',
