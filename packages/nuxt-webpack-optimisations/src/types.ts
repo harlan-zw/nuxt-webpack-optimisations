@@ -47,7 +47,7 @@ export interface NuxtWebpackOptimisationOptions {
   /**
    * @deprecated Profile is no longer used in v2, use `risky` instead.
    */
-  profile: 'risky' | 'experimental' | 'safe'
+  profile?: 'risky' | 'experimental' | 'safe'
   /**
    * Enable logger debug to be displayed/
    */

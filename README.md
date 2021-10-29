@@ -24,11 +24,11 @@ instant app starts anytime soon, `nuxt-webpack-optimisations` can get things sna
 `nuxt-webpack-optimisations` is a collection of webpack config changes that will let you speed up your build times and audit them.
 
 By making smarter and riskier assumptions on how you want to run your environment in development, this module has been benchmarked
-to reduce your build time by **50% when cold ☃** , **95%+ when hot 🔥**.
+to reduce your build time by **~50% when cold ☃** , **~95%+ when hot 🔥** (using hardsource).
 
 ### How risky are we talking
 
-The riskier optimisations are isolated to issues in development around caching being too aggressive, which is always easy to fix with a good old `rm -rf node_modules/.cache` 💩.
+The riskier optimisations are enabled only on development and relate to over caching, which is always easy to fix with a good old `rm -rf node_modules/.cache` 💩.
 
 ✔️ This module has been tested to cause no issues in production environments.
 
