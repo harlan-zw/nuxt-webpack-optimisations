@@ -2,7 +2,7 @@
 
 <h1 align='center'><samp>nuxt-webpack-optimisations</samp></h1>
 
-> Previously: "nuxt-build-optimisations"
+> Previously: "nuxt-build-optimisations", see <a href="https://github.com/harlan-zw/nuxt-webpack-optimisations/releases/tag/2.0.0">migration notes</a>.
 
 <p align="center">
   <a href="https://github.com/harlan-zw/nuxt-webpack-optimisations/actions"><img src="https://github.com/harlan-zw/nuxt-webpack-optimisations/actions/workflows/test.yml/badge.svg" alt="builder"></a>
