@@ -39,7 +39,7 @@ export default defineNuxtModule<NuxtWebpackOptimisationOptions>(nuxt => ({
 
     // handle v1 config
     if (webpackOptimisationOptions.profile) {
-      logger.warn(`${name} the "profile" config has been deprecated. Use "risky" instead.`)
+      logger.warn(`${NAME} the "profile" config has been deprecated. Use "risky" instead.`)
       if (webpackOptimisationOptions.profile === 'risky') {
         webpackOptimisationOptions.features!.hardSourcePlugin = true
         webpackOptimisationOptions.features!.parallelPlugin = true

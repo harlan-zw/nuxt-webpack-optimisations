@@ -1,10 +1,16 @@
 import { isNuxt3 } from '@nuxt/kit-edge'
-import { defineAugmentation } from '../core/util'
+import { defineAugmentation, deny } from '../core/util'
 
 export default defineAugmentation(({ nuxtOptions, nuxt }) => ({
 
   featureKey: 'postcssNoPolyfills',
   dev: true,
+
+  policy() {
+    // @ts-ignore
+    if (nuxtOptions.build.postcss === false)
+      return deny('postcss is disabled')
+  },
 
   setup() {
     if (isNuxt3(nuxt)) {
