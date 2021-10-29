@@ -1,6 +1,7 @@
 node_modules
 dist
-.nuxt
-coverage
-templates
+*.snap
 test
+coverage
+nuxt.js
+packages/playground
