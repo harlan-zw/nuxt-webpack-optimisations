@@ -12,6 +12,8 @@ export type MeasureMode = WebpackConfigMode | 'all'
 export type Feature = 'esbuildLoader' | 'esbuildMinifier' | 'imageFileLoader' | 'webpackOptimisations' |
 'postcssNoPolyfills' | 'cacheLoader' | 'hardSourcePlugin' | 'parallelPlugin'
 
+type PartialRecord<K extends keyof any, T> = Partial<Record<K, T>>
+
 export interface ResolvedOptions {
   /**
    * @deprecated Profile is no longer used in v2, use `risky` instead.
@@ -45,7 +47,8 @@ export interface ResolvedOptions {
 
 export interface NuxtWebpackOptimisationOptions {
   /**
-   * @deprecated Profile is no longer used in v2, use `risky` instead.
+   * Profile is no longer used in v2, use `risky` instead.
+   * @deprecated
    */
   profile?: 'risky' | 'experimental' | 'safe'
   /**
@@ -67,15 +70,15 @@ export interface NuxtWebpackOptimisationOptions {
   /**
    * Options to pass to esbuild-loader for js and ts
    */
-  esbuildLoaderOptions?: LoaderOptions|Record<WebpackConfigMode, LoaderOptions>
+  esbuildLoaderOptions?: LoaderOptions|PartialRecord<WebpackConfigMode, LoaderOptions>
   /**
    * Options to pass to esbuild-loader for js and ts
    */
-  esbuildMinifyOptions?: LoaderOptions|Record<WebpackConfigMode, LoaderOptions>
+  esbuildMinifyOptions?: LoaderOptions|PartialRecord<WebpackConfigMode, LoaderOptions>
   /**
    * Which features to run.
    */
-  features?: Record<Feature, Boolean>
+  features?: PartialRecord<Feature, Boolean>
 }
 
 export type AugmentationArgs = {
