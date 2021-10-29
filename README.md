@@ -100,7 +100,7 @@ For Nuxt config typescript support, add the module within your `tsconfig.json`.
 
 ## Usage
 
-By default all non-risky features are enabled, only `hardsource` and `parallel` are disabled.
+All non-risky features are enabled by default, only `hardsource` and `parallel` are disabled.
 
 If you'd like to get more performance than the default you can try
 
@@ -108,6 +108,7 @@ If you'd like to get more performance than the default you can try
 // nuxt.config.ts
 export default {
   webpackOptimisations: {
+    // hard source is the riskiest, if you have issues don't enable it
     hardSourcePlugin: process.env.NODE_ENV === 'development',
     parallelPlugin: process.env.NODE_ENV === 'development',
   }
