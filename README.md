@@ -61,7 +61,7 @@ Features are enabled by their risk profile. The risk profile is the likelihood o
 
 - ✔️ Nuxt v2
 - ✔️ Nuxt bridge
-- ✔️ Nuxt 3 _⚠ Vite needs to be disabled. You probably don't need this module._
+- ⚠ Nuxt 3 _Note: Vite needs to be disabled. You probably don't need this module._
 
 
 ## Setup
