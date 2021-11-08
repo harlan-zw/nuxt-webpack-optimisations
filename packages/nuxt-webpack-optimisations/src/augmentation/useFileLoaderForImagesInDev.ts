@@ -1,4 +1,4 @@
-import { extendWebpackConfig } from '@nuxt/kit-edge'
+import { extendWebpackConfig } from '@nuxt/kit'
 import { RuleSetRule } from 'webpack'
 import { defineAugmentation } from '../core/util'
 

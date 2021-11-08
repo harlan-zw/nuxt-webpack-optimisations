@@ -1,4 +1,4 @@
-import { extendWebpackConfig, isNuxt2 } from '@nuxt/kit-edge'
+import { extendWebpackConfig, isNuxt2 } from '@nuxt/kit'
 import { defineAugmentation } from '../core/util'
 
 export default defineAugmentation(({ nuxt, dev }) => ({

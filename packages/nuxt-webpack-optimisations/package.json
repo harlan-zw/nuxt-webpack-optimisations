@@ -36,7 +36,7 @@
     "release": "release-it"
   },
   "dependencies": {
-    "@nuxt/kit-edge": "latest",
+    "@nuxt/kit": "latest",
     "defu": "^5.0.0",
     "esbuild-loader": "^2.16.0",
     "rimraf": "^3.0.2",

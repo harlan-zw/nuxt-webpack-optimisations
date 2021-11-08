@@ -1,5 +1,5 @@
 import { ESBuildMinifyPlugin } from 'esbuild-loader'
-import { extendWebpackConfig, isNuxt3 } from '@nuxt/kit-edge'
+import { extendWebpackConfig, isNuxt3 } from '@nuxt/kit'
 import { defineAugmentation, deny } from '../core/util'
 
 export default defineAugmentation(({ logger, name, options, nuxt }) => ({

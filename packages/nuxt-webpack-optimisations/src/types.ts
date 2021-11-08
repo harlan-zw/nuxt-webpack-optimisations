@@ -1,7 +1,7 @@
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin'
 import type { LoaderOptions, MinifyPluginOptions } from 'esbuild-loader/dist/interfaces'
-import type { Nuxt } from '@nuxt/kit-edge'
-import { NuxtOptions } from '@nuxt/kit-edge'
+import type { Nuxt } from '@nuxt/kit'
+import { NuxtOptions } from '@nuxt/kit'
 import type { Consola } from 'consola'
 import { NUXT_CONFIG_KEY } from './constants'
 
@@ -102,16 +102,6 @@ declare module '@nuxt/types' {
     [NUXT_CONFIG_KEY]?: NuxtWebpackOptimisationOptions
   }
 }
-declare module '@nuxt/kit-edge' {
-  interface NuxtConfig {
-    [NUXT_CONFIG_KEY]?: NuxtWebpackOptimisationOptions
-  }
-  interface NuxtHooks {
-    'webpackOptimisations:options': (options: ResolvedOptions) => NuxtHookResult
-  }
-}
-
-// @ts-ignore
 declare module '@nuxt/kit' {
   interface NuxtConfig {
     [NUXT_CONFIG_KEY]?: NuxtWebpackOptimisationOptions

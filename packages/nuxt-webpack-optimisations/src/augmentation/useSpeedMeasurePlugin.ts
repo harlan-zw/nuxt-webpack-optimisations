@@ -1,5 +1,5 @@
 import SpeedMeasurePlugin from 'speed-measure-webpack-plugin'
-import { extendWebpackConfig } from '@nuxt/kit-edge'
+import { extendWebpackConfig } from '@nuxt/kit'
 import { defineAugmentation, deny } from '../core/util'
 
 /**

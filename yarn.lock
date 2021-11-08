@@ -1144,6 +1144,14 @@
     unctx "^1.0.2"
     untyped "^0.2.9"
 
+"@nuxt/kit@latest":
+  version "0.7.0-edge"
+  resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-0.7.0-edge.tgz#37da0dda70b76f9df054708ea3c066d60689f811"
+  integrity sha512-3+azijGDlERcmhK/Gp97cn8+I++/pn/AmYcj7ceRF++6T86ohckAY0ip/+y4dLlWJ0AGnwB6x4gybG03ltEPew==
+  dependencies:
+    "@nuxt/kit-edge" latest
+    jiti "^1.12.9"
+
 "@nuxt/test-utils@^0.2.2":
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@nuxt/test-utils/-/test-utils-0.2.2.tgz#c981806b4dfe520e30abe5844316406bf9ff6a91"

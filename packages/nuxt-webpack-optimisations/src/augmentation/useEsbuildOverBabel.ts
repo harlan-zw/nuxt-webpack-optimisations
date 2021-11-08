@@ -1,5 +1,5 @@
 import { RuleSetUseItem } from 'webpack'
-import { extendWebpackConfig, isNuxt3 } from '@nuxt/kit-edge'
+import { extendWebpackConfig, isNuxt3 } from '@nuxt/kit'
 import { defineAugmentation, deny } from '../core/util'
 
 export default defineAugmentation(({ name, logger, nuxt, options, dev }) => ({

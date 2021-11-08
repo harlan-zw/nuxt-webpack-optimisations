@@ -2,7 +2,7 @@ import {
   defineNuxtModule,
   isNuxt2,
   isNuxt3,
-} from '@nuxt/kit-edge'
+} from '@nuxt/kit'
 import consola from 'consola'
 import { version } from '../package.json'
 import { NAME, NUXT_CONFIG_KEY, defaultOptions } from './constants'
