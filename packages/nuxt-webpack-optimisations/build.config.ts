@@ -7,11 +7,6 @@ export default defineBuildConfig({
     'src/module',
   ],
   externals: [
-    '@nuxt/kit',
-    '@nuxt/kit-edge',
-    'esbuild-loader',
-    'consola',
-    'pathe',
-    'defu',
+    '@nuxt/schema',
   ],
 })

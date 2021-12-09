@@ -1119,38 +1119,40 @@
     "@nodelib/fs.scandir" "2.1.4"
     fastq "^1.6.0"
 
-"@nuxt/kit-edge@latest":
-  version "3.0.0-27252999.d2cc9e4"
-  resolved "https://registry.yarnpkg.com/@nuxt/kit-edge/-/kit-edge-3.0.0-27252999.d2cc9e4.tgz#17d60585445ffbf76cc6d3c4d2a7b8cf7df853a1"
-  integrity sha512-7XtSlkJweg2dx/5mWIMWbZ0OtquEHwow1o3vQF/fJfTl924uOOAjfIzPrwYoh/9hx442QlQzfvrCQuTXPyKwvQ==
+"@nuxt/kit@npm:@nuxt/kit-edge@latest":
+  version "3.0.0-27313139.1c88580"
+  resolved "https://registry.yarnpkg.com/@nuxt/kit-edge/-/kit-edge-3.0.0-27313139.1c88580.tgz#c4a7fcadb7b2b999980c62751ecd3726468a842d"
+  integrity sha512-QQwmTaF5YkP1dZZ38DC7A3tCH2SQUlzsXN3QgNqys+WzZnZB0dPuyvSqgD6L/Ts7MwIFrooOEIRz0i9iwnJPMQ==
   dependencies:
+    "@nuxt/schema" "npm:@nuxt/schema-edge@3.0.0-27313139.1c88580"
     consola "^2.15.3"
-    create-require "^1.1.1"
     defu "^5.0.0"
     dotenv "^10.0.0"
     globby "^11.0.4"
     hash-sum "^2.0.0"
-    hookable "^5.0.0"
     jiti "^1.12.9"
     lodash.template "^4.5.0"
-    mlly "^0.3.1"
+    mlly "^0.3.15"
     pathe "^0.2.0"
-    pkg-types "^0.2.1"
+    pkg-types "^0.3.2"
     rc9 "^1.2.0"
     scule "^0.2.1"
     semver "^7.3.5"
-    std-env "^2.3.1"
-    ufo "^0.7.9"
     unctx "^1.0.2"
-    untyped "^0.2.9"
+    untyped "^0.3.0"
 
-"@nuxt/kit@latest":
-  version "0.7.0-edge"
-  resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-0.7.0-edge.tgz#37da0dda70b76f9df054708ea3c066d60689f811"
-  integrity sha512-3+azijGDlERcmhK/Gp97cn8+I++/pn/AmYcj7ceRF++6T86ohckAY0ip/+y4dLlWJ0AGnwB6x4gybG03ltEPew==
+"@nuxt/schema@npm:@nuxt/schema-edge@3.0.0-27313139.1c88580", "@nuxt/schema@npm:@nuxt/schema-edge@latest":
+  version "3.0.0-27313139.1c88580"
+  resolved "https://registry.yarnpkg.com/@nuxt/schema-edge/-/schema-edge-3.0.0-27313139.1c88580.tgz#9178c9d01e54579d9d12f7875e53b119c7fbb233"
+  integrity sha512-RW4jvMAQK/PK2UdAskRaEnLetafm2n/0g82QymZJi8MsbdpgNbo/6hWx6cGDbljueUhMc/EBrTpYeGSC4FMC1A==
   dependencies:
-    "@nuxt/kit-edge" latest
+    create-require "^1.1.1"
+    defu "^5.0.0"
     jiti "^1.12.9"
+    pathe "^0.2.0"
+    scule "^0.2.1"
+    std-env "^3.0.1"
+    ufo "^0.7.9"
 
 "@nuxt/test-utils@^0.2.2":
   version "0.2.2"
@@ -5016,11 +5018,6 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hookable@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/hookable/-/hookable-5.0.0.tgz#bac6f1d4b56e3f590f21cfe3f813731372c0c69f"
-  integrity sha512-IqoJ8oXCNTUtNfqwbUQvLd+6ebVXk5qqGpSMOe4BS514vd4bEEH+hd9lva48mbbbe9q4eFKmsOViTZkr7ludHg==
-
 hosted-git-info@^2.1.4:
   version "2.8.8"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.8.tgz#7539bd4bc1e0e0a895815a2e0262420b12858488"
@@ -6764,10 +6761,15 @@ mkdist@^0.3.5:
     mri "^1.2.0"
     pathe "^0.2.0"
 
-mlly@^0.3.0, mlly@^0.3.1:
+mlly@^0.3.0:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/mlly/-/mlly-0.3.1.tgz#2429360aadd06b65fc5a26e519ee8a40b2561b9a"
   integrity sha512-dtEsZue7NJy5Hhk6dsMoBjmJoZIZwyWvdN+X61cEtqjDFVRUskhWDBmn5EofDUWOkPrwur6GgpCRkXOAB4ISVw==
+
+mlly@^0.3.15, mlly@^0.3.6:
+  version "0.3.15"
+  resolved "https://registry.yarnpkg.com/mlly/-/mlly-0.3.15.tgz#1dc95ba83ea319e49278d178943acc8a0c578c20"
+  integrity sha512-3btbOX6XaoIMXRhLu0T/D9jPRrjJXl4R7Dl+EbpN7BYcQwehmt5UAYrIa2m9D/ywcXIUvDM+OTCON+ShFggndg==
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -7407,12 +7409,14 @@ pkg-dir@^4.2.0:
   dependencies:
     find-up "^4.0.0"
 
-pkg-types@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/pkg-types/-/pkg-types-0.2.1.tgz#41a22a6689c1fb3df5434856cf158598342701b8"
-  integrity sha512-RlrGelHSS2yPeLT9NMuMIfpKS7+gRAhuXi+PexBeToKjbRkmu+E+HdgDY2ZKU1RDirk5w9WuViEhOufELtAnug==
+pkg-types@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/pkg-types/-/pkg-types-0.3.2.tgz#1b3244b561745591035517475bc8af9c5e089e47"
+  integrity sha512-eBYzX/7NYsQEOR2alWY4rnQB49G62oHzFpoi9Som56aUr8vB8UGcmcIia9v8fpBeuhH3Ltentuk2OGpp4IQV3Q==
   dependencies:
     jsonc-parser "^3.0.0"
+    mlly "^0.3.6"
+    pathe "^0.2.0"
 
 pluralize@^8.0.0:
   version "8.0.0"
@@ -8353,12 +8357,10 @@ static-extend@^0.1.1:
     define-property "^0.2.5"
     object-copy "^0.1.0"
 
-std-env@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/std-env/-/std-env-2.3.1.tgz#d42271908819c243f8defc77a140fc1fcee336a1"
-  integrity sha512-eOsoKTWnr6C8aWrqJJ2KAReXoa7Vn5Ywyw6uCXgA/xDhxPoaIsBa5aNJmISY04dLwXPBnDHW4diGM7Sn5K4R/g==
-  dependencies:
-    ci-info "^3.1.1"
+std-env@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/std-env/-/std-env-3.0.1.tgz#bc4cbc0e438610197e34c2d79c3df30b491f5182"
+  integrity sha512-mC1Ps9l77/97qeOZc+HrOL7TIaOboHqMZ24dGVQrlxFcpPpfCHpH+qfUT7Dz+6mlG8+JPA1KfBQo19iC/+Ngcw==
 
 stream-browserify@^2.0.1:
   version "2.0.2"
@@ -8977,6 +8979,11 @@ untyped@^0.2.9:
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/untyped/-/untyped-0.2.9.tgz#3e3df96a303dec3e2eda55fcbdc02e2ab468683d"
   integrity sha512-8d8V+q/y5CGzV+IYnoOCMjrK+NSNp1HKO8iPQ+bV4rBP8knPIme3+j/bpej8IuMnEMxOJZNptXNOXCx7w+VJxQ==
+
+untyped@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/untyped/-/untyped-0.3.0.tgz#854df4dec055cc6a0a2217aa2d20152277b6ada9"
+  integrity sha512-n4M5/T1wWlHFmohk0EhS+yM7W/h5dOtQldOV3MVEbZY1fTy5A47UL8+d8GLW1iwmaAwNrM5ERy3qe1k0T/Yc7A==
 
 upath@^1.1.1:
   version "1.2.0"
