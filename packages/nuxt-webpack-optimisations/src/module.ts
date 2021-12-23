@@ -29,7 +29,7 @@ export default defineNuxtModule<NuxtWebpackOptimisationOptions>({
   },
   // support @nuxt/kit legacy
   // @ts-ignore
-  configKey: CONFIG_KEY,
+  configKey: NUXT_CONFIG_KEY,
   // @ts-ignore
   name: NAME,
   defaults: defaultOptions,
