@@ -21,15 +21,17 @@ import useDisableDevPostcssPresetEnv from './augmentation/useDisableDevPostcssPr
 // Should include types only
 export * from './types'
 
-export default defineNuxtModule<NuxtWebpackOptimisationOptions>(nuxt => ({
-  name: NAME,
-  version,
-  configKey: NUXT_CONFIG_KEY,
-  defaults: {
+export default defineNuxtModule<NuxtWebpackOptimisationOptions>({
+  meta: {
+    name: NAME,
+    version,
+    configKey: NUXT_CONFIG_KEY,
+  },
+  defaults: nuxt => ({
     root: nuxt.options.rootDir,
     ...defaultOptions,
-  },
-  async setup(webpackOptimisationOptions: NuxtWebpackOptimisationOptions) {
+  }),
+  async setup(webpackOptimisationOptions: NuxtWebpackOptimisationOptions, nuxt) {
     const logger = consola.withScope(NAME)
 
     if (webpackOptimisationOptions.debug) {
@@ -144,4 +146,4 @@ export default defineNuxtModule<NuxtWebpackOptimisationOptions>(nuxt => ({
         fn.setup()
       })
   },
-}))
+})
