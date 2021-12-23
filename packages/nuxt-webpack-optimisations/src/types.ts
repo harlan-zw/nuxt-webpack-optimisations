@@ -1,8 +1,8 @@
-import SpeedMeasurePlugin from 'speed-measure-webpack-plugin'
+import type SpeedMeasurePlugin from 'speed-measure-webpack-plugin'
 import type { LoaderOptions, MinifyPluginOptions } from 'esbuild-loader/dist/interfaces'
 import type { Nuxt, NuxtOptions } from '@nuxt/schema'
 import type { Consola } from 'consola'
-import { NUXT_CONFIG_KEY } from './constants'
+import type { NUXT_CONFIG_KEY } from './constants'
 
 export type WebpackConfigMode = 'client' | 'server' | 'modern'
 

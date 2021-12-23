@@ -1,5 +1,5 @@
 import { extendWebpackConfig } from '@nuxt/kit'
-import { RuleSetRule } from 'webpack'
+import type { RuleSetRule } from 'webpack'
 import { defineAugmentation } from '../core/util'
 
 export default defineAugmentation(({ logger, name }) => ({

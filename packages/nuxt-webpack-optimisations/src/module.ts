@@ -6,7 +6,7 @@ import {
 import consola from 'consola'
 import { version } from '../package.json'
 import { NAME, NUXT_CONFIG_KEY, defaultOptions } from './constants'
-import { Augmentation, NuxtWebpackOptimisationOptions, ResolvedOptions } from './types'
+import type { Augmentation, NuxtWebpackOptimisationOptions, ResolvedOptions } from './types'
 import useSpeedMeasurePlugin from './augmentation/useSpeedMeasurePlugin'
 import useEsbuildOverBabel from './augmentation/useEsbuildOverBabel'
 import useEsbuildMinifier from './augmentation/useEsbuildMinifier'

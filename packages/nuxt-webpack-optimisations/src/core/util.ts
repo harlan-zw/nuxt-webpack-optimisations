@@ -1,4 +1,4 @@
-import { Augmentation, PolicyResponse } from '../types'
+import type { Augmentation, PolicyResponse } from '../types'
 
 export const defineAugmentation = (augmentation: Augmentation) => augmentation
 

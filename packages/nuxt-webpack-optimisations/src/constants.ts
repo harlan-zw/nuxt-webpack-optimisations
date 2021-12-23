@@ -1,4 +1,4 @@
-import { ResolvedOptions } from './types'
+import type { ResolvedOptions } from './types'
 
 export const NAME = 'nuxt-webpack-optimisations'
 export const NUXT_CONFIG_KEY = 'webpackOptimisations'
