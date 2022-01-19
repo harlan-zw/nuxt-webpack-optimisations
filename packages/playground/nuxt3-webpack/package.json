@@ -16,6 +16,7 @@
     "stylus-loader": "^3.0.2"
   },
   "dependencies": {
-    "nuxt-windicss": "^2.0.8"
+    "nuxt-windicss": "^2.0.8",
+    "nuxt-webpack-optimisations": "link:../../nuxt-webpack-optimisations"
   }
 }
