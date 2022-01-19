@@ -7,6 +7,24 @@ const config: NuxtConfig = {
     'nuxt-webpack-optimisations',
     'nuxt-windicss',
   ],
+  build: {
+    extractCSS: true,
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          styles: {
+            name: 'styles',
+            test: /\.(css|vue)$/,
+            chunks: 'all',
+            enforce: true
+          }
+        }
+      },
+    },
+  },
+  windicss: {
+    debug: false,
+  },
   css: [
     '@/css/main.css',
     '@/css/global.sass',

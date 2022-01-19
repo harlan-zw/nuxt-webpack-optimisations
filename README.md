@@ -304,11 +304,18 @@ export default class HelloWorld extends Vue {
 </script>
 ```
 
-
 ## Credits
 
 - https://github.com/galvez/nuxt-esbuild-module
 
+## Sponsors
+
+<p align="center">
+  <a href="https://cdn.jsdelivr.net/gh/harlan-zw/static/sponsors.svg">
+    <img src='https://cdn.jsdelivr.net/gh/harlan-zw/static/sponsors.svg'/>
+  </a>
+</p>
+
 ## License
 
-[MIT](LICENSE)
+MIT License © 2022 [Harlan Wilton](https://github.com/harlan-zw)
