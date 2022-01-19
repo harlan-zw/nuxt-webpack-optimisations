@@ -39,7 +39,6 @@ importers:
       '@nuxt/kit': npm:@nuxt/kit-edge@latest
       '@nuxt/schema': npm:@nuxt/schema-edge@latest
       '@nuxt/types': ^2.15.8
-      '@parcel/css': ^1.0.3
       '@types/speed-measure-webpack-plugin': ^1.3.4
       consola: ^2.15.3
       defu: ^5.0.0
@@ -51,7 +50,6 @@ importers:
       upath: ^2.0.1
     dependencies:
       '@nuxt/kit': /@nuxt/kit-edge/3.0.0-27375427.d07d572
-      '@parcel/css': 1.0.3
       consola: 2.15.3
       defu: 5.0.1
       esbuild-loader: 2.18.0_webpack@4.46.0
@@ -1080,94 +1078,6 @@ packages:
     dependencies:
       '@octokit/openapi-types': 11.2.0
     dev: true
-
-  /@parcel/css-darwin-arm64/1.0.3:
-    resolution: {integrity: sha512-qjT9TpKj33u+skvIb9Gm6AYaZVniwy71mr+sq27AwgYhafPCMzIJUyhCkC2/9vLXTv+K+BRLsAqU3Z/ueGrhOw==}
-    engines: {node: '>= 12.0.0'}
-    cpu: [arm64]
-    os: [darwin]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@parcel/css-darwin-x64/1.0.3:
-    resolution: {integrity: sha512-VaZl225H5HT/mNK2P1vMY6m1+kjf3IH3sI70twJ5eP7JqSqojFBW1XikbQzKfuE0oy+h/YobBhRnCXNmoNY8IQ==}
-    engines: {node: '>= 12.0.0'}
-    cpu: [x64]
-    os: [darwin]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@parcel/css-linux-arm-gnueabihf/1.0.3:
-    resolution: {integrity: sha512-XvZMzlXOZVg8HJMmm/V1XNKQexC/70J23HC0kpsYFuvd4cgzW+3OhdI20kl1xgFL9xRsJyCUsoW+Ug3aNfdicw==}
-    engines: {node: '>= 12.0.0'}
-    cpu: [arm]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@parcel/css-linux-arm64-gnu/1.0.3:
-    resolution: {integrity: sha512-cxdfp4x7DU+PuknPlIqpwS3NEd13Erd4NVdJQTEcBWdLa6zg579ghduDdxWChIq1GeUGGNMhR3KQJBl61sXfTw==}
-    engines: {node: '>= 12.0.0'}
-    cpu: [arm64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@parcel/css-linux-arm64-musl/1.0.3:
-    resolution: {integrity: sha512-7y0/B2bvT9UROO6UvMjaZe+MBBdDl7RzCVzWr05NCXT8WZjLgSnZYNakRlIxQjb3miUK9xNygh9+w0msahrIKw==}
-    engines: {node: '>= 12.0.0'}
-    cpu: [arm64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@parcel/css-linux-x64-gnu/1.0.3:
-    resolution: {integrity: sha512-pAXwgadvHjCBlRBTFjzvKNkt2n25AU6GltWLyQLiSpznWrxfEq9DywBy4DjfcnR0z+VgZP2S6783JfzjrCJOTg==}
-    engines: {node: '>= 12.0.0'}
-    cpu: [x64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@parcel/css-linux-x64-musl/1.0.3:
-    resolution: {integrity: sha512-6MR2Xym/b3O2mwL4g15z62CFXMphpyC16lBN5wrGtJQwHq0Ne4NNfpAvUgOBSwQfUqknbrRc+o90+rWy356KmQ==}
-    engines: {node: '>= 12.0.0'}
-    cpu: [x64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@parcel/css-win32-x64-msvc/1.0.3:
-    resolution: {integrity: sha512-pF6Pfd3M+s+WNXN/MVLh69HsgYaEk/eAqSPgQSCNYr8zFn3AkIpCiu84/FDHSgOvome89absXVP6IH1ZZDBt5w==}
-    engines: {node: '>= 12.0.0'}
-    cpu: [x64]
-    os: [win32]
-    requiresBuild: true
-    dev: false
-    optional: true
-
-  /@parcel/css/1.0.3:
-    resolution: {integrity: sha512-3HnWkLKtGSrQzlBFIhMzvFhz6LMyufeIDWC1MJMdk/CckMLpItp419RLXXgbRzVTgrfrTXImiImsoAEyk+fekA==}
-    engines: {node: '>= 12.0.0'}
-    dependencies:
-      detect-libc: 1.0.3
-    optionalDependencies:
-      '@parcel/css-darwin-arm64': 1.0.3
-      '@parcel/css-darwin-x64': 1.0.3
-      '@parcel/css-linux-arm-gnueabihf': 1.0.3
-      '@parcel/css-linux-arm64-gnu': 1.0.3
-      '@parcel/css-linux-arm64-musl': 1.0.3
-      '@parcel/css-linux-x64-gnu': 1.0.3
-      '@parcel/css-linux-x64-musl': 1.0.3
-      '@parcel/css-win32-x64-msvc': 1.0.3
-    dev: false
 
   /@rollup/plugin-alias/3.1.9_rollup@2.64.0:
     resolution: {integrity: sha512-QI5fsEvm9bDzt32k39wpOwZhVzRcL5ydcffUHMyLVaVaLeC70I8TJZ17F1z1eMoLu4E/UOcH9BWVkKpIKdrfiw==}
@@ -3176,12 +3086,6 @@ packages:
 
   /destr/1.1.0:
     resolution: {integrity: sha512-Ev/sqS5AzzDwlpor/5wFCDu0dYMQu/0x2D6XfAsQ0E7uQmamIgYJ6Dppo2T2EOFVkeVYWjc+PCLKaqZZ57qmLg==}
-    dev: false
-
-  /detect-libc/1.0.3:
-    resolution: {integrity: sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=}
-    engines: {node: '>=0.10'}
-    hasBin: true
     dev: false
 
   /detect-newline/3.1.0:
