@@ -30,3 +30,4 @@ coverage
 .LSOverride
 
 .env
+/packages/playground/nuxt-bridge/.output/

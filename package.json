@@ -8,6 +8,7 @@
     "dev": "pnpm -r --parallel --filter ./packages run dev",
     "build": "pnpm -r --parallel --filter ./packages run build",
     "test": "vitest",
+    "release": "bumpp package.json packages/*/package.json --commit --push --tag",
     "lint": "eslint \"{packages,test}/**/*.{ts,vue,json,yml}\"",
     "lint:fix": "npm run lint -- --fix"
   },
