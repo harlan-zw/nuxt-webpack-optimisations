@@ -28,10 +28,6 @@ export default defineNuxtModule<NuxtWebpackOptimisationOptions>({
     configKey: NUXT_CONFIG_KEY,
   },
   // support @nuxt/kit legacy
-  // @ts-ignore
-  configKey: NUXT_CONFIG_KEY,
-  // @ts-ignore
-  name: NAME,
   defaults: defaultOptions,
   async setup(webpackOptimisationOptions: NuxtWebpackOptimisationOptions, nuxt) {
     const logger = consola.withScope(NAME)
@@ -53,9 +49,9 @@ export default defineNuxtModule<NuxtWebpackOptimisationOptions>({
       }
     }
 
-    // @ts-ignore
+    // @ts-expect-error handle deprecated config
     if (webpackOptimisationOptions.esbuildLoaderOptions?.target) {
-      // @ts-ignore
+      // @ts-expect-error handle deprecated config
       const target = webpackOptimisationOptions.esbuildLoaderOptions.target
       webpackOptimisationOptions.esbuildLoaderOptions = {
         client: { target },
@@ -63,9 +59,9 @@ export default defineNuxtModule<NuxtWebpackOptimisationOptions>({
         modern: { target },
       }
     }
-    // @ts-ignore
+    // @ts-expect-error handle deprecated config
     if (webpackOptimisationOptions.esbuildMinifyOptions?.target) {
-      // @ts-ignore
+      // @ts-expect-error handle deprecated config
       const target = webpackOptimisationOptions.esbuildMinifyOptions.target
       webpackOptimisationOptions.esbuildMinifyOptions = {
         client: { target },
@@ -77,7 +73,6 @@ export default defineNuxtModule<NuxtWebpackOptimisationOptions>({
     const options = webpackOptimisationOptions as ResolvedOptions
 
     // hacky identification of the nuxt-vite module for Nuxt 2
-    // @ts-ignore
     if (isNuxt2(nuxt) && nuxt.options.buildModules.includes('nuxt-vite')) {
       logger.warn(`\`${NAME}\` is enabled with \`nuxt-vite\`. Please remove ${NAME} from your buildModules.`)
       return

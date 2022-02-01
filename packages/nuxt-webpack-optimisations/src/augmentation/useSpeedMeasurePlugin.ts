@@ -19,7 +19,7 @@ export default defineAugmentation(({ logger, options, dev, nuxt }) => ({
     // running in test mode does not seem like a good idea
     if (process.env.NODE_ENV === 'test') {
       options.measure = false
-      return deny('testing environmen')
+      return deny('testing environment')
     }
     return dev
   },
@@ -36,7 +36,7 @@ export default defineAugmentation(({ logger, options, dev, nuxt }) => ({
 
     extendWebpackConfig((config) => {
       if (config.name === options.measureMode || options.measureMode === 'all') {
-        // @ts-ignore
+        // @ts-expect-error type mismatch
         smp.wrap(config)
         logger.info(`SpeedMeasurePlugin is enabled for \`${config.name}\`. Build time may be effected.`)
       }

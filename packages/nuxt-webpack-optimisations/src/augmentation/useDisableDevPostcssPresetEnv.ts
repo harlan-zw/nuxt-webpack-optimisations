@@ -7,28 +7,25 @@ export default defineAugmentation(({ nuxtOptions, nuxt }) => ({
   dev: true,
 
   policy() {
-    // @ts-ignore
+    // @ts-expect-error nuxt mistyped
     if (nuxtOptions.build.postcss === false)
       return deny('postcss is disabled')
   },
 
   setup() {
     if (isNuxt3(nuxt)) {
-      // @ts-ignore
       if (!nuxtOptions.build.postcss.postcssOptions.plugins)
-        // @ts-ignore
         nuxtOptions.build.postcss.postcssOptions.plugins = {}
-      // @ts-ignore
       nuxtOptions.build.postcss.postcssOptions.plugins.autoprefixer = false
     }
     else {
-      // @ts-ignore
+      // @ts-expect-error nuxt mistyped
       if (!nuxtOptions.build.postcss.plugins)
-        // @ts-ignore
+        // @ts-expect-error nuxt mistyped
         nuxtOptions.build.postcss.plugins = {}
-      // @ts-ignore
+      // @ts-expect-error nuxt mistyped
       nuxtOptions.build.postcss.plugins['postcss-preset-env'] = false
-      // @ts-ignore
+      // @ts-expect-error nuxt mistyped
       nuxtOptions.build.postcss.plugins.autoprefixer = false
     }
   },

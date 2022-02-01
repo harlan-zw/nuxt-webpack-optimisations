@@ -1,5 +1,6 @@
 import { ESBuildMinifyPlugin } from 'esbuild-loader'
 import { extendWebpackConfig, isNuxt3 } from '@nuxt/kit'
+import type { WebpackConfigMode } from 'nuxt-webpack-optimisations'
 import { defineAugmentation, deny } from '../core/util'
 
 export default defineAugmentation(({ logger, name, options, nuxt }) => ({
@@ -17,8 +18,7 @@ export default defineAugmentation(({ logger, name, options, nuxt }) => ({
     extendWebpackConfig((config) => {
       logger.debug(`\`${name}:${config.name}\` Swapping TerserPlugin for ESBuildMinifyPlugin.`)
       config.optimization!.minimizer = [
-        // @ts-ignore
-        new ESBuildMinifyPlugin(options.esbuildMinifyOptions[config.name]),
+        new ESBuildMinifyPlugin(options.esbuildMinifyOptions[config.name as WebpackConfigMode]),
       ]
     })
   },

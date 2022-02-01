@@ -1,5 +1,6 @@
 import type { RuleSetUseItem } from 'webpack'
 import { extendWebpackConfig, isNuxt3 } from '@nuxt/kit'
+import type { WebpackConfigMode } from 'nuxt-webpack-optimisations'
 import { defineAugmentation, deny } from '../core/util'
 
 export default defineAugmentation(({ name, logger, nuxt, options, dev }) => ({
@@ -27,7 +28,7 @@ export default defineAugmentation(({ name, logger, nuxt, options, dev }) => ({
         if (!isJavascript && !isTypescript)
           return rule
 
-        // @ts-ignore
+        // @ts-expect-error webpack type issue
         const babelLoaderIndex = rule.use.findIndex((use: RuleSetUseItem) => use.loader.includes('babel-loader'))
         if (babelLoaderIndex === -1)
           return rule
@@ -36,8 +37,7 @@ export default defineAugmentation(({ name, logger, nuxt, options, dev }) => ({
           loader: 'esbuild-loader',
           options: {
             loader: 'js',
-            // @ts-ignore
-            ...options.esbuildLoaderOptions[config.name],
+            ...options.esbuildLoaderOptions[config.name as WebpackConfigMode],
           },
         }
 
@@ -51,7 +51,7 @@ export default defineAugmentation(({ name, logger, nuxt, options, dev }) => ({
         // always swap out typescript builds
         esbuildLoader.options.loader = 'ts'
         rule.use.splice(babelLoaderIndex, 1, esbuildLoader)
-        // @ts-ignore
+        // @ts-expect-error webpack type issue
         const tsLoaderIndex = rule.use.findIndex((use: RuleSetUseItem) => use.loader.includes('ts-loader'))
 
         // remove ts-loader only if present

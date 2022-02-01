@@ -80,7 +80,7 @@ export interface NuxtWebpackOptimisationOptions {
   features?: PartialRecord<Feature, Boolean>
 }
 
-export type AugmentationArgs = {
+export interface AugmentationArgs {
   logger: Consola
   name: string
   options: ResolvedOptions
@@ -91,7 +91,7 @@ export type AugmentationArgs = {
 
 export type PolicyResponse = void|boolean|{ forward: 'deny'|'accept'; reason: string }
 export type Augmentation = (((args: AugmentationArgs) =>
-{ dev?: boolean; featureKey?: Feature; setup: () => void; policy?: () => PolicyResponse}))
+{ dev?: boolean; featureKey?: Feature; setup: () => void; policy?: () => PolicyResponse }))
 
 // pollyfill @todo nuxt/kit export
 type NuxtHookResult = Promise<void> | void
