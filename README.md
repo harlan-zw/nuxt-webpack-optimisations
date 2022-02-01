@@ -10,11 +10,6 @@
 </a>
 </p>
 
-<p align="center">
-<a href='https://stackblitz.com/edit/nuxt-3-windicss?file=app.vue'>
-<img src='https://developer.stackblitz.com/img/open_in_stackblitz.svg' height="30" >
-</a>
-
 <p align='center'>Webpack Build Time Optimisations for Nuxt.js! ⚡️<br>
 <sup><em>Instantly speed up your Nuxt.js webpack build time.</em></sup>
 </p>
