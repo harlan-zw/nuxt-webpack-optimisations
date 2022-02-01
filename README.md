@@ -1,16 +1,38 @@
 ![](https://repository-images.githubusercontent.com/337066468/8a3e8e34-3d48-4f0f-bb07-b02e4391f53c)
 
-<h1 align='center'><samp>nuxt-webpack-optimisations</samp></h1>
-
-> Previously: "nuxt-build-optimisations", see <a href="https://github.com/harlan-zw/nuxt-webpack-optimisations/releases/tag/2.0.0">migration notes</a>.
-
-<p align="center">
-  <a href="https://github.com/harlan-zw/nuxt-webpack-optimisations/actions"><img src="https://github.com/harlan-zw/nuxt-webpack-optimisations/actions/workflows/test.yml/badge.svg" alt="builder"></a>
-  <a href="https://npmjs.com/package/nuxt-webpack-optimisations"><img src="https://img.shields.io/npm/v/nuxt-webpack-optimisations.svg" alt="npm package"></a>
+<p align='center'>
+<a href='https://www.npmjs.com/package/nuxt-webpack-optimisations'>
+<img src='https://img.shields.io/npm/v/nuxt-webpack-optimisations?color=0EA5E9&label='>
+</a>
+<a href="https://www.npmjs.com/package/nuxt-webpack-optimisations" target="__blank"><img alt="NPM Downloads" src="https://img.shields.io/npm/dm/nuxt-webpack-optimisations?color=0EA5E9&label="></a>
+<a href='https://github.com/harlan-zw/nuxt-webpack-optimisations/actions/workflows/test.yml'>
+<img src='https://github.com/harlan-zw/nuxt-webpack-optimisations/actions/workflows/test.yml/badge.svg' >
+</a>
 </p>
 
-<p align='center'>Instantly speed up your Nuxt.js webpack build time.</p>
+<p align="center">
+<a href='https://stackblitz.com/edit/nuxt-3-windicss?file=app.vue'>
+<img src='https://developer.stackblitz.com/img/open_in_stackblitz.svg' height="30" >
+</a>
 
+<p align='center'>Webpack Build Time Optimisations for Nuxt.js! ⚡️<br>
+<sup><em>Instantly speed up your Nuxt.js webpack build time.</em></sup>
+</p>
+
+<p align="center">
+<table>
+<tbody>
+<td align="center">
+<img width="2000" height="0" /><br>
+<i>Status:</i> <b>Stable v2 ✅ , bridge ✅, v3 ⚠️</b><br>
+<sub>Made possible by my <a href="https://github.com/sponsors/harlan-zw">Sponsor Program 💖</a><br> Follow me <a href="https://twitter.com/harlan_zw">@harlan_zw</a> 🐦</sub><br>
+<img width="2000" height="0" />
+</td>
+</tbody>
+</table>
+</p>
+
+> Previously: "nuxt-build-optimisations", see <a href="https://github.com/harlan-zw/nuxt-webpack-optimisations/releases/tag/2.0.0">migration notes</a>.
 
 ### Can't use Vite with Nuxt yet?
 

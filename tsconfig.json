@@ -13,13 +13,19 @@
     "noUnusedLocals": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
+    "paths": {
+      "nuxt-webpack-optimisations": [
+        "./packages/nuxt-webpack-optimisations/src/module.ts"
+      ]
+    },
     "types": [
       "@nuxt/types",
+      "@nuxt/schema"
     ]
   },
   "exclude": [
     "**/dist/**",
     "**/.output/**",
     "playground/**"
-  ],
+  ]
 }

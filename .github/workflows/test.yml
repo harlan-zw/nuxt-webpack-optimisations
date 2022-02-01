@@ -35,12 +35,15 @@ jobs:
       - name: Install core dependencies
         run: pnpm install
 
+      - name: Run linter
+        run: pnpm lint
+
       - name: Pack
-        run: pnpm prepack
+        run: pnpm build
 
       # Playground Dependencies
       - name: Install nuxt-bridge dependencies
-        run: cd packages/playground/nuxt-bridge && pnpm install
+        run: cd packages/playground/nuxt-bridge && pnpm install && pnpm prepare
 
       - name: Install nuxt2-vite dependencies
         run: cd packages/playground/nuxt2-vite && pnpm install
@@ -51,7 +54,5 @@ jobs:
       - name: Install nuxt3-webpack dependencies
         run: cd packages/playground/nuxt3-webpack && pnpm install
 
-      - name: Run linter
-        run: pnpm lint
       - name: Run tests
         run: pnpm test
