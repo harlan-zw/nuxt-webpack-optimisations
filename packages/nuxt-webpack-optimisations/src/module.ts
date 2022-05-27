@@ -29,55 +29,55 @@ export default defineNuxtModule<NuxtWebpackOptimisationOptions>({
   },
   // support @nuxt/kit legacy
   defaults: defaultOptions,
-  async setup(options: NuxtWebpackOptimisationOptions, nuxt) {
+  async setup(userConfig: NuxtWebpackOptimisationOptions, nuxt) {
     const logger = consola.withScope(NAME)
 
-    if (options.debug) {
+    if (userConfig.debug) {
       // Debug = 4
       logger.level = 4
     }
 
     // handle v1 config
-    if (options.profile) {
+    if (userConfig.profile) {
       logger.warn(`${NAME} the "profile" config has been deprecated. Use \`"risky: true"\` or \`"risky: false"\` instead.`)
-      if (options.profile === 'risky') {
-        options.features!.hardSourcePlugin = true
-        options.features!.parallelPlugin = true
+      if (userConfig.profile === 'risky') {
+        userConfig.features!.hardSourcePlugin = true
+        userConfig.features!.parallelPlugin = true
       }
-      else if (options.profile === 'safe') {
-        options.features!.postcssNoPolyfills = false
+      else if (userConfig.profile === 'safe') {
+        userConfig.features!.postcssNoPolyfills = false
       }
     }
 
     // avoid being too verbose
-    if (options.displayVersionInfo && nuxt.options.dev) {
+    if (userConfig.displayVersionInfo && nuxt.options.dev) {
       nuxt.hook('build:before', () => {
-        logger.info(`\`nuxt-webpack-optimisations v${version}\` running risky optimisations: \`${options.risky}\`.`)
+        logger.info(`\`nuxt-webpack-optimisations v${version}\` running risky optimisations: \`${userConfig.risky}\`.`)
       })
     }
 
     // @ts-expect-error handle deprecated config
-    if (options.esbuildLoaderOptions?.target) {
+    if (userConfig.esbuildLoaderOptions?.target) {
       // @ts-expect-error handle deprecated config
-      const target = options.esbuildLoaderOptions.target
-      options.esbuildLoaderOptions = {
+      const target = userConfig.esbuildLoaderOptions.target
+      userConfig.esbuildLoaderOptions = {
         client: { target },
         server: { target },
         modern: { target },
       }
     }
     // @ts-expect-error handle deprecated config
-    if (options.esbuildMinifyOptions?.target) {
+    if (userConfig.esbuildMinifyOptions?.target) {
       // @ts-expect-error handle deprecated config
-      const target = options.esbuildMinifyOptions.target
-      options.esbuildMinifyOptions = {
+      const target = userConfig.esbuildMinifyOptions.target
+      userConfig.esbuildMinifyOptions = {
         client: { target },
         server: { target },
         modern: { target },
       }
     }
 
-    const options = options as ResolvedOptions
+    const options = userConfig as ResolvedOptions
 
     // hacky identification of the nuxt-vite module for Nuxt 2
     if (isNuxt2(nuxt) && nuxt.options.buildModules.includes('nuxt-vite')) {
