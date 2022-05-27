@@ -86,8 +86,8 @@ Features are enabled by their risk profile. The risk profile is the likelihood o
 Install the module.
 
 ```bash
-yarn add nuxt-webpack-optimisations
-# npm i nuxt-webpack-optimisations
+yarn add -D nuxt-webpack-optimisations
+# npm i -D nuxt-webpack-optimisations
 ```
 
 Within your `nuxt.config.ts` or `nuxt.config.js`
@@ -124,10 +124,13 @@ If you'd like to get more performance than the default you can try
 ```js
 // nuxt.config.ts
 export default {
+  // ...
   webpackOptimisations: {
-    // hard source is the riskiest, if you have issues don't enable it
-    hardSourcePlugin: process.env.NODE_ENV === 'development',
-    parallelPlugin: process.env.NODE_ENV === 'development',
+    features: {
+      // enable risky optimisations in dev only
+      hardSourcePlugin: process.env.NODE_ENV === 'development',
+      parallelPlugin: process.env.NODE_ENV === 'development',
+    }
   }
 }
 ```
@@ -172,6 +175,7 @@ You can disable features if you'd like to skip optimisations.
 
 
 ```js
+// nuxt.config.ts
 export default {
   webpackOptimisations: {
     features: {
@@ -195,20 +199,27 @@ export default {
 
 *Default:*
 ```javascript
+// nuxt.config.ts
 export default {
-  client: {
-    target: 'es2015',
-  },
-  server: {
-    target: 'node14',
-  },
-  modern: {
-    target: 'es2015',
-  },
+  // ...
+  webpackOptimisations: {
+    // https://github.com/privatenumber/esbuild-loader#%EF%B8%8F-options
+    esbuildLoaderOptions: {
+      client: {
+        target: 'es2015',
+      },
+      server: {
+        target: 'node14',
+      },
+      modern: {
+        target: 'es2015',
+      },
+    }
+  }
 }
 ```
 
-See [esbuild-loader](https://github.com/privatenumber/esbuild-loader).
+See [esbuild-loader](https://github.com/privatenumber/esbuild-loader#%EF%B8%8F-options) for full options.
 
 ### esbuildMinifyOptions
 
@@ -216,20 +227,27 @@ See [esbuild-loader](https://github.com/privatenumber/esbuild-loader).
 
 *Default:*
 ```javascript
+// nuxt.config.ts
 export default {
-  client: {
-    target: 'es2015',
-  },
-  server: {
-    target: 'node14',
-  },
-  modern: {
-    target: 'es2015',
+  // ...
+  webpackOptimisations: {
+    // https://github.com/privatenumber/esbuild-loader#minifyplugin
+    esbuildMinifyOptions: {
+      client: {
+        target: 'es2015',
+      },
+      server: {
+        target: 'node14',
+      },
+      modern: {
+        target: 'es2015',
+      },
+    }
   },
 }
 ```
 
-See [esbuild-loader](https://github.com/privatenumber/esbuild-loader).
+See [esbuild-loader](https://github.com/privatenumber/esbuild-loader#minifyplugin) for full options.
 
 ### Measure
 
@@ -242,11 +260,15 @@ When measure is enabled with true (options or environment variable), it will use
 If the measure option is an object it is assumed to be [speed-measure-webpack-plugin options](https://github.com/stephencookdev/speed-measure-webpack-plugin#options).
 
 ```js
-webpackOptimisations: {
-  measure: {
-    outputFormat: 'humanVerbose',
-    granularLoaderData: true,
-    loaderTopFiles: 10
+// nuxt.config.ts
+export default {
+  // ...
+  webpackOptimisations: {
+    measure: {
+      outputFormat: 'humanVerbose',
+      granularLoaderData: true,
+      loaderTopFiles: 10
+    }
   }
 }
 ```
@@ -274,8 +296,12 @@ Note: Some features are disabled with measure on, such as caching.
 Configure which build will be measured. Note that non-client builds may be buggy and mess with HMR.
 
 ```javascript
-webpackOptimisations: {
-  measureMode: 'all'
+// nuxt.config.ts
+export default {
+  // ...
+  webpackOptimisations: {
+    measureMode: 'all'
+  }
 }
 ```
 
@@ -289,9 +315,13 @@ You can either migrate your scripts to typescript or disabled the esbuild loader
 
 **Disable Loader**
 ```js
-webpackOptimisations: {
-  features: {
-    esbuildLoader: false
+// nuxt.config.ts
+export default {
+  // ...
+  webpackOptimisations: {
+    features: {
+      esbuildLoader: false
+    }
   }
 }
 ```
@@ -324,7 +354,7 @@ export default class HelloWorld extends Vue {
 ## Credits
 
 - https://github.com/galvez/nuxt-esbuild-module
-
+- https://github.com/privatenumber/esbuild-loader
 
 ## Sponsors
 
