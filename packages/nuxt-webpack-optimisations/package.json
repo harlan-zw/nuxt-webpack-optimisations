@@ -2,27 +2,24 @@
   "name": "nuxt-webpack-optimisations",
   "version": "2.2.0",
   "description": "Nuxt.js module to automatically make your webpack builds faster and smaller.",
+  "author": {
+    "name": "Harlan Wilton",
+    "email": "harlan@harlanzw.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/harlan-zw/nuxt-webpack-optimisations#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harlan-zw/nuxt-webpack-optimisations.git"
+  },
+  "bugs": {
+    "url": "https://github.com/harlan-zw/nuxt-webpack-optimisations/issues"
+  },
   "keywords": [
     "nuxt",
     "performance",
     "build",
     "webpack"
-  ],
-  "homepage": "https://github.com/harlan-zw/nuxt-webpack-optimisations#readme",
-  "bugs": {
-    "url": "https://github.com/harlan-zw/nuxt-webpack-optimisations/issues"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/harlan-zw/nuxt-webpack-optimisations.git"
-  },
-  "author": {
-    "name": "Harlan Wilton",
-    "email": "harlan@harlanzw.com"
-  },
-  "files": [
-    "dist"
   ],
   "exports": {
     "import": "./dist/module.mjs",
@@ -30,6 +27,9 @@
   },
   "main": "./dist/module.cjs",
   "types": "./dist/module.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "nuxt-module-build --stub",
     "build": "nuxt-module-build"

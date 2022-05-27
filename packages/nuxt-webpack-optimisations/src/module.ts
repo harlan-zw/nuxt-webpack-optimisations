@@ -117,7 +117,7 @@ export default defineNuxtModule<NuxtWebpackOptimisationOptions>({
       })
       .forEach((fn, i) => {
         const name = Object.keys(augmentations)[i]
-        let disabledReason: string|false = false
+        let disabledReason: string | false = false
         if (typeof fn.dev !== 'undefined') {
           if (fn.dev && !nuxt.options.dev)
             disabledReason = 'dev only'

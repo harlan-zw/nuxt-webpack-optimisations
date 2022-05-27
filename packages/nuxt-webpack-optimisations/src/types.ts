@@ -69,11 +69,11 @@ export interface NuxtWebpackOptimisationOptions {
   /**
    * Options to pass to esbuild-loader for js and ts
    */
-  esbuildLoaderOptions?: LoaderOptions|PartialRecord<WebpackConfigMode, LoaderOptions>
+  esbuildLoaderOptions?: LoaderOptions | PartialRecord<WebpackConfigMode, LoaderOptions>
   /**
    * Options to pass to esbuild-loader for js and ts
    */
-  esbuildMinifyOptions?: LoaderOptions|PartialRecord<WebpackConfigMode, LoaderOptions>
+  esbuildMinifyOptions?: LoaderOptions | PartialRecord<WebpackConfigMode, LoaderOptions>
   /**
    * Which features to run.
    */
@@ -89,7 +89,7 @@ export interface AugmentationArgs {
   nuxtOptions: NuxtOptions
 }
 
-export type PolicyResponse = void|boolean|{ forward: 'deny'|'accept'; reason: string }
+export type PolicyResponse = void | boolean | { forward: 'deny' | 'accept'; reason: string }
 export type Augmentation = (((args: AugmentationArgs) =>
 { dev?: boolean; featureKey?: Feature; setup: () => void; policy?: () => PolicyResponse }))
 
