@@ -7,6 +7,8 @@ export const defaultOptions: ResolvedOptions = {
   profile: undefined,
   debug: false,
   measure: false,
+  risky: false,
+  displayVersionInfo: true,
   measureMode: 'all',
   esbuildMinifyOptions: {
     client: {

@@ -27,7 +27,6 @@ export default defineNuxtModule<NuxtWebpackOptimisationOptions>({
     version,
     configKey: NUXT_CONFIG_KEY,
   },
-  // support @nuxt/kit legacy
   defaults: defaultOptions,
   async setup(userConfig: NuxtWebpackOptimisationOptions, nuxt) {
     const logger = consola.withScope(NAME)
