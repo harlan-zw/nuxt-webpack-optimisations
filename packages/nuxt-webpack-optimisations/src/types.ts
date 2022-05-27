@@ -23,6 +23,10 @@ export interface ResolvedOptions {
    */
   debug: boolean
   /**
+   * Run risky augmentations.
+   */
+  risky?: false
+  /**
    * Which webpack config to use with SpeedMeasurePlugin.
    */
   measureMode: MeasureMode
@@ -42,6 +46,11 @@ export interface ResolvedOptions {
    * Which features to run.
    */
   features: Record<Feature, Boolean>
+  /**
+   * Shows nuxt-webpack-optimisations version info on build:before hook.
+   * @default true
+   */
+  displayVersionInfo?: boolean
 }
 
 export interface NuxtWebpackOptimisationOptions {
@@ -78,6 +87,12 @@ export interface NuxtWebpackOptimisationOptions {
    * Which features to run.
    */
   features?: PartialRecord<Feature, Boolean>
+
+  /**
+   * Shows nuxt-webpack-optimisations version info on build:before hook.
+   * @default true
+   */
+  displayVersionInfo?: boolean
 }
 
 export interface AugmentationArgs {
