@@ -137,6 +137,41 @@ export default {
 
 Note: It's recommended to avoid running risky in non-development environments. Caching in CI environments can lead to issues.
 
+### Modifying Esbuild Behaviour
+
+Out of the box the esbuild optimisations will use the default options, only changing the target for earlier browsers
+to support legacy code. 
+
+In most cases you won't need to change this, if you do then you'll need to configure the client, server and modern (if using) build separately.
+
+Example:
+
+```js
+// nuxt.config.ts
+export default {
+  // ...
+  webpackOptimisations: {
+    // https://github.com/privatenumber/esbuild-loader#%EF%B8%8F-options
+    esbuildLoaderOptions: {
+      client: {
+        // any esbuild options can be set here
+        minifyIdentifiers: false,
+        // as well as any esbuild-loader options
+        target: 'es2015',
+      },
+      server: {
+        minifyIdentifiers: false,
+        target: 'node14',
+      },
+      // only needed if you're using modern: true
+      modern: {
+        target: 'es2017',
+      },
+    }
+  }
+}
+```
+
 ### Something isn't working
 
 A lot of the speed improvements are from heavy caching, if you have any issues the first thing you should
