@@ -23,5 +23,5 @@
     "vitest": "^0.18.0",
     "webpack": "^4"
   },
-  "version": "2.2.3"
+  "version": "2.2.4"
 }
