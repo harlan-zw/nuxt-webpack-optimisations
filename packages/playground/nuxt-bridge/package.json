@@ -10,12 +10,12 @@
   },
   "dependencies": {
     "nuxt-edge": "latest",
-    "nuxt-windicss": "^2.0.7",
-    "windicss": "^3.1.9",
-    "nuxt-webpack-optimisations": "link:../../nuxt-webpack-optimisations"
+    "nuxt-webpack-optimisations": "link:../../nuxt-webpack-optimisations",
+    "nuxt-windicss": "^2.5.1",
+    "windicss": "^3.1.9"
   },
   "devDependencies": {
-    "@nuxt/bridge": "npm:@nuxt/bridge-edge@^3.0.0-27235989.d52b1e8",
+    "@nuxt/bridge": "npm:@nuxt/bridge-edge@^3.0.0-27672061.a645f7f",
     "less": "^4.1.2",
     "less-loader": "^7.3.0",
     "postcss-import": "^14.0.2",
