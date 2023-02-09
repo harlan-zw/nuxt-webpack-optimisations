@@ -1,4 +1,4 @@
-import { isNuxt3 } from '@nuxt/kit'
+import { getNuxtVersion } from '@nuxt/kit'
 import { defineAugmentation, deny } from '../core/util'
 
 export default defineAugmentation(({ nuxtOptions, nuxt }) => ({
@@ -13,7 +13,8 @@ export default defineAugmentation(({ nuxtOptions, nuxt }) => ({
   },
 
   setup() {
-    if (isNuxt3(nuxt)) {
+    const version = getNuxtVersion(nuxt)
+    if (version.startsWith('2.6.') || version.startsWith('3.')) {
       if (!nuxtOptions.build.postcss.postcssOptions.plugins)
         nuxtOptions.build.postcss.postcssOptions.plugins = {}
       nuxtOptions.build.postcss.postcssOptions.plugins.autoprefixer = false
