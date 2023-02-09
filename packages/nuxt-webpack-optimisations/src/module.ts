@@ -79,12 +79,14 @@ export default defineNuxtModule<NuxtWebpackOptimisationOptions>({
     const options = userConfig as ResolvedOptions
 
     // hacky identification of the nuxt-vite module for Nuxt 2
+    // @ts-expect-error untyped
     if (isNuxt2(nuxt) && nuxt.options.buildModules.includes('nuxt-vite')) {
       logger.warn(`\`${NAME}\` is enabled with \`nuxt-vite\`. Please remove ${NAME} from your buildModules.`)
       return
     }
 
     // Make sure they're not using tailwind
+    // @ts-expect-error untyped
     if (isNuxt3(nuxt) && nuxt.options.vite !== false) {
       logger.error(`\`${NAME}\` is only for webpack builds. Please remove ${NAME} from your buildModules.`)
       return
