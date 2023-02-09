@@ -1,4 +1,4 @@
-import { getNuxtVersion } from '@nuxt/kit'
+import { hasNuxtCompatibility, isNuxt3 } from '@nuxt/kit'
 import { defineAugmentation, deny } from '../core/util'
 
 export default defineAugmentation(({ nuxtOptions, nuxt }) => ({
@@ -12,9 +12,9 @@ export default defineAugmentation(({ nuxtOptions, nuxt }) => ({
       return deny('postcss is disabled')
   },
 
-  setup() {
-    const version = getNuxtVersion(nuxt)
-    if (version.startsWith('2.6.') || version.startsWith('3.')) {
+  async setup() {
+    const usingNewPostcss = await hasNuxtCompatibility({ nuxt: '^2.16.0' }, nuxt) || isNuxt3(nuxt)
+    if (usingNewPostcss) {
       if (!nuxtOptions.build.postcss.postcssOptions.plugins)
         nuxtOptions.build.postcss.postcssOptions.plugins = {}
       nuxtOptions.build.postcss.postcssOptions.plugins.autoprefixer = false

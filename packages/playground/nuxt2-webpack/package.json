@@ -8,11 +8,12 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "nuxt": "^2.6.0",
+    "nuxt": "^2.16.0",
     "nuxt-windicss": "^2.6.0",
     "nuxt-webpack-optimisations": "link:../../nuxt-webpack-optimisations"
   },
   "devDependencies": {
+    "vue-template-compiler": "2.7.14",
     "@nuxt/typescript-build": "^2.1.0",
     "less": "^4.1.2",
     "less-loader": "^7.3.0",
