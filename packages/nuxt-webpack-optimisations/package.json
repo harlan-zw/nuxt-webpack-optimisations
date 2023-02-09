@@ -1,6 +1,6 @@
 {
   "name": "nuxt-webpack-optimisations",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "description": "Nuxt.js module to automatically make your webpack builds faster and smaller.",
   "author": {
     "name": "Harlan Wilton",
